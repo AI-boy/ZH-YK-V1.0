@@ -1,0 +1,947 @@
+C51 COMPILER V9.01   MAIN                                                                  03/20/2019 11:22:07 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN ..\OBJ\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\src\main.c LARGE BROWSE FLOATFUZZY(4) INCDIR(..\include;C:\Keil\C51\INC\
+                    -STC) DEBUG OBJECTEXTEND PRINT(.\main.lst) OBJECT(..\OBJ\main.obj)
+
+line level    source
+
+   1          /******************************************************************************
+   2          **                           Ö¾ºÍÐËÒµÓÐÏÞ¹«Ë¾
+   3          **
+   4          **                           
+   5          **
+   6          **--------------»ù±¾ÎÄ¼þÐÅÏ¢---------------------------------------------------
+   7          ** ÎÄ   ¼þ   Ãû : main.c
+   8          ** µ±Ç°    °æ±¾ : V1.0 
+   9          ** Ãè        Êö : Ò£¿ØÆ÷Ö÷³ÌÐò
+  10          ** ±à   Òë   Æ÷ : kei c51
+  11          ** Ó²        ¼þ : ZH-YK-001  STC8A4K60S
+  12          **--------------ÀúÊ·°æ±¾ÐÅÏ¢---------------------------------------------------
+  13          ** ¿ªÊ¼´´½¨ÈÕÆÚ : 2018-06-13
+  14          ** ´´   ½¨   ÈË : ²ÌÎ¬¿­
+  15          ** °æ        ±¾ : V1.0
+  16          ** Ãè¡¡      Êö : 
+  17          
+  18          **-----------------------------------------------------------------------------
+  19          *******************************************************************************/
+  20          
+  21          //**--------------Í·ÎÄ¼þ-------------------------------------------------------
+  22          #include "STC8.h"
+  23          #include "intrins.h"
+  24          #include "stdio.h"
+  25          #include "string.h"
+  26          
+  27          #include "userdefine.h"
+  28          
+  29          
+  30          
+  31          
+  32          
+  33          
+  34          
+  35          
+  36          
+  37          
+  38          
+  39          
+  40          //**--------------È«¾Ö±äÁ¿-----------------------------------------------------
+  41          
+  42          unsigned int system_power_on_time_count=0x00;
+  43          
+  44          
+  45          
+  46          
+  47          
+  48          //**--------------ºê¶¨Òå-------------------------------------------------------
+  49          
+  50          //**--------------º¯ÊýÉêÃ÷-----------------------------------------------------
+  51          
+  52          //**--------------º¯Êý¶¨Òå-----------------------------------------------------
+  53          
+  54          
+C51 COMPILER V9.01   MAIN                                                                  03/20/2019 11:22:07 PAGE 2   
+
+  55          
+  56          
+  57          
+  58          
+  59          
+  60          /**********************************************************************
+  61          *º¯ÊýÃû³Æ£ºinit_osc
+  62          *ÃèÊö£ºÏµÍ³Ê±ÖÓ³õÅäÖÃ   24M
+  63          *·µ»ØÀàÐÍ£ºvoid
+  64          *ÊäÈëÐÎ²Î£ºvoid
+  65          ***********************************************************************/
+  66          void init_osc(void)
+  67          {
+  68   1              P_SW2 |= EAXFR;                                                 
+  69   1      
+  70   1              IRC24MCR = 0x80;
+  71   1              while (!(IRC24MCR & 1)); 
+  72   1                                                                                                      //ÏµÍ³Ê±ÖÓÔ´Ñ¡Ôñ
+  73   1          CKSEL = 0x00;                               //Ñ¡ÔñÄÚ²¿IRC 24MHz ( Ä¬ÈÏ )
+  74   1          
+  75   1               P_SW2 &= ~EAXFR;
+  76   1                                                                                                      //¿´ÃÅ¹·³õÊ¼»¯ 
+  77   1               WDT_CONTR = 0x27;                           //Ê¹ÄÜ¿´ÃÅ¹·,Òç³öÊ±¼äÔ¼Îª4.2s
+  78   1      }
+  79          
+  80          
+  81          
+  82          
+  83          
+  84          
+  85          
+  86          
+  87          
+  88          
+  89          
+  90          /**********************************************************************
+  91          *º¯ÊýÃû³Æ£ºdriver_init
+  92          *ÃèÊö£ºÇý¶¯²ã³õÊ¼»¯
+  93          *·µ»ØÀàÐÍ£ºvoid
+  94          *ÊäÈëÐÎ²Î£ºvoid
+  95          ***********************************************************************/
+  96          void driver_init(void)
+  97          {
+  98   1              init_osc();             //ÏµÍ³Ê±ÖÓÅäÖÃ
+  99   1                      
+ 100   1              init_port();            //IO¶Ë¿Ú¼°ÍâÉè¶Ë¿Ú³õÊ¼»¯
+ 101   1              
+ 102   1              init_led();             //³õÊ¼»¯LEDÖ¸Ê¾µÆ
+ 103   1              
+ 104   1              init_beep();            //³õÊ¼»¯BEEP·äÃùÆ÷
+ 105   1              
+ 106   1              init_timer0();          //³õÊ¼»¯¶¨Ê±Æ÷TIMER0
+ 107   1              
+ 108   1              init_uart2();           //³õÊ¼»¯uart2
+ 109   1                      
+ 110   1              init_pwm();             //³õÊ¼»¯pwm 38KHz ºìÍâÔØ²¨ÆµÂÊÐÅºÅ
+ 111   1              
+ 112   1              init_lcd();                     //³õÊ¼»¯LCD  Òº¾§ÏÔÊ¾COG
+ 113   1              
+ 114   1              init_key();                     //³õÊ¼»¯key 
+ 115   1              
+ 116   1              init_interrupt();       //³õÊ¼»¯ÖÐ¶Ï
+C51 COMPILER V9.01   MAIN                                                                  03/20/2019 11:22:07 PAGE 3   
+
+ 117   1              
+ 118   1              
+ 119   1      }
+ 120          
+ 121          
+ 122          
+ 123          
+ 124          /**********************************************************************
+ 125          *º¯ÊýÃû³Æ£ºmiddle_init
+ 126          *ÃèÊö£ºÖÐ¼ä²ã³õÊ¼»¯
+ 127          *·µ»ØÀàÐÍ£ºvoid
+ 128          *ÊäÈëÐÎ²Î£ºvoid
+ 129          ***********************************************************************/
+ 130          void middle_init(void)
+ 131          {
+ 132   1              read_param_eeprom();  //¶ÁÈ¡ÏµÍ³²ÎÊý
+ 133   1      
+ 134   1      }
+ 135          
+ 136          
+ 137          
+ 138          
+ 139          
+ 140          
+ 141          
+ 142          /**********************************************************************
+ 143          *º¯ÊýÃû³Æ£ºapplication_init
+ 144          *ÃèÊö£ºÓ¦ÓÃ²ã³õÊ¼»¯
+ 145          *·µ»ØÀàÐÍ£ºvoid
+ 146          *ÊäÈëÐÎ²Î£ºvoid
+ 147          ***********************************************************************/
+ 148          void application_init(void)
+ 149          {
+ 150   1      
+ 151   1              TR0 = 1;          //¿ªÆô¶¨Ê±Æ÷  1msÊ±»ù¶¨Ê±Æ÷
+ 152   1              
+ 153   1              system_run_time=0x01;
+ 154   1              
+ 155   1              system_power_on_time_count=0x00;
+ 156   1              
+ 157   1          
+ 158   1          display_string_8x16(1,1,d);
+ 159   1          display_string_8x16(3,17,a);
+ 160   1          display_string_8x16(5,17,b);
+ 161   1          display_string_8x16(7,76,c);
+ 162   1          
+ 163   1          delay_ms(10);
+ 164   1              
+ 165   1          
+ 166   1      }
+ 167          
+ 168          
+ 169          
+ 170          
+ 171          
+ 172          
+ 173          
+ 174          /*---------------------------------------------------------------------
+ 175          *º¯ÊýÃû³Æ£ºmain
+ 176          *ÃèÊö£º
+ 177          *·µ»ØÀàÐÍ£ºint
+ 178          *ÊäÈëÐÎ²Î£ºvoid
+C51 COMPILER V9.01   MAIN                                                                  03/20/2019 11:22:07 PAGE 4   
+
+ 179          ---------------------------------------------------------------------*/
+ 180          int main(void) // Ö÷³ÌÐò
+ 181          {
+ 182   1              driver_init();          // Çý¶¯²ã³õÊ¼»¯
+ 183   1              middle_init();          // ÖÐ¼ä²ã³õÊ¼»¯
+ 184   1              application_init(); // Ó¦ÓÃ²ã³õÊ¼»¯
+ 185   1              
+ 186   1              
+ 187   1              while(1)
+ 188   1              {
+ 189   2                      
+ 190   2                      CLRWDT();  //Î¹¹·  ¿´ÃÅ¹·ÖÜÆÚ16s                                
+ 191   2                      
+ 192   2                      if(handle_scan_key_flag==0x01)
+ 193   2                      {
+ 194   3                              scan_key_value();
+ 195   3                              
+ 196   3                              handle_scan_key_flag=0x00;
+ 197   3                      }
+ 198   2                      
+ 199   2                      if((poll_task_flag==0x01)&&(menu_index_q==0x01))   //ÖÜÆÚÂÖÑ¯¶ÁÈ¡¿ØÖÆÆ÷ÔËÐÐÊý¾Ý
+ 200   2                      {
+ 201   3                              read_run_data();
+ 202   3                                                      
+ 203   3                              poll_task_flag=0x00;  //!!
+ 204   3                      }
+ 205   2                      
+ 206   2                      if(display_lcd_flag==0x01)
+ 207   2                      {       
+ 208   3                              if(menu_index_q==0x00)  //-----ÖÐÎÄ¡¢Ó¢ÎÄÇÐ»»ÏÔÊ¾                                                                        
+ 209   3                              {
+ 210   4                                      if(yuyan_cnt==0x01)
+ 211   4                                      {
+ 212   5                                         display_string_8x16(7,1,e);  
+ 213   5                                      }
+ 214   4                                      else
+ 215   4                                      {
+ 216   5                                         display_string_8x16(7,1,f);
+ 217   5                                      }
+ 218   4                                  
+ 219   4                              }
+ 220   3                              else if(menu_index_q==0x01)   //ÔËÐÐ×´Ì¬Êý¾ÝÏÔÊ¾Ë¢ÐÂ
+ 221   3                              {
+ 222   4                                      if(zhuangtai_cnt==1)
+ 223   4                                      {
+ 224   5                                              sprintf(buf, "%5.2fV\n", p_v/100);   //¹â·üÊäÈëµçÑ¹
+ 225   5                                                                              
+ 226   5                                              display_string_8x16(3,80,buf);
+ 227   5                                                                              
+ 228   5                                              sprintf(buf, "%5.2fV\n", b_v/100);   //µç³Ø¶ËµçÑ¹
+ 229   5                                                                              
+ 230   5                                              display_string_8x16(5,80,buf);
+ 231   5                                                                              
+ 232   5                                              sprintf(buf, "%5.2fV\n", load_v/100); //Êä³ö¶ËµçÑ¹
+ 233   5                                                                              
+ 234   5                                              display_string_8x16(7,80,buf);
+ 235   5                                      }
+ 236   4                                      else if(zhuangtai_cnt==2)
+ 237   4                                      {
+ 238   5                                              sprintf(buf, "%5.2fA\n", charge_I/100);  //³äµçµçÁ÷
+ 239   5                                                                              
+ 240   5                                              display_string_8x16(3,80,buf);
+C51 COMPILER V9.01   MAIN                                                                  03/20/2019 11:22:07 PAGE 5   
+
+ 241   5                                                                              
+ 242   5                                              sprintf(buf, "%5.2fA\n", load_I/100);    //Êä³ö¶Ë¸ºÔØµçÁ÷
+ 243   5                                                                              
+ 244   5                                              display_string_8x16(5,80,buf);
+ 245   5                                               
+ 246   5                                              if(work_mode==0x01)     //²âÊÔÄ£Ê½--¼´ÊÖ¶¯Ä£Ê½
+ 247   5                                              {
+ 248   6                                                      sprintf(buf, " %02x H\n", sys_mode);
+ 249   6                                                      
+ 250   6                                                      display_string_8x16(7,80,buf);
+ 251   6                                                      
+ 252   6                                              }
+ 253   5                                              else//×Ô¶¯Ä£Ê½
+ 254   5                                              {
+ 255   6                                                      sprintf(buf, " %02x A\n", sys_mode);       //Ì«ÑôÄÜ¿ØÖÆÆ÷¹¤×÷Ä£Ê½£º0-´ý»ú    1-³äµç    2-·Åµç
+ 256   6                                                                              
+ 257   6                                                      display_string_8x16(7,80,buf);
+ 258   6                                                      
+ 259   6                                              }                       
+ 260   5                                              
+ 261   5                                      }
+ 262   4                                      else if(zhuangtai_cnt==3)
+ 263   4                                      {
+ 264   5                                              sprintf(buf, "7.t_ad=%04d\n", charge_current_value);  
+ 265   5                                                                              
+ 266   5                                              display_string_8x16(3,1,buf);
+ 267   5                                                                              
+ 268   5                                              sprintf(buf, "8.i_ad=%04d\n", discharge_current_value);  
+ 269   5                                                                              
+ 270   5                                              display_string_8x16(5,1,buf);
+ 271   5                                                                              
+ 272   5                                              sprintf(buf, "9.T_ad=%04d\n", temperature_value);      
+ 273   5                                                                              
+ 274   5                                              display_string_8x16(7,1,buf);
+ 275   5                                      }
+ 276   4                                      else //ÀúÊ·¼ÇÂ¼ µç³ØµçÑ¹
+ 277   4                                      {
+ 278   5                                              sprintf(buf, "BT_%02d_HV->%5.2fV\n",day_index,bt_dy[2*day_index]/100);   
+ 279   5                                                                              
+ 280   5                                              display_string_8x16(3,1,buf);
+ 281   5                                                                              
+ 282   5                                              sprintf(buf, "BT_%02d_LV->%5.2fV\n",day_index,bt_dy[2*day_index+1]/100);   
+ 283   5                                                                              
+ 284   5                                              display_string_8x16(5,1,buf);
+ 285   5                                      }
+ 286   4                              }
+ 287   3                              else if(menu_index_q==0x02)  //Éè±¸²ÎÊýÏÔÊ¾Ë¢ÐÂ
+ 288   3                              {
+ 289   4                                      if(canshu_cnt==1)
+ 290   4                                      {
+ 291   5                                              sprintf(buf, "%5.2fV\n", light_pv/100);  //¹â¿ØµçÑ¹Éè¶¨--¼ø±ð°×ÌìÓëºÚÒ¹Í¨¹ý¹â·ü°åµçÑ¹
+ 292   5                                                      
+ 293   5                                              display_string_8x16(3,82,buf);
+ 294   5                                                      
+ 295   5                                              sprintf(buf, "%5.2fA\n", load_cc_I/100);  //¸ºÔØ¹¤×÷µçÁ÷Éè¶¨
+ 296   5                                                                              
+ 297   5                                              display_string_8x16(5,82,buf);
+ 298   5                                              
+ 299   5                                              
+ 300   5                                                                              
+ 301   5                                              sprintf(buf, "%3d%%\n", step_01_load_percent);  //µÚ1½×¶Î ½ÚÄÜ°Ù·Ö±È
+ 302   5                                                                              
+C51 COMPILER V9.01   MAIN                                                                  03/20/2019 11:22:07 PAGE 6   
+
+ 303   5                                              display_string_8x16(7,82,buf);  
+ 304   5                                              
+ 305   5                                              sprintf(buf, "%2d\n", step_01_time_limit);      //µÚ1½×¶Î Ê±³¤
+ 306   5                                                                              
+ 307   5                                              display_string_8x16(7,114,buf);
+ 308   5                                      }
+ 309   4                                      else if(canshu_cnt==2)
+ 310   4                                      {
+ 311   5                                              sprintf(buf, "%3d%%\n", step_02_load_percent);  //µÚ2½×¶Î ½ÚÄÜ°Ù·Ö±È
+ 312   5                                                      
+ 313   5                                              display_string_8x16(3,82,buf);
+ 314   5                                              
+ 315   5                                              sprintf(buf, "%2d\n", step_02_time_limit);      //µÚ2½×¶Î Ê±³¤
+ 316   5                                                                              
+ 317   5                                              display_string_8x16(3,114,buf);
+ 318   5                                              
+ 319   5                                                      
+ 320   5                                              sprintf(buf, "%3d%%\n", step_03_load_percent);  //µÚ3½×¶Î ½ÚÄÜ°Ù·Ö±È
+ 321   5                                                                              
+ 322   5                                              display_string_8x16(5,82,buf);
+ 323   5                                              
+ 324   5                                              sprintf(buf, "%2d\n", step_03_time_limit);      //µÚ3½×¶Î Ê±³¤
+ 325   5                                                                              
+ 326   5                                              display_string_8x16(5,114,buf);
+ 327   5                                              
+ 328   5                                                                              
+ 329   5                                              sprintf(buf, "%3d%%\n", step_04_load_percent);  //µÚ4½×¶Î ½ÚÄÜ°Ù·Ö±È
+ 330   5                                                                              
+ 331   5                                              display_string_8x16(7,82,buf);  
+ 332   5                                              
+ 333   5                                              sprintf(buf, "%2d\n", step_04_time_limit);      //µÚ4½×¶Î Ê±³¤
+ 334   5                                                                              
+ 335   5                                              display_string_8x16(7,114,buf);
+ 336   5                                      }
+ 337   4                                      else
+ 338   4                                      {
+ 339   5                                              sprintf(buf, "%3d%%\n", step_05_load_percent);  //µÚ5½×¶Î ½ÚÄÜ°Ù·Ö±È
+ 340   5                                                      
+ 341   5                                              display_string_8x16(3,82,buf);
+ 342   5                                              
+ 343   5                                              sprintf(buf, "%2d\n", step_05_time_limit);      //µÚ5½×¶Î Ê±³¤
+ 344   5                                                                              
+ 345   5                                              display_string_8x16(3,114,buf);
+ 346   5                                              
+ 347   5                                              
+ 348   5                                                      
+ 349   5                                              sprintf(buf, "%2d\n", bt_id);                       //µç³ØÀàÐÍ
+ 350   5                                                                              
+ 351   5                                              display_string_8x16(5,82,buf);
+ 352   5                                                                              
+ 353   5                                              sprintf(buf, "%2dmin\n", light_time);           //¹â¿ØÊ±¼ä
+ 354   5                                                                              
+ 355   5                                              display_string_8x16(7,82,buf);
+ 356   5                                      }
+ 357   4                                              
+ 358   4                              }
+ 359   3                              else if(menu_index_q==0x03)
+ 360   3                              {
+ 361   4                                              if(canshu_cnt==1)
+ 362   4                                              {
+ 363   5                                                      sprintf(buf, "%5.2fV\n", light_pv/100);  //¹â¿ØµçÑ¹Éè¶¨--¼ø±ð°×ÌìÓëºÚÒ¹Í¨¹ý¹â·ü°åµçÑ¹
+ 364   5                                                      
+C51 COMPILER V9.01   MAIN                                                                  03/20/2019 11:22:07 PAGE 7   
+
+ 365   5                                                      display_string_8x16(3,82,buf);
+ 366   5                                                      
+ 367   5                                                      //---------------------------------
+ 368   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾
+ 369   5                                                      
+ 370   5                                                      sprintf(buf, "%5.2fA\n", load_cc_I/100);  //¸ºÔØ¹¤×÷µçÁ÷Éè¶¨
+ 371   5                                                                                      
+ 372   5                                                      display_string_8x16(5,82,buf);
+ 373   5                                                                                      
+ 374   5                                                      sprintf(buf, "%3d%%\n", step_01_load_percent);  
+ 375   5                                                                                      
+ 376   5                                                      display_string_8x16(7,82,buf);
+ 377   5                                                      
+ 378   5                                                      sprintf(buf, "%2d\n", step_01_time_limit);      //µÚ1½×¶Î Ê±³¤
+ 379   5                                                                              
+ 380   5                                                      display_string_8x16(7,114,buf);
+ 381   5                                                      
+ 382   5                                                      menu_index_q=0x03;//!!!!!!!!!!!!        
+ 383   5                                              }
+ 384   4                                              else if(canshu_cnt==2)
+ 385   4                                              {
+ 386   5                                                      sprintf(buf, "%3d%%\n", step_02_load_percent); 
+ 387   5                                                      
+ 388   5                                                      display_string_8x16(3,82,buf);
+ 389   5                                                      
+ 390   5                                                      //---------------------------------
+ 391   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾
+ 392   5                                                      
+ 393   5                                                      sprintf(buf, "%2d\n", step_02_time_limit);      //µÚ2½×¶Î Ê±³¤
+ 394   5                                                                              
+ 395   5                                                      display_string_8x16(3,114,buf);
+ 396   5                                                      
+ 397   5                                                      
+ 398   5                                                      sprintf(buf, "%3d%%\n", step_03_load_percent);   
+ 399   5                                                                                      
+ 400   5                                                      display_string_8x16(5,82,buf);
+ 401   5                                                      
+ 402   5                                                      sprintf(buf, "%2d\n", step_03_time_limit);      //µÚ3½×¶Î Ê±³¤
+ 403   5                                                                              
+ 404   5                                                      display_string_8x16(5,114,buf);
+ 405   5                                                      
+ 406   5                                                                                      
+ 407   5                                                      sprintf(buf, "%3d%%\n", step_04_load_percent);  
+ 408   5                                                                                      
+ 409   5                                                      display_string_8x16(7,82,buf);
+ 410   5                                                      
+ 411   5                                                      sprintf(buf, "%2d\n", step_04_time_limit);      //µÚ4½×¶Î Ê±³¤
+ 412   5                                                                              
+ 413   5                                                      display_string_8x16(7,114,buf);
+ 414   5                                                      
+ 415   5                                                      menu_index_q=0x03;//!!!!!!!!!!!!
+ 416   5                                              }
+ 417   4                                              else
+ 418   4                                              {
+ 419   5                                                      sprintf(buf, "%3d%%\n", step_05_load_percent); 
+ 420   5                                                      
+ 421   5                                                      display_string_8x16(3,82,buf);
+ 422   5                                                      
+ 423   5                                                      //---------------------------------
+ 424   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾
+ 425   5                                                      
+ 426   5                                                      sprintf(buf, "%2d\n", step_05_time_limit);      //µÚ5½×¶Î Ê±³¤
+C51 COMPILER V9.01   MAIN                                                                  03/20/2019 11:22:07 PAGE 8   
+
+ 427   5                                                                              
+ 428   5                                                      display_string_8x16(3,114,buf);
+ 429   5                                                      
+ 430   5                                                      
+ 431   5                                                      
+ 432   5                                                      sprintf(buf, "%2d\n", bt_id);                       //µç³ØÀàÐÍ
+ 433   5                                                                              
+ 434   5                                                      display_string_8x16(5,82,buf);
+ 435   5                                                                                      
+ 436   5                                                      sprintf(buf, "%2dmin\n", light_time);           //¹â¿ØÊ±¼ä
+ 437   5                                                                                      
+ 438   5                                                      display_string_8x16(7,82,buf);
+ 439   5                                                      
+ 440   5                                                      menu_index_q=0x03;//!!!!!!!!!!!!
+ 441   5                                              }
+ 442   4                                              
+ 443   4                                              
+ 444   4                                              //---------------------------------
+ 445   4                              }
+ 446   3                              else if(menu_index_q==0x05)
+ 447   3                              {
+ 448   4                                              if(canshu_cnt==1)
+ 449   4                                              {
+ 450   5                                                      sprintf(buf, "%5.2fA\n", load_cc_I/100);  //¸ºÔØ¹¤×÷µçÁ÷Éè¶¨
+ 451   5                                                                              
+ 452   5                                                      display_string_8x16(5,82,buf);
+ 453   5                                                                                      
+ 454   5                                                      //---------------------------------
+ 455   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾                                 
+ 456   5                                                              
+ 457   5                                                      sprintf(buf, "%5.2fV\n", light_pv/100);  //¹â¿ØµçÑ¹Éè¶¨--¼ø±ð°×ÌìÓëºÚÒ¹Í¨¹ý¹â·ü°åµçÑ¹
+ 458   5                                                              
+ 459   5                                                      display_string_8x16(3,82,buf);
+ 460   5                                                                                      
+ 461   5                                                      sprintf(buf, "%3d%%\n", step_01_load_percent);  
+ 462   5                                                                                      
+ 463   5                                                      display_string_8x16(7,82,buf);
+ 464   5                                                      
+ 465   5                                                      sprintf(buf, "%2d\n", step_01_time_limit);      //µÚ1½×¶Î Ê±³¤
+ 466   5                                                                              
+ 467   5                                                      display_string_8x16(7,114,buf);
+ 468   5                                                      
+ 469   5                                                      menu_index_q=0x05;//!!!!!!!!!!!!        
+ 470   5                                              }
+ 471   4                                              else if(canshu_cnt==2)
+ 472   4                                              {
+ 473   5                                                      sprintf(buf, "%2d\n", step_02_time_limit);      //µÚ2½×¶Î Ê±³¤
+ 474   5                                                                              
+ 475   5                                                      display_string_8x16(3,114,buf);
+ 476   5                                                      
+ 477   5                                                      //---------------------------------
+ 478   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾
+ 479   5                                                      
+ 480   5                                                      sprintf(buf, "%3d%%\n", step_02_load_percent);   
+ 481   5                                                                                      
+ 482   5                                                      display_string_8x16(3,82,buf);
+ 483   5                                                      
+ 484   5                                                      sprintf(buf, "%3d%%\n", step_03_load_percent); 
+ 485   5                                                      
+ 486   5                                                      display_string_8x16(5,82,buf);
+ 487   5                                                      
+ 488   5                                                      sprintf(buf, "%2d\n", step_03_time_limit);      //µÚ3½×¶Î Ê±³¤
+C51 COMPILER V9.01   MAIN                                                                  03/20/2019 11:22:07 PAGE 9   
+
+ 489   5                                                                              
+ 490   5                                                      display_string_8x16(5,114,buf);
+ 491   5                                                                                      
+ 492   5                                                      sprintf(buf, "%3d%%\n", step_04_load_percent);  
+ 493   5                                                                                      
+ 494   5                                                      display_string_8x16(7,82,buf);
+ 495   5                                                      
+ 496   5                                                      sprintf(buf, "%2d\n", step_04_time_limit);      //µÚ4½×¶Î Ê±³¤
+ 497   5                                                                              
+ 498   5                                                      display_string_8x16(7,114,buf);
+ 499   5                                                      
+ 500   5                                                      menu_index_q=0x05;//!!!!!!!!!!!!
+ 501   5                                              }
+ 502   4                                              else
+ 503   4                                              {
+ 504   5                                                      sprintf(buf, "%2d\n", step_05_time_limit);      //µÚ5½×¶Î Ê±³¤
+ 505   5                                                                              
+ 506   5                                                      display_string_8x16(3,114,buf);
+ 507   5                                                      
+ 508   5                                                      //---------------------------------
+ 509   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾
+ 510   5                                                      
+ 511   5                                                      sprintf(buf, "%3d%%\n", step_05_load_percent);   
+ 512   5                                                                                      
+ 513   5                                                      display_string_8x16(3,82,buf);
+ 514   5                                                      
+ 515   5                                                      sprintf(buf, "%2d\n", bt_id);                       //µç³ØÀàÐÍ
+ 516   5                                                                              
+ 517   5                                                      display_string_8x16(5,82,buf);
+ 518   5                                                                                      
+ 519   5                                                      sprintf(buf, "%2dmin\n", light_time);           //¹â¿ØÊ±¼ä 
+ 520   5                                                                                      
+ 521   5                                                      display_string_8x16(7,82,buf);
+ 522   5                                                      
+ 523   5                                                      menu_index_q=0x05;//!!!!!!!!!!!!
+ 524   5                                              }
+ 525   4                                              
+ 526   4                                              
+ 527   4                                              //---------------------------------
+ 528   4                              }
+ 529   3                              else if(menu_index_q==0x07)
+ 530   3                              {
+ 531   4                                              if(canshu_cnt==1)
+ 532   4                                              {
+ 533   5                                                      sprintf(buf, "%3d%%\n", step_01_load_percent);  //½ÚÄÜÄ£Ê½ ¸ºÔØÊä³ö¹¦ÂÊ°Ù·Ö±È£¨µ±µç³ØµçÁ¿ÏÂ½µµ½Ò»¶¨Ã
+             -ÅÏÞÊ±½øÈë½ÚÄÜÊä³öÄ£Ê½ ×î´óÏÞ¶ÈÑÓ³¤LEDµÆµÄµãÁÁÊ±¼ä£©
+ 534   5                                                                              
+ 535   5                                                      display_string_8x16(7,82,buf);
+ 536   5                                                      
+ 537   5                                                      
+ 538   5                                                      //---------------------------------
+ 539   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾
+ 540   5                                                      
+ 541   5                                                      sprintf(buf, "%2d\n", step_01_time_limit);      //µÚ1½×¶Î Ê±³¤
+ 542   5                                                                              
+ 543   5                                                      display_string_8x16(7,114,buf);
+ 544   5                                                      
+ 545   5                                                      sprintf(buf, "%5.2fA\n", load_cc_I/100);  //¸ºÔØ¹¤×÷µçÁ÷Éè¶¨
+ 546   5                                                                                      
+ 547   5                                                      display_string_8x16(5,82,buf);                                                                  
+ 548   5                                                      
+ 549   5                                                      sprintf(buf, "%5.2fV\n", light_pv/100);  //¹â¿ØµçÑ¹Éè¶¨--¼ø±ð°×ÌìÓëºÚÒ¹Í¨¹ý¹â·ü°åµçÑ¹
+C51 COMPILER V9.01   MAIN                                                                  03/20/2019 11:22:07 PAGE 10  
+
+ 550   5                                                              
+ 551   5                                                      display_string_8x16(3,82,buf);
+ 552   5                                                      
+ 553   5                                                      menu_index_q=0x07;//!!!!!!!!!!!!        
+ 554   5                                              }
+ 555   4                                              else if(canshu_cnt==2)
+ 556   4                                              {
+ 557   5                                                      sprintf(buf, "%3d%%\n", step_03_load_percent);  
+ 558   5                                                                                      
+ 559   5                                                      display_string_8x16(5,82,buf);
+ 560   5                                                      
+ 561   5                                                      //---------------------------------
+ 562   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾
+ 563   5                                                      
+ 564   5                                                      sprintf(buf, "%3d%%\n", step_02_load_percent);   
+ 565   5                                                                                      
+ 566   5                                                      display_string_8x16(3,82,buf);
+ 567   5                                                                                      
+ 568   5                                                      sprintf(buf, "%2d\n", step_02_time_limit);      //µÚ2½×¶Î Ê±³¤
+ 569   5                                                                              
+ 570   5                                                      display_string_8x16(3,114,buf);
+ 571   5                                                      
+ 572   5                                                      
+ 573   5                                                      sprintf(buf, "%2d\n", step_03_time_limit);      //µÚ3½×¶Î Ê±³¤
+ 574   5                                                                              
+ 575   5                                                      display_string_8x16(5,114,buf);
+ 576   5                                                      
+ 577   5                                                      sprintf(buf, "%3d%%\n", step_04_load_percent); 
+ 578   5                                                      
+ 579   5                                                      display_string_8x16(7,82,buf);
+ 580   5                                                      
+ 581   5                                                      sprintf(buf, "%2d\n", step_04_time_limit);      //µÚ4½×¶Î Ê±³¤
+ 582   5                                                                              
+ 583   5                                                      display_string_8x16(7,114,buf);
+ 584   5                                                      
+ 585   5                                                      menu_index_q=0x07;//!!!!!!!!!!!!
+ 586   5                                              }
+ 587   4                                              else
+ 588   4                                              {
+ 589   5                                                      
+ 590   5                                                      sprintf(buf, "%2d\n", bt_id);  
+ 591   5                                                                                      
+ 592   5                                                      display_string_8x16(5,82,buf);
+ 593   5                                                      //---------------------------------
+ 594   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾
+ 595   5                                                      
+ 596   5                                                      sprintf(buf, "%3d%%\n", step_05_load_percent);   
+ 597   5                                                                                      
+ 598   5                                                      display_string_8x16(3,82,buf);
+ 599   5                                                                                      
+ 600   5                                                      sprintf(buf, "%2d\n", step_05_time_limit);      //µÚ5½×¶Î Ê±³¤
+ 601   5                                                                              
+ 602   5                                                      display_string_8x16(3,114,buf);
+ 603   5                                                      
+ 604   5                                                      sprintf(buf, "%2dmin\n", light_time);           //¹â¿ØÊ±¼ä
+ 605   5                                                                              
+ 606   5                                                      display_string_8x16(7,82,buf);
+ 607   5                                                      
+ 608   5                                                      menu_index_q=0x07;//!!!!!!!!!!!!
+ 609   5                                              }
+ 610   4                                              
+ 611   4                                              
+C51 COMPILER V9.01   MAIN                                                                  03/20/2019 11:22:07 PAGE 11  
+
+ 612   4                                              //---------------------------------
+ 613   4                              }
+ 614   3                              else if(menu_index_q==0x09)
+ 615   3                              {
+ 616   4                                              if(canshu_cnt==1)
+ 617   4                                              {
+ 618   5                                                      
+ 619   5                                                      sprintf(buf, "%2d\n", step_01_time_limit);      //µÚ1½×¶Î Ê±³¤
+ 620   5                                                                              
+ 621   5                                                      display_string_8x16(7,114,buf);
+ 622   5                                                      
+ 623   5                                                      //---------------------------------
+ 624   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾
+ 625   5                                                      
+ 626   5                                                      sprintf(buf, "%3d%%\n", step_01_load_percent);  //½ÚÄÜÄ£Ê½ ¸ºÔØÊä³ö¹¦ÂÊ°Ù·Ö±È£¨µ±µç³ØµçÁ¿ÏÂ½µµ½Ò»¶¨Ã
+             -ÅÏÞÊ±½øÈë½ÚÄÜÊä³öÄ£Ê½ ×î´óÏÞ¶ÈÑÓ³¤LEDµÆµÄµãÁÁÊ±¼ä£©
+ 627   5                                                                              
+ 628   5                                                      display_string_8x16(7,82,buf);
+ 629   5                                                                      
+ 630   5                                                      
+ 631   5                                                      sprintf(buf, "%5.2fA\n", load_cc_I/100);  //¸ºÔØ¹¤×÷µçÁ÷Éè¶¨
+ 632   5                                                                                      
+ 633   5                                                      display_string_8x16(5,82,buf);                                                                  
+ 634   5                                                      
+ 635   5                                                      sprintf(buf, "%5.2fV\n", light_pv/100);  //¹â¿ØµçÑ¹Éè¶¨--¼ø±ð°×ÌìÓëºÚÒ¹Í¨¹ý¹â·ü°åµçÑ¹
+ 636   5                                                              
+ 637   5                                                      display_string_8x16(3,82,buf);
+ 638   5                                                      
+ 639   5                                                      menu_index_q=0x09;//!!!!!!!!!!!!        
+ 640   5                                              }
+ 641   4                                              else if(canshu_cnt==2)
+ 642   4                                              {
+ 643   5                                                      
+ 644   5                                                      sprintf(buf, "%2d\n", step_03_time_limit);      //µÚ3½×¶Î Ê±³¤
+ 645   5                                                                              
+ 646   5                                                      display_string_8x16(5,114,buf);
+ 647   5                                                      //---------------------------------
+ 648   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾
+ 649   5                                                      
+ 650   5                                                      sprintf(buf, "%3d%%\n", step_02_load_percent);   
+ 651   5                                                                                      
+ 652   5                                                      display_string_8x16(3,82,buf);
+ 653   5                                                                                      
+ 654   5                                                      sprintf(buf, "%2d\n", step_02_time_limit);      //µÚ2½×¶Î Ê±³¤
+ 655   5                                                                              
+ 656   5                                                      display_string_8x16(3,114,buf);
+ 657   5                                                      
+ 658   5                                                      sprintf(buf, "%3d%%\n", step_03_load_percent);  
+ 659   5                                                                                      
+ 660   5                                                      display_string_8x16(5,82,buf);
+ 661   5                                                      
+ 662   5                                                      
+ 663   5                                                      sprintf(buf, "%3d%%\n", step_04_load_percent); 
+ 664   5                                                      
+ 665   5                                                      display_string_8x16(7,82,buf);
+ 666   5                                                      
+ 667   5                                                      sprintf(buf, "%2d\n", step_04_time_limit);      //µÚ4½×¶Î Ê±³¤
+ 668   5                                                                              
+ 669   5                                                      display_string_8x16(7,114,buf);
+ 670   5                                                      
+ 671   5                                                      menu_index_q=0x09;//!!!!!!!!!!!!
+ 672   5                                              }
+C51 COMPILER V9.01   MAIN                                                                  03/20/2019 11:22:07 PAGE 12  
+
+ 673   4                                              else
+ 674   4                                              {
+ 675   5                                                      
+ 676   5                                                      sprintf(buf, "%2dmin\n", light_time);           //¹â¿ØÊ±¼ä
+ 677   5                                                                              
+ 678   5                                                      display_string_8x16(7,82,buf);
+ 679   5                                                      //---------------------------------
+ 680   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾
+ 681   5                                                      
+ 682   5                                                      sprintf(buf, "%3d%%\n", step_05_load_percent);   
+ 683   5                                                                                      
+ 684   5                                                      display_string_8x16(3,82,buf);
+ 685   5                                                                                      
+ 686   5                                                      sprintf(buf, "%2d\n", step_05_time_limit);      //µÚ5½×¶Î Ê±³¤
+ 687   5                                                                              
+ 688   5                                                      display_string_8x16(3,114,buf);
+ 689   5                                                      
+ 690   5                                                      sprintf(buf, "%2d\n", bt_id);  
+ 691   5                                                                                      
+ 692   5                                                      display_string_8x16(5,82,buf);
+ 693   5                                                                                                      
+ 694   5                                                      
+ 695   5                                                      menu_index_q=0x09;//!!!!!!!!!!!!
+ 696   5                                              }
+ 697   4                                              
+ 698   4                                              
+ 699   4                                              //---------------------------------
+ 700   4                              }
+ 701   3                              else if(menu_index_q==11)
+ 702   3                              {
+ 703   4                                              if(canshu_cnt==1)
+ 704   4                                              {
+ 705   5                                                                                                      
+ 706   5                                                      sprintf(buf, "%5.2fV\n", light_pv/100);  //¹â¿ØµçÑ¹Éè¶¨--¼ø±ð°×ÌìÓëºÚÒ¹Í¨¹ý¹â·ü°åµçÑ¹
+ 707   5                                                              
+ 708   5                                                      display_string_8x16(3,82,buf);
+ 709   5                                                      //---------------------------------
+ 710   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾
+ 711   5                                                      
+ 712   5                                                      sprintf(buf, "%3d%%\n", step_01_load_percent);  
+ 713   5                                                                              
+ 714   5                                                      display_string_8x16(7,82,buf);
+ 715   5                                                                      
+ 716   5                                                      sprintf(buf, "%2d\n", step_01_time_limit);      //µÚ1½×¶Î Ê±³¤
+ 717   5                                                                              
+ 718   5                                                      display_string_8x16(7,114,buf);
+ 719   5                                                      
+ 720   5                                                      sprintf(buf, "%5.2fA\n", load_cc_I/100);  //¸ºÔØ¹¤×÷µçÁ÷Éè¶¨
+ 721   5                                                                                      
+ 722   5                                                      display_string_8x16(5,82,buf);                                                                  
+ 723   5                                                                                                                                              
+ 724   5                                                      menu_index_q=11;//!!!!!!!!!!!!  
+ 725   5                                              }
+ 726   4                                              else if(canshu_cnt==2)
+ 727   4                                              {
+ 728   5                                                      
+ 729   5                                                      sprintf(buf, "%3d%%\n", step_04_load_percent); 
+ 730   5                                                      
+ 731   5                                                      display_string_8x16(7,82,buf);
+ 732   5                                                      //---------------------------------
+ 733   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾
+ 734   5                                                      
+C51 COMPILER V9.01   MAIN                                                                  03/20/2019 11:22:07 PAGE 13  
+
+ 735   5                                                      sprintf(buf, "%3d%%\n", step_02_load_percent);   
+ 736   5                                                                                      
+ 737   5                                                      display_string_8x16(3,82,buf);
+ 738   5                                                                                      
+ 739   5                                                      sprintf(buf, "%2d\n", step_02_time_limit);      //µÚ2½×¶Î Ê±³¤
+ 740   5                                                                              
+ 741   5                                                      display_string_8x16(3,114,buf);
+ 742   5                                                      
+ 743   5                                                      sprintf(buf, "%3d%%\n", step_03_load_percent);  
+ 744   5                                                                                      
+ 745   5                                                      display_string_8x16(5,82,buf);
+ 746   5                                                      
+ 747   5                                                      sprintf(buf, "%2d\n", step_03_time_limit);      //µÚ3½×¶Î Ê±³¤
+ 748   5                                                                              
+ 749   5                                                      display_string_8x16(5,114,buf);
+ 750   5                                                      
+ 751   5                                                      
+ 752   5                                                      sprintf(buf, "%2d\n", step_04_time_limit);      //µÚ4½×¶Î Ê±³¤
+ 753   5                                                                              
+ 754   5                                                      display_string_8x16(7,114,buf);
+ 755   5                                                      
+ 756   5                                                      menu_index_q=11;//!!!!!!!!!!!!
+ 757   5                                              }
+ 758   4                                              else
+ 759   4                                              {
+ 760   5                                                      sprintf(buf, "%3d%%\n", step_05_load_percent);   
+ 761   5                                                                                      
+ 762   5                                                      display_string_8x16(3,82,buf);
+ 763   5                                                      
+ 764   5                                                      //---------------------------------
+ 765   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾                                 
+ 766   5                                                                                      
+ 767   5                                                      sprintf(buf, "%2d\n", step_05_time_limit);      //µÚ5½×¶Î Ê±³¤
+ 768   5                                                                              
+ 769   5                                                      display_string_8x16(3,114,buf);
+ 770   5                                                      
+ 771   5                                                      sprintf(buf, "%2d\n", bt_id);  
+ 772   5                                                                                      
+ 773   5                                                      display_string_8x16(5,82,buf);
+ 774   5                                                                                                      
+ 775   5                                                      sprintf(buf, "%2dmin\n", light_time);           //¹â¿ØÊ±¼ä
+ 776   5                                                                              
+ 777   5                                                      display_string_8x16(7,82,buf);
+ 778   5                                                      
+ 779   5                                                      menu_index_q=11;//!!!!!!!!!!!!
+ 780   5                                              }
+ 781   4                                              
+ 782   4                                              
+ 783   4                                              //---------------------------------
+ 784   4                              }
+ 785   3                              else if(menu_index_q==13)
+ 786   3                              {
+ 787   4                                              if(canshu_cnt==1)
+ 788   4                                              {
+ 789   5                                                                                                      
+ 790   5                                                      sprintf(buf, "%5.2fA\n", load_cc_I/100);  //¸ºÔØ¹¤×÷µçÁ÷Éè¶¨
+ 791   5                                                                                      
+ 792   5                                                      display_string_8x16(5,82,buf);  
+ 793   5                                                      //---------------------------------
+ 794   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾
+ 795   5                                                      
+ 796   5                                                      sprintf(buf, "%3d%%\n", step_01_load_percent);  
+C51 COMPILER V9.01   MAIN                                                                  03/20/2019 11:22:07 PAGE 14  
+
+ 797   5                                                                              
+ 798   5                                                      display_string_8x16(7,82,buf);
+ 799   5                                                                      
+ 800   5                                                      sprintf(buf, "%2d\n", step_01_time_limit);      //µÚ1½×¶Î Ê±³¤
+ 801   5                                                                              
+ 802   5                                                      display_string_8x16(7,114,buf);
+ 803   5                                                      
+ 804   5                                                      sprintf(buf, "%5.2fV\n", light_pv/100);  //¹â¿ØµçÑ¹Éè¶¨--¼ø±ð°×ÌìÓëºÚÒ¹Í¨¹ý¹â·ü°åµçÑ¹
+ 805   5                                                              
+ 806   5                                                      display_string_8x16(3,82,buf);                                                                                                          
+ 807   5                                                                                                                                              
+ 808   5                                                      menu_index_q=13;//!!!!!!!!!!!!  
+ 809   5                                              }
+ 810   4                                              else if(canshu_cnt==2)
+ 811   4                                              {
+ 812   5                                                      
+ 813   5                                                      sprintf(buf, "%2d\n", step_04_time_limit);      //µÚ4½×¶Î Ê±³¤
+ 814   5                                                                              
+ 815   5                                                      display_string_8x16(7,114,buf);
+ 816   5                                                      //---------------------------------
+ 817   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾
+ 818   5                                                      
+ 819   5                                                      sprintf(buf, "%3d%%\n", step_02_load_percent);   
+ 820   5                                                                                      
+ 821   5                                                      display_string_8x16(3,82,buf);
+ 822   5                                                                                      
+ 823   5                                                      sprintf(buf, "%2d\n", step_02_time_limit);      //µÚ2½×¶Î Ê±³¤
+ 824   5                                                                              
+ 825   5                                                      display_string_8x16(3,114,buf);
+ 826   5                                                      
+ 827   5                                                      sprintf(buf, "%3d%%\n", step_03_load_percent);  
+ 828   5                                                                                      
+ 829   5                                                      display_string_8x16(5,82,buf);
+ 830   5                                                      
+ 831   5                                                      sprintf(buf, "%2d\n", step_03_time_limit);      //µÚ3½×¶Î Ê±³¤
+ 832   5                                                                              
+ 833   5                                                      display_string_8x16(5,114,buf);
+ 834   5                                                      
+ 835   5                                                      sprintf(buf, "%3d%%\n", step_04_load_percent); 
+ 836   5                                                      
+ 837   5                                                      display_string_8x16(7,82,buf);
+ 838   5                                                                                                      
+ 839   5                                                      menu_index_q=13;//!!!!!!!!!!!!
+ 840   5                                              }
+ 841   4                                              else
+ 842   4                                              {
+ 843   5                                                      
+ 844   5                                                      sprintf(buf, "%2d\n", step_05_time_limit);      //µÚ5½×¶Î Ê±³¤
+ 845   5                                                                              
+ 846   5                                                      display_string_8x16(3,114,buf);
+ 847   5                                                      //---------------------------------
+ 848   5                                                      menu_index_q=0x02;//!!!!!!!!!!!ÇÐ»»ÏÔÊ¾ 
+ 849   5                                                      
+ 850   5                                                      sprintf(buf, "%3d%%\n", step_05_load_percent);   
+ 851   5                                                                                      
+ 852   5                                                      display_string_8x16(3,82,buf);                                                                          
+ 853   5                                                      
+ 854   5                                                      sprintf(buf, "%2d\n", bt_id);  
+ 855   5                                                                                      
+ 856   5                                                      display_string_8x16(5,82,buf);
+ 857   5                                                                                                      
+ 858   5                                                      sprintf(buf, "%2dmin\n", light_time);           //¹â¿ØÊ±¼ä
+C51 COMPILER V9.01   MAIN                                                                  03/20/2019 11:22:07 PAGE 15  
+
+ 859   5                                                                              
+ 860   5                                                      display_string_8x16(7,82,buf);
+ 861   5                                                      
+ 862   5                                                      menu_index_q=13;//!!!!!!!!!!!!
+ 863   5                                              }
+ 864   4                                              
+ 865   4                                              
+ 866   4                                              //---------------------------------
+ 867   4                              }
+ 868   3                              display_lcd_flag=0x00;
+ 869   3                              
+ 870   3                      }
+ 871   2                                       
+ 872   2                   
+ 873   2               if(uart2_receive_flag==TRUE)  //ºìÍâÊý¾Ý´¦Àí
+ 874   2                   {                                          
+ 875   3                      handle_uart2_rx_buf();
+ 876   3                      
+ 877   3                                      S2CON&=~S2REN;
+ 878   3                                      NOP();
+ 879   3                                      NOP();
+ 880   3                                      S2CON|=S2REN;
+ 881   3                                      
+ 882   3                                      rx_frame_kind=0x00;
+ 883   3                                      
+ 884   3                      uart2_receive_byte_count=0x00;  //!!!!!!!!!
+ 885   3      
+ 886   3                      uart2_receive_flag=FALSE;       //!!!!!!!!!
+ 887   3      
+ 888   3                   } 
+ 889   2                      
+ 890   2                      
+ 891   2              }
+ 892   1              
+ 893   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   6580    ----
+   CONSTANT SIZE    =    133    ----
+   XDATA SIZE       =      2    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

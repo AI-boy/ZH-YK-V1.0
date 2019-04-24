@@ -1,0 +1,311 @@
+C51 COMPILER V9.01   IRD_REMOTE                                                            03/20/2019 11:22:05 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE IRD_REMOTE
+OBJECT MODULE PLACED IN ..\OBJ\ird_remote.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\src\ird_remote.c LARGE BROWSE FLOATFUZZY(4) INCDIR(..\include;C:\Keil\C5
+                    -1\INC\STC) DEBUG OBJECTEXTEND PRINT(.\ird_remote.lst) OBJECT(..\OBJ\ird_remote.obj)
+
+line level    source
+
+   1          //**--------------头文件-------------------------------------------------------
+   2          #include "STC8.h"
+   3          #include "intrins.h"
+   4          
+   5          #include <stdio.h>
+   6          #include <string.h>
+   7          
+   8          #include "userdefine.h" 
+   9          
+  10          //**--------------全局变量-----------------------------------------------------
+  11          
+  12          //**--------------函数申明-----------------------------------------------------
+  13          
+  14          //**--------------函数定义-----------------------------------------------------
+  15          
+  16          
+  17          
+  18          
+  19          //系统运行状态数据及设置参数
+  20          //------------------------------------------------------------------------------//
+  21          //              __EEPROM_DATA(0x02, 0x58, 0x00, 0x21, 0x14, 0x3C, 0x50, 0x3C);
+  22          //              
+  23          //              __EEPROM_DATA(0x14, 0x01, 0x01, 0x01, 0x01, 0x03, 0x04, 0x03);
+  24          //              
+  25          //              __EEPROM_DATA(0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
+  26          //------------------------------------------------------------------------------//
+  27          //-----------------------运行数据
+  28          float p_v=0;                                                    //当前光伏电压
+  29          
+  30          float b_v=0;                                                    //当前电池电压
+  31          
+  32          float load_v=0;                                                 //当前负载电压
+  33          
+  34          float charge_I =0;                                              //当前充电电流
+  35          
+  36          float load_I =0;                                        //当前负载电流
+  37          
+  38          unsigned int  sys_mode=0;               //当前设备工作模式
+  39          
+  40          unsigned int charge_current_value=0x00;  //当前充电电流采样值
+  41          
+  42          unsigned int discharge_current_value=0x00;  //当前负载电流采样值
+  43          
+  44          unsigned int temperature_value=0x00;    //当前环境温度采样值
+  45          
+  46          //----------------------参数设置
+  47          
+  48          float light_pv=600;                                             //光控电压
+  49          
+  50          float load_cc_I=33;                                             //LED灯工作电流  负载设定值
+  51          
+  52          
+  53          unsigned int step_01_load_percent=20;           //节能输出百分比 20%
+  54          
+C51 COMPILER V9.01   IRD_REMOTE                                                            03/20/2019 11:22:05 PAGE 2   
+
+  55          unsigned int step_02_load_percent=60;           //节能输出百分比 60%
+  56          
+  57          unsigned int step_03_load_percent=80;           //节能输出百分比 80%
+  58          
+  59          unsigned int step_04_load_percent=60;           //节能输出百分比 60%
+  60          
+  61          unsigned int step_05_load_percent=20;           //节能输出百分比 20% 
+  62          
+  63          unsigned int step_01_time_limit=0x01;   //时长 1 h
+  64          
+  65          unsigned int step_02_time_limit=0x03;   //时长 3 h
+  66          
+  67          unsigned int step_03_time_limit=0x04;   //时长 4 h
+  68          
+  69          unsigned int step_04_time_limit=0x03;   //时长 3 h
+  70          
+  71          unsigned int step_05_time_limit=0x01;   //时长 1 h
+  72          
+  73          unsigned int  bt_id=1;                                          //电池类型  1：锂电池  2：铅酸电池
+  74          
+  75          unsigned int light_time=1;                                              //光控时间：默认1分钟 单位(分钟)
+  76          
+  77          float bt_00_hv=0;               //0天前电池电压最高值 (即今天)
+  78          float bt_00_lv=0;               //0天前电池电压最低值 (即今天)
+  79          
+  80          float bt_01_hv=0;               //1天前电池电压最高值
+  81          float bt_01_lv=0;               //1天前电池电压最低值
+  82          
+  83          float bt_02_hv=0;               //2天前电池电压最高值
+  84          float bt_02_lv=0;               //2天前电池电压最低值
+  85          
+  86          float bt_03_hv=0;               //3天前电池电压最高值
+  87          float bt_03_lv=0;               //3天前电池电压最低值
+  88          
+  89          float bt_04_hv=0;               //4天前电池电压最高值
+  90          float bt_04_lv=0;               //4天前电池电压最低值
+  91          
+  92          float bt_05_hv=0;               //5天前电池电压最高值
+  93          float bt_05_lv=0;               //5天前电池电压最低值
+  94          
+  95          float bt_06_hv=0;               //6天前电池电压最高值
+  96          float bt_06_lv=0;               //6天前电池电压最低值
+  97          
+  98          float bt_07_hv=0;               //7天前电池电压最高值
+  99          float bt_07_lv=0;               //7天前电池电压最低值
+ 100          
+ 101          float bt_dy[16]={0.0};
+ 102          
+ 103          unsigned int yuyan_cnt=0x00;  //语言版本选择   00:汉语（默认）  01：英语
+ 104          
+ 105          
+ 106          /**********************************************************************
+ 107          *函数名称：read_param_eeprom
+ 108          *描述：获取系统参数
+ 109          *返回类型：void
+ 110          *输入形参：void
+ 111          ***********************************************************************/
+ 112          void read_param_eeprom(void)
+ 113          {
+ 114   1              unsigned char byte_h,byte_l;
+ 115   1              //-----------------------------------
+ 116   1              byte_l=IapRead(0x0412);
+C51 COMPILER V9.01   IRD_REMOTE                                                            03/20/2019 11:22:05 PAGE 3   
+
+ 117   1      
+ 118   1              if(byte_l!=0x55)
+ 119   1              {
+ 120   2                      IapErase(0x0400);          //擦除0x0400起始扇区 512个字节
+ 121   2      
+ 122   2                      IapProgram(0x0400, 0x02);
+ 123   2                      IapProgram(0x0401, 0x58);        //---光控电压
+ 124   2      
+ 125   2                      IapProgram(0x0402, 0x00);
+ 126   2                      IapProgram(0x0403, 0x21);        //---负载电流
+ 127   2      
+ 128   2                      IapProgram(0x0404, 0x64);
+ 129   2      
+ 130   2                      IapProgram(0x0405, 0x64);
+ 131   2      
+ 132   2                      IapProgram(0x0406, 0x64);
+ 133   2      
+ 134   2                      IapProgram(0x0407, 0x64);
+ 135   2      
+ 136   2                      IapProgram(0x0408, 0x64);
+ 137   2      
+ 138   2                      IapProgram(0x040a, 0x01);
+ 139   2      
+ 140   2                      IapProgram(0x040b, 0x00);
+ 141   2      
+ 142   2                      IapProgram(0x040c, 0x05);
+ 143   2      
+ 144   2                      IapProgram(0x040d, 0x05);
+ 145   2      
+ 146   2                      IapProgram(0x040e, 0x01);
+ 147   2      
+ 148   2                      IapProgram(0x040f, 0x01);
+ 149   2      
+ 150   2                      IapProgram(0x0410, 0x01);
+ 151   2      
+ 152   2                      IapProgram(0x0412, 0x55);  //---EEPROM 初始化标志位
+ 153   2              }
+ 154   1              //------------------------------------
+ 155   1              byte_h=IapRead(0x0400);
+ 156   1              
+ 157   1              byte_l=IapRead(0x0401);
+ 158   1                      
+ 159   1              light_pv=(byte_h<<8)|byte_l;   //光控电压
+ 160   1              
+ 161   1              
+ 162   1              //------------------------------------
+ 163   1              byte_h=IapRead(0x0402);
+ 164   1              
+ 165   1              byte_l=IapRead(0x0403);
+ 166   1                      
+ 167   1              load_cc_I=(byte_h<<8)|byte_l; //负载工作电流
+ 168   1              
+ 169   1              
+ 170   1              //------------------------------------
+ 171   1              byte_l=IapRead(0x0404);
+ 172   1                                                                      
+ 173   1              step_01_load_percent=byte_l;             //第一阶段降载输出百分比
+ 174   1              
+ 175   1              //------------------------------------
+ 176   1              byte_l=IapRead(0x0405);
+ 177   1                                                                      
+ 178   1              step_02_load_percent=byte_l;             //第二阶段降载输出百分比
+C51 COMPILER V9.01   IRD_REMOTE                                                            03/20/2019 11:22:05 PAGE 4   
+
+ 179   1              
+ 180   1              //------------------------------------
+ 181   1              byte_l=IapRead(0x0406);
+ 182   1                                                                      
+ 183   1              step_03_load_percent=byte_l;             //第三阶段降载输出百分比
+ 184   1              
+ 185   1              //------------------------------------
+ 186   1              byte_l=IapRead(0x0407);
+ 187   1                                                                      
+ 188   1              step_04_load_percent=byte_l;             //第四阶段降载输出百分比
+ 189   1              
+ 190   1              //------------------------------------
+ 191   1              byte_l=IapRead(0x0408);
+ 192   1                                                                      
+ 193   1              step_05_load_percent=byte_l;             //第五阶段降载输出百分比
+ 194   1              
+ 195   1              //------------------------------------
+ 196   1              byte_l=IapRead(0x040a);
+ 197   1                                                                      
+ 198   1              bt_id=byte_l;                                           //系统电池类型!!!!!!
+ 199   1              //------------------------------------
+ 200   1              byte_l=IapRead(0x040b);
+ 201   1                                                                      
+ 202   1              light_time=byte_l;                                      //光控时间
+ 203   1              //------------------------------------
+ 204   1              byte_l=IapRead(0x040c);
+ 205   1                                                                      
+ 206   1              step_01_time_limit=byte_l;                      //第一阶段时长
+ 207   1              //------------------------------------
+ 208   1              byte_l=IapRead(0x040d);
+ 209   1                                                                      
+ 210   1              step_02_time_limit=byte_l;                      //第二一阶段时长
+ 211   1              //------------------------------------
+ 212   1              byte_l=IapRead(0x040e);
+ 213   1                                                                      
+ 214   1              step_03_time_limit=byte_l;                      //第三一阶段时长
+ 215   1              //------------------------------------
+ 216   1              byte_l=IapRead(0x040f);
+ 217   1                                                                      
+ 218   1              step_04_time_limit=byte_l;                      //第四一阶段时长
+ 219   1              //------------------------------------
+ 220   1              byte_l=IapRead(0x0410);
+ 221   1                                                                      
+ 222   1              step_05_time_limit=byte_l;                      //第五阶段时长
+ 223   1              
+ 224   1              
+ 225   1      }
+ 226          
+ 227          void IapIdle()
+ 228          {
+ 229   1          IAP_CONTR = 0;                              //关闭IAP功能
+ 230   1          IAP_CMD = 0;                                //清除命令寄存器
+ 231   1          IAP_TRIG = 0;                               //清除触发寄存器
+ 232   1          IAP_ADDRH = 0x80;                           //将地址设置到非IAP区域
+ 233   1          IAP_ADDRL = 0;
+ 234   1      }
+ 235          
+ 236          unsigned char IapRead(unsigned int addr)
+ 237          {
+ 238   1          unsigned char dat;
+ 239   1      
+ 240   1          IAP_CONTR = WT_24M;                         //使能IAP
+C51 COMPILER V9.01   IRD_REMOTE                                                            03/20/2019 11:22:05 PAGE 5   
+
+ 241   1          IAP_CMD = 1;                                //设置IAP读命令
+ 242   1          IAP_ADDRL = addr;                           //设置IAP低地址
+ 243   1          IAP_ADDRH = addr >> 8;                      //设置IAP高地址
+ 244   1          IAP_TRIG = 0x5a;                            //写触发命令(0x5a)
+ 245   1          IAP_TRIG = 0xa5;                            //写触发命令(0xa5)
+ 246   1          _nop_();
+ 247   1          dat = IAP_DATA;                             //读IAP数据
+ 248   1          IapIdle();                                  //关闭IAP功能
+ 249   1      
+ 250   1          return dat;
+ 251   1      }
+ 252          
+ 253          void IapProgram(unsigned int addr, unsigned char dat)
+ 254          {
+ 255   1          IAP_CONTR = WT_24M;                         //使能IAP
+ 256   1          IAP_CMD = 2;                                //设置IAP写命令
+ 257   1          IAP_ADDRL = addr;                           //设置IAP低地址
+ 258   1          IAP_ADDRH = addr >> 8;                      //设置IAP高地址
+ 259   1          IAP_DATA = dat;                             //写IAP数据
+ 260   1          IAP_TRIG = 0x5a;                            //写触发命令(0x5a)
+ 261   1          IAP_TRIG = 0xa5;                            //写触发命令(0xa5)
+ 262   1          _nop_();
+ 263   1          IapIdle();                                  //关闭IAP功能
+ 264   1      }
+ 265          
+ 266          void IapErase(unsigned int addr)
+ 267          {
+ 268   1          IAP_CONTR = WT_24M;                         //使能IAP
+ 269   1          IAP_CMD = 3;                                //设置IAP擦除命令
+ 270   1          IAP_ADDRL = addr;                           //设置IAP低地址
+ 271   1          IAP_ADDRH = addr >> 8;                      //设置IAP高地址
+ 272   1          IAP_TRIG = 0x5a;                            //写触发命令(0x5a)
+ 273   1          IAP_TRIG = 0xa5;                            //写触发命令(0xa5)
+ 274   1          _nop_();                                    //
+ 275   1          IapIdle();                                  //关闭IAP功能
+ 276   1      }
+ 277          
+ 278          
+ 279          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    579    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =    190       2
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

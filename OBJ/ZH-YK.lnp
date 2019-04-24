@@ -1,0 +1,15 @@
+"..\OBJ\beep.obj",
+"..\OBJ\delay.obj",
+"..\OBJ\interrupt.obj",
+"..\OBJ\ird_remote.obj",
+"..\OBJ\key.obj",
+"..\OBJ\lcd12864.obj",
+"..\OBJ\led.obj",
+"..\OBJ\main.obj",
+"..\OBJ\Modbus.obj",
+"..\OBJ\pwm.obj",
+"..\OBJ\timer.obj",
+"..\OBJ\uart.obj",
+"..\OBJ\io.obj" 
+TO "..\OBJ\ZH-YK" 
+PRINT(".\ZH-YK.m51") RAMSIZE(256) 

@@ -1,0 +1,1672 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\MCUProject\ZH-YK-V1.0\PROJECT\ZH-YK.uvproj
+Project File Date:  06/13/2018
+
+<h2>Output:</h2>
+Build target 'ZH-YK-001'
+compiling beep.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\INCLUDE\USERDEFINE.H(33): warning C317: attempt to redefine macro 'BIT0'
+..\INCLUDE\USERDEFINE.H(34): warning C317: attempt to redefine macro 'BIT1'
+..\INCLUDE\USERDEFINE.H(35): warning C317: attempt to redefine macro 'BIT2'
+..\INCLUDE\USERDEFINE.H(36): warning C317: attempt to redefine macro 'BIT3'
+..\INCLUDE\USERDEFINE.H(37): warning C317: attempt to redefine macro 'BIT4'
+..\INCLUDE\USERDEFINE.H(38): warning C317: attempt to redefine macro 'BIT5'
+..\INCLUDE\USERDEFINE.H(39): warning C317: attempt to redefine macro 'BIT6'
+..\INCLUDE\USERDEFINE.H(40): warning C317: attempt to redefine macro 'BIT7'
+compiling delay.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\INCLUDE\USERDEFINE.H(33): warning C317: attempt to redefine macro 'BIT0'
+..\INCLUDE\USERDEFINE.H(34): warning C317: attempt to redefine macro 'BIT1'
+..\INCLUDE\USERDEFINE.H(35): warning C317: attempt to redefine macro 'BIT2'
+..\INCLUDE\USERDEFINE.H(36): warning C317: attempt to redefine macro 'BIT3'
+..\INCLUDE\USERDEFINE.H(37): warning C317: attempt to redefine macro 'BIT4'
+..\INCLUDE\USERDEFINE.H(38): warning C317: attempt to redefine macro 'BIT5'
+..\INCLUDE\USERDEFINE.H(39): warning C317: attempt to redefine macro 'BIT6'
+..\INCLUDE\USERDEFINE.H(40): warning C317: attempt to redefine macro 'BIT7'
+compiling interrupt.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\INCLUDE\USERDEFINE.H(33): warning C317: attempt to redefine macro 'BIT0'
+..\INCLUDE\USERDEFINE.H(34): warning C317: attempt to redefine macro 'BIT1'
+..\INCLUDE\USERDEFINE.H(35): warning C317: attempt to redefine macro 'BIT2'
+..\INCLUDE\USERDEFINE.H(36): warning C317: attempt to redefine macro 'BIT3'
+..\INCLUDE\USERDEFINE.H(37): warning C317: attempt to redefine macro 'BIT4'
+..\INCLUDE\USERDEFINE.H(38): warning C317: attempt to redefine macro 'BIT5'
+..\INCLUDE\USERDEFINE.H(39): warning C317: attempt to redefine macro 'BIT6'
+..\INCLUDE\USERDEFINE.H(40): warning C317: attempt to redefine macro 'BIT7'
+compiling ird_remote.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\INCLUDE\USERDEFINE.H(33): warning C317: attempt to redefine macro 'BIT0'
+..\INCLUDE\USERDEFINE.H(34): warning C317: attempt to redefine macro 'BIT1'
+..\INCLUDE\USERDEFINE.H(35): warning C317: attempt to redefine macro 'BIT2'
+..\INCLUDE\USERDEFINE.H(36): warning C317: attempt to redefine macro 'BIT3'
+..\INCLUDE\USERDEFINE.H(37): warning C317: attempt to redefine macro 'BIT4'
+..\INCLUDE\USERDEFINE.H(38): warning C317: attempt to redefine macro 'BIT5'
+..\INCLUDE\USERDEFINE.H(39): warning C317: attempt to redefine macro 'BIT6'
+..\INCLUDE\USERDEFINE.H(40): warning C317: attempt to redefine macro 'BIT7'
+compiling key.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\INCLUDE\USERDEFINE.H(33): warning C317: attempt to redefine macro 'BIT0'
+..\INCLUDE\USERDEFINE.H(34): warning C317: attempt to redefine macro 'BIT1'
+..\INCLUDE\USERDEFINE.H(35): warning C317: attempt to redefine macro 'BIT2'
+..\INCLUDE\USERDEFINE.H(36): warning C317: attempt to redefine macro 'BIT3'
+..\INCLUDE\USERDEFINE.H(37): warning C317: attempt to redefine macro 'BIT4'
+..\INCLUDE\USERDEFINE.H(38): warning C317: attempt to redefine macro 'BIT5'
+..\INCLUDE\USERDEFINE.H(39): warning C317: attempt to redefine macro 'BIT6'
+..\INCLUDE\USERDEFINE.H(40): warning C317: attempt to redefine macro 'BIT7'
+compiling lcd12864.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\INCLUDE\USERDEFINE.H(33): warning C317: attempt to redefine macro 'BIT0'
+..\INCLUDE\USERDEFINE.H(34): warning C317: attempt to redefine macro 'BIT1'
+..\INCLUDE\USERDEFINE.H(35): warning C317: attempt to redefine macro 'BIT2'
+..\INCLUDE\USERDEFINE.H(36): warning C317: attempt to redefine macro 'BIT3'
+..\INCLUDE\USERDEFINE.H(37): warning C317: attempt to redefine macro 'BIT4'
+..\INCLUDE\USERDEFINE.H(38): warning C317: attempt to redefine macro 'BIT5'
+..\INCLUDE\USERDEFINE.H(39): warning C317: attempt to redefine macro 'BIT6'
+..\INCLUDE\USERDEFINE.H(40): warning C317: attempt to redefine macro 'BIT7'
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\INCLUDE\USERDEFINE.H(33): warning C317: attempt to redefine macro 'BIT0'
+..\INCLUDE\USERDEFINE.H(34): warning C317: attempt to redefine macro 'BIT1'
+..\INCLUDE\USERDEFINE.H(35): warning C317: attempt to redefine macro 'BIT2'
+..\INCLUDE\USERDEFINE.H(36): warning C317: attempt to redefine macro 'BIT3'
+..\INCLUDE\USERDEFINE.H(37): warning C317: attempt to redefine macro 'BIT4'
+..\INCLUDE\USERDEFINE.H(38): warning C317: attempt to redefine macro 'BIT5'
+..\INCLUDE\USERDEFINE.H(39): warning C317: attempt to redefine macro 'BIT6'
+..\INCLUDE\USERDEFINE.H(40): warning C317: attempt to redefine macro 'BIT7'
+compiling main.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\INCLUDE\USERDEFINE.H(33): warning C317: attempt to redefine macro 'BIT0'
+..\INCLUDE\USERDEFINE.H(34): warning C317: attempt to redefine macro 'BIT1'
+..\INCLUDE\USERDEFINE.H(35): warning C317: attempt to redefine macro 'BIT2'
+..\INCLUDE\USERDEFINE.H(36): warning C317: attempt to redefine macro 'BIT3'
+..\INCLUDE\USERDEFINE.H(37): warning C317: attempt to redefine macro 'BIT4'
+..\INCLUDE\USERDEFINE.H(38): warning C317: attempt to redefine macro 'BIT5'
+..\INCLUDE\USERDEFINE.H(39): warning C317: attempt to redefine macro 'BIT6'
+..\INCLUDE\USERDEFINE.H(40): warning C317: attempt to redefine macro 'BIT7'
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\INCLUDE\USERDEFINE.H(33): warning C317: attempt to redefine macro 'BIT0'
+..\INCLUDE\USERDEFINE.H(34): warning C317: attempt to redefine macro 'BIT1'
+..\INCLUDE\USERDEFINE.H(35): warning C317: attempt to redefine macro 'BIT2'
+..\INCLUDE\USERDEFINE.H(36): warning C317: attempt to redefine macro 'BIT3'
+..\INCLUDE\USERDEFINE.H(37): warning C317: attempt to redefine macro 'BIT4'
+..\INCLUDE\USERDEFINE.H(38): warning C317: attempt to redefine macro 'BIT5'
+..\INCLUDE\USERDEFINE.H(39): warning C317: attempt to redefine macro 'BIT6'
+..\INCLUDE\USERDEFINE.H(40): warning C317: attempt to redefine macro 'BIT7'
+compiling pwm.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\INCLUDE\USERDEFINE.H(33): warning C317: attempt to redefine macro 'BIT0'
+..\INCLUDE\USERDEFINE.H(34): warning C317: attempt to redefine macro 'BIT1'
+..\INCLUDE\USERDEFINE.H(35): warning C317: attempt to redefine macro 'BIT2'
+..\INCLUDE\USERDEFINE.H(36): warning C317: attempt to redefine macro 'BIT3'
+..\INCLUDE\USERDEFINE.H(37): warning C317: attempt to redefine macro 'BIT4'
+..\INCLUDE\USERDEFINE.H(38): warning C317: attempt to redefine macro 'BIT5'
+..\INCLUDE\USERDEFINE.H(39): warning C317: attempt to redefine macro 'BIT6'
+..\INCLUDE\USERDEFINE.H(40): warning C317: attempt to redefine macro 'BIT7'
+compiling timer.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\INCLUDE\USERDEFINE.H(33): warning C317: attempt to redefine macro 'BIT0'
+..\INCLUDE\USERDEFINE.H(34): warning C317: attempt to redefine macro 'BIT1'
+..\INCLUDE\USERDEFINE.H(35): warning C317: attempt to redefine macro 'BIT2'
+..\INCLUDE\USERDEFINE.H(36): warning C317: attempt to redefine macro 'BIT3'
+..\INCLUDE\USERDEFINE.H(37): warning C317: attempt to redefine macro 'BIT4'
+..\INCLUDE\USERDEFINE.H(38): warning C317: attempt to redefine macro 'BIT5'
+..\INCLUDE\USERDEFINE.H(39): warning C317: attempt to redefine macro 'BIT6'
+..\INCLUDE\USERDEFINE.H(40): warning C317: attempt to redefine macro 'BIT7'
+compiling uart.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\INCLUDE\USERDEFINE.H(33): warning C317: attempt to redefine macro 'BIT0'
+..\INCLUDE\USERDEFINE.H(34): warning C317: attempt to redefine macro 'BIT1'
+..\INCLUDE\USERDEFINE.H(35): warning C317: attempt to redefine macro 'BIT2'
+..\INCLUDE\USERDEFINE.H(36): warning C317: attempt to redefine macro 'BIT3'
+..\INCLUDE\USERDEFINE.H(37): warning C317: attempt to redefine macro 'BIT4'
+..\INCLUDE\USERDEFINE.H(38): warning C317: attempt to redefine macro 'BIT5'
+..\INCLUDE\USERDEFINE.H(39): warning C317: attempt to redefine macro 'BIT6'
+..\INCLUDE\USERDEFINE.H(40): warning C317: attempt to redefine macro 'BIT7'
+compiling io.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\INCLUDE\USERDEFINE.H(33): warning C317: attempt to redefine macro 'BIT0'
+..\INCLUDE\USERDEFINE.H(34): warning C317: attempt to redefine macro 'BIT1'
+..\INCLUDE\USERDEFINE.H(35): warning C317: attempt to redefine macro 'BIT2'
+..\INCLUDE\USERDEFINE.H(36): warning C317: attempt to redefine macro 'BIT3'
+..\INCLUDE\USERDEFINE.H(37): warning C317: attempt to redefine macro 'BIT4'
+..\INCLUDE\USERDEFINE.H(38): warning C317: attempt to redefine macro 'BIT5'
+..\INCLUDE\USERDEFINE.H(39): warning C317: attempt to redefine macro 'BIT6'
+..\INCLUDE\USERDEFINE.H(40): warning C317: attempt to redefine macro 'BIT7'
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling delay.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling interrupt.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling ird_remote.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling key.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling lcd12864.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling main.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling pwm.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling timer.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling uart.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling io.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling delay.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling interrupt.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling ird_remote.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling key.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling lcd12864.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling main.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling pwm.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling timer.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling uart.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling io.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(19): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\DELAY.H(21): error C141: syntax error near 'count', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling delay.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling interrupt.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling ird_remote.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling key.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling lcd12864.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling main.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling pwm.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling timer.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling uart.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling io.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(10): error C129: missing ';' before 'typedef'
+compiling delay.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(10): error C129: missing ';' before 'typedef'
+compiling interrupt.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(10): error C129: missing ';' before 'typedef'
+compiling ird_remote.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(10): error C129: missing ';' before 'typedef'
+compiling key.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(10): error C129: missing ';' before 'typedef'
+compiling lcd12864.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(10): error C129: missing ';' before 'typedef'
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(10): error C129: missing ';' before 'typedef'
+compiling main.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(10): error C129: missing ';' before 'typedef'
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(10): error C129: missing ';' before 'typedef'
+compiling pwm.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(10): error C129: missing ';' before 'typedef'
+compiling timer.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(10): error C129: missing ';' before 'typedef'
+compiling uart.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(10): error C129: missing ';' before 'typedef'
+compiling io.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(10): error C129: missing ';' before 'typedef'
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(22): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(24): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(73): error C129: missing ';' before 'uart1_receive_flag'
+compiling delay.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(22): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(24): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(73): error C129: missing ';' before 'uart1_receive_flag'
+compiling interrupt.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(22): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(24): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(73): error C129: missing ';' before 'uart1_receive_flag'
+compiling ird_remote.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(22): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(24): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(73): error C129: missing ';' before 'uart1_receive_flag'
+compiling key.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(22): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(24): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(73): error C129: missing ';' before 'uart1_receive_flag'
+compiling lcd12864.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(22): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(24): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(73): error C129: missing ';' before 'uart1_receive_flag'
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(22): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(24): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(73): error C129: missing ';' before 'uart1_receive_flag'
+compiling main.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(22): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(24): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(73): error C129: missing ';' before 'uart1_receive_flag'
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(22): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(24): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(73): error C129: missing ';' before 'uart1_receive_flag'
+compiling pwm.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(22): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(24): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(73): error C129: missing ';' before 'uart1_receive_flag'
+compiling timer.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(22): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(24): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(73): error C129: missing ';' before 'uart1_receive_flag'
+compiling uart.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(22): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(24): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(73): error C129: missing ';' before 'uart1_receive_flag'
+compiling io.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(22): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(24): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(73): error C129: missing ';' before 'uart1_receive_flag'
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling delay.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling interrupt.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling ird_remote.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling key.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling lcd12864.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling main.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling pwm.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling timer.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling uart.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling io.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near 'data', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near '*', expected ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling delay.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling interrupt.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling ird_remote.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling key.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling lcd12864.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling main.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling pwm.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling timer.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling uart.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling io.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling delay.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling interrupt.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling ird_remote.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling key.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling lcd12864.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling main.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling pwm.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling timer.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling uart.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling io.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(21): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(23): error C141: syntax error near ','
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling delay.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling interrupt.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling ird_remote.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling key.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling lcd12864.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling main.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling pwm.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling timer.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling uart.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+compiling io.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(25): error C129: missing ';' before 'uart2_read_byte'
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(72): error C129: missing ';' before 'uart1_receive_flag'
+compiling delay.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(72): error C129: missing ';' before 'uart1_receive_flag'
+compiling interrupt.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(72): error C129: missing ';' before 'uart1_receive_flag'
+compiling ird_remote.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(72): error C129: missing ';' before 'uart1_receive_flag'
+compiling key.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(72): error C129: missing ';' before 'uart1_receive_flag'
+compiling lcd12864.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(72): error C129: missing ';' before 'uart1_receive_flag'
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(72): error C129: missing ';' before 'uart1_receive_flag'
+compiling main.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(72): error C129: missing ';' before 'uart1_receive_flag'
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(72): error C129: missing ';' before 'uart1_receive_flag'
+compiling pwm.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(72): error C129: missing ';' before 'uart1_receive_flag'
+compiling timer.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(72): error C129: missing ';' before 'uart1_receive_flag'
+compiling uart.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(72): error C129: missing ';' before 'uart1_receive_flag'
+compiling io.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\UART.H(72): error C129: missing ';' before 'uart1_receive_flag'
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(85): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(87): error C141: syntax error near ')'
+compiling delay.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(85): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(87): error C141: syntax error near ')'
+compiling interrupt.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(85): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(87): error C141: syntax error near ')'
+..\SRC\INTERRUPT.C(194): error C202: 'r1_data': undefined identifier
+compiling ird_remote.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(85): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(87): error C141: syntax error near ')'
+compiling key.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(85): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(87): error C141: syntax error near ')'
+..\SRC\KEY.C(221): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(223): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(225): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(227): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(229): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(231): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(233): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(256): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(258): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(260): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(262): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(264): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(266): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(268): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(289): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(291): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(293): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(295): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(297): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(299): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(301): error C202: 'uart1_tx_buf': undefined identifier
+compiling lcd12864.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(85): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(87): error C141: syntax error near ')'
+..\SRC\LCD12864.C(253): error C141: syntax error near ')'
+..\SRC\LCD12864.C(267): error C141: syntax error near 'data'
+..\SRC\LCD12864.C(280): error C141: syntax error near 'data'
+..\SRC\LCD12864.C(289): error C141: syntax error near ')'
+..\SRC\LCD12864.C(303): error C141: syntax error near 'data'
+..\SRC\LCD12864.C(316): error C141: syntax error near 'data'
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(85): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(87): error C141: syntax error near ')'
+compiling main.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(85): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(87): error C141: syntax error near ')'
+..\SRC\MAIN.C(869): error C202: 'uart1_receive_byte_count': undefined identifier
+..\SRC\MAIN.C(871): error C202: 'uart1_receive_flag': undefined identifier
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(85): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(87): error C141: syntax error near ')'
+compiling pwm.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(85): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(87): error C141: syntax error near ')'
+compiling timer.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(85): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(87): error C141: syntax error near ')'
+compiling uart.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(85): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(87): error C141: syntax error near ')'
+..\SRC\UART.C(146): error C202: 'RCREG': undefined identifier
+compiling io.c...
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(85): error C141: syntax error near ')'
+\MCUPROJECT\ZH-YK-V1.0\INCLUDE\LCD12864.H(87): error C141: syntax error near ')'
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+..\SRC\INTERRUPT.C(194): error C202: 'r1_data': undefined identifier
+compiling ird_remote.c...
+..\SRC\IRD_REMOTE.C(277): error C249: 'DATA': SEGMENT TOO LARGE
+compiling key.c...
+..\SRC\KEY.C(221): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(223): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(225): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(227): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(229): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(231): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(233): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(256): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(258): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(260): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(262): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(264): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(266): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(268): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(289): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(291): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(293): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(295): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(297): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(299): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(301): error C202: 'uart1_tx_buf': undefined identifier
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+..\SRC\LCD12864.C(1713): error C249: 'DATA': SEGMENT TOO LARGE
+compiling led.c...
+compiling main.c...
+..\SRC\MAIN.C(869): error C202: 'uart1_receive_byte_count': undefined identifier
+..\SRC\MAIN.C(871): error C202: 'uart1_receive_flag': undefined identifier
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+..\SRC\MODBUS.C(87): error C249: 'DATA': SEGMENT TOO LARGE
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+..\SRC\UART.C(145): error C200: left side of '.' requires struct/union
+..\SRC\UART.C(146): error C202: 'RCREG': undefined identifier
+compiling io.c...
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+..\SRC\IRD_REMOTE.C(277): error C249: 'DATA': SEGMENT TOO LARGE
+compiling key.c...
+..\SRC\KEY.C(221): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(223): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(225): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(227): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(229): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(231): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(233): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(256): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(258): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(260): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(262): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(264): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(266): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(268): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(289): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(291): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(293): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(295): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(297): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(299): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(301): error C202: 'uart1_tx_buf': undefined identifier
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+..\SRC\LCD12864.C(1713): error C249: 'DATA': SEGMENT TOO LARGE
+compiling led.c...
+compiling main.c...
+..\SRC\MAIN.C(869): error C202: 'uart1_receive_byte_count': undefined identifier
+..\SRC\MAIN.C(871): error C202: 'uart1_receive_flag': undefined identifier
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+..\SRC\MODBUS.C(87): error C249: 'DATA': SEGMENT TOO LARGE
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+..\SRC\UART.C(145): error C200: left side of '.' requires struct/union
+..\SRC\UART.C(146): error C202: 'RCREG': undefined identifier
+compiling io.c...
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+..\SRC\IRD_REMOTE.C(277): error C249: 'DATA': SEGMENT TOO LARGE
+compiling key.c...
+..\SRC\KEY.C(264): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(289): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(291): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(293): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(295): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(297): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(299): error C202: 'uart1_tx_buf': undefined identifier
+..\SRC\KEY.C(301): error C202: 'uart1_tx_buf': undefined identifier
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+..\SRC\LCD12864.C(1713): error C249: 'DATA': SEGMENT TOO LARGE
+compiling led.c...
+compiling main.c...
+..\SRC\MAIN.C(869): error C202: 'uart1_receive_byte_count': undefined identifier
+..\SRC\MAIN.C(871): error C202: 'uart1_receive_flag': undefined identifier
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+..\SRC\MODBUS.C(87): error C249: 'DATA': SEGMENT TOO LARGE
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+..\SRC\UART.C(145): error C200: left side of '.' requires struct/union
+..\SRC\UART.C(146): error C202: 'RCREG': undefined identifier
+compiling io.c...
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+..\SRC\IRD_REMOTE.C(277): error C249: 'DATA': SEGMENT TOO LARGE
+compiling key.c...
+..\SRC\KEY.C(291): error C202: 'uart1_tx_buf': undefined identifier
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+..\SRC\LCD12864.C(1713): error C249: 'DATA': SEGMENT TOO LARGE
+compiling led.c...
+compiling main.c...
+..\SRC\MAIN.C(869): error C202: 'uart1_receive_byte_count': undefined identifier
+..\SRC\MAIN.C(871): error C202: 'uart1_receive_flag': undefined identifier
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+..\SRC\MODBUS.C(87): error C249: 'DATA': SEGMENT TOO LARGE
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+..\SRC\UART.C(145): error C200: left side of '.' requires struct/union
+..\SRC\UART.C(146): error C202: 'RCREG': undefined identifier
+compiling io.c...
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+..\SRC\IRD_REMOTE.C(277): error C249: 'DATA': SEGMENT TOO LARGE
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+..\SRC\LCD12864.C(1713): error C249: 'DATA': SEGMENT TOO LARGE
+compiling led.c...
+compiling main.c...
+..\SRC\MAIN.C(869): error C202: 'uart1_receive_byte_count': undefined identifier
+..\SRC\MAIN.C(871): error C202: 'uart1_receive_flag': undefined identifier
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+..\SRC\MODBUS.C(87): error C249: 'DATA': SEGMENT TOO LARGE
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+..\SRC\UART.C(145): error C200: left side of '.' requires struct/union
+..\SRC\UART.C(146): error C202: 'RCREG': undefined identifier
+compiling io.c...
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+..\SRC\IRD_REMOTE.C(277): error C249: 'DATA': SEGMENT TOO LARGE
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+..\SRC\LCD12864.C(1713): error C249: 'DATA': SEGMENT TOO LARGE
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+..\src\Modbus.c(1): warning C318: can't open file 'xc.h'
+..\src\Modbus.c(2): warning C318: can't open file 'GenericTypeDefs.h'
+..\SRC\MODBUS.C(87): error C249: 'DATA': SEGMENT TOO LARGE
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+..\SRC\UART.C(145): error C200: left side of '.' requires struct/union
+..\SRC\UART.C(146): error C202: 'RCREG': undefined identifier
+compiling io.c...
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+..\SRC\IRD_REMOTE.C(277): error C249: 'DATA': SEGMENT TOO LARGE
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+..\SRC\LCD12864.C(1713): error C249: 'DATA': SEGMENT TOO LARGE
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+..\SRC\MODBUS.C(98): error C249: 'DATA': SEGMENT TOO LARGE
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+..\SRC\UART.C(145): error C200: left side of '.' requires struct/union
+..\SRC\UART.C(146): error C202: 'RCREG': undefined identifier
+compiling io.c...
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+..\SRC\IRD_REMOTE.C(277): error C249: 'DATA': SEGMENT TOO LARGE
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+..\SRC\LCD12864.C(1713): error C249: 'DATA': SEGMENT TOO LARGE
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+..\SRC\MODBUS.C(98): error C249: 'DATA': SEGMENT TOO LARGE
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+..\SRC\UART.C(662): error C249: 'DATA': SEGMENT TOO LARGE
+compiling io.c...
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+compiling io.c...
+linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  TX_FRAME_KIND
+    MODULE:  .\delay.obj (DELAY)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  RX_FRAME_KIND
+    MODULE:  .\delay.obj (DELAY)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  TX_FRAME_KIND
+    MODULE:  .\interrupt.obj (INTERRUPT)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  RX_FRAME_KIND
+    MODULE:  .\interrupt.obj (INTERRUPT)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  TX_FRAME_KIND
+    MODULE:  .\ird_remote.obj (IRD_REMOTE)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  RX_FRAME_KIND
+    MODULE:  .\ird_remote.obj (IRD_REMOTE)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  TX_FRAME_KIND
+    MODULE:  .\key.obj (KEY)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  RX_FRAME_KIND
+    MODULE:  .\key.obj (KEY)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  TX_FRAME_KIND
+    MODULE:  .\lcd12864.obj (LCD12864)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  RX_FRAME_KIND
+    MODULE:  .\lcd12864.obj (LCD12864)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  TX_FRAME_KIND
+    MODULE:  .\led.obj (LED)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  RX_FRAME_KIND
+    MODULE:  .\led.obj (LED)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  TX_FRAME_KIND
+    MODULE:  .\main.obj (MAIN)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  RX_FRAME_KIND
+    MODULE:  .\main.obj (MAIN)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  TX_FRAME_KIND
+    MODULE:  .\Modbus.obj (MODBUS)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  RX_FRAME_KIND
+    MODULE:  .\Modbus.obj (MODBUS)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  TX_FRAME_KIND
+    MODULE:  .\pwm.obj (PWM)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  RX_FRAME_KIND
+    MODULE:  .\pwm.obj (PWM)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  TX_FRAME_KIND
+    MODULE:  .\timer.obj (TIMER)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  RX_FRAME_KIND
+    MODULE:  .\timer.obj (TIMER)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  TX_FRAME_KIND
+    MODULE:  .\uart.obj (UART)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  RX_FRAME_KIND
+    MODULE:  .\uart.obj (UART)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  TX_FRAME_KIND
+    MODULE:  .\io.obj (IO)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  RX_FRAME_KIND
+    MODULE:  .\io.obj (IO)
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_1US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FULL_DISPLAY?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_32X32?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_8X8?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_STRING_5X7?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP_XO?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART2_READ_NBYTE?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HANDLE_EVEN_CHECK?UART
+Program Size: data=24.5 xdata=4203 code=29653
+Target not created
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+compiling io.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_1US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FULL_DISPLAY?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_32X32?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_8X8?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_STRING_5X7?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP_XO?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART2_READ_NBYTE?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HANDLE_EVEN_CHECK?UART
+Program Size: data=24.5 xdata=4179 code=29653
+"ZH-YK" - 0 Error(s), 10 Warning(s).
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+compiling io.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_1US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FULL_DISPLAY?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_32X32?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_8X8?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_STRING_5X7?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP_XO?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART2_READ_NBYTE?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HANDLE_EVEN_CHECK?UART
+Program Size: data=24.5 xdata=4179 code=29653
+creating hex file from "..\OBJ\ZH-YK"...
+"..\OBJ\ZH-YK" - 0 Error(s), 10 Warning(s).
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+compiling io.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_1US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FULL_DISPLAY?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_32X32?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_8X8?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_STRING_5X7?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP_XO?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART2_READ_NBYTE?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HANDLE_EVEN_CHECK?UART
+Program Size: data=24.5 xdata=4179 code=29653
+creating hex file from "..\OBJ\ZH-YK"...
+"..\OBJ\ZH-YK" - 0 Error(s), 10 Warning(s).
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+compiling io.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_1US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FULL_DISPLAY?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_32X32?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_8X8?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_STRING_5X7?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP_XO?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART2_READ_NBYTE?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HANDLE_EVEN_CHECK?UART
+Program Size: data=24.5 xdata=4179 code=29655
+creating hex file from "..\OBJ\ZH-YK"...
+"..\OBJ\ZH-YK" - 0 Error(s), 10 Warning(s).
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+compiling io.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_1US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READ_PARAM_EEPROM?IRD_REMOTE
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FULL_DISPLAY?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_32X32?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_8X8?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_STRING_5X7?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP_XO?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART2_READ_NBYTE?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HANDLE_EVEN_CHECK?UART
+Program Size: data=24.5 xdata=4181 code=29653
+creating hex file from "..\OBJ\ZH-YK"...
+"..\OBJ\ZH-YK" - 0 Error(s), 11 Warning(s).
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+compiling io.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_1US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READ_PARAM_EEPROM?IRD_REMOTE
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FULL_DISPLAY?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_32X32?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_8X8?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_STRING_5X7?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP_XO?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART2_READ_NBYTE?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HANDLE_EVEN_CHECK?UART
+Program Size: data=24.5 xdata=4181 code=29658
+creating hex file from "..\OBJ\ZH-YK"...
+"..\OBJ\ZH-YK" - 0 Error(s), 11 Warning(s).
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+compiling io.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_1US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READ_PARAM_EEPROM?IRD_REMOTE
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FULL_DISPLAY?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_32X32?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_8X8?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_STRING_5X7?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP_XO?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART2_READ_NBYTE?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HANDLE_EVEN_CHECK?UART
+Program Size: data=24.5 xdata=4181 code=29656
+creating hex file from "..\OBJ\ZH-YK"...
+"..\OBJ\ZH-YK" - 0 Error(s), 11 Warning(s).
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+compiling io.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_1US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READ_PARAM_EEPROM?IRD_REMOTE
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FULL_DISPLAY?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_32X32?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_8X8?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_STRING_5X7?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP_XO?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART2_READ_NBYTE?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HANDLE_EVEN_CHECK?UART
+Program Size: data=24.5 xdata=4181 code=29659
+creating hex file from "..\OBJ\ZH-YK"...
+"..\OBJ\ZH-YK" - 0 Error(s), 11 Warning(s).
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+compiling io.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_1US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READ_PARAM_EEPROM?IRD_REMOTE
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FULL_DISPLAY?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_32X32?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_8X8?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_STRING_5X7?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP_XO?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART2_READ_NBYTE?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HANDLE_EVEN_CHECK?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SAVE_SYS_PARAMETER?UART
+Program Size: data=24.5 xdata=4181 code=29652
+creating hex file from "..\OBJ\ZH-YK"...
+"..\OBJ\ZH-YK" - 0 Error(s), 12 Warning(s).
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+compiling io.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_1US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READ_PARAM_EEPROM?IRD_REMOTE
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FULL_DISPLAY?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_32X32?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_8X8?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_STRING_5X7?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP_XO?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART2_READ_NBYTE?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HANDLE_EVEN_CHECK?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SAVE_SYS_PARAMETER?UART
+Program Size: data=24.5 xdata=4181 code=29652
+creating hex file from "..\OBJ\ZH-YK"...
+"..\OBJ\ZH-YK" - 0 Error(s), 12 Warning(s).
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+compiling io.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_1US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READ_PARAM_EEPROM?IRD_REMOTE
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FULL_DISPLAY?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_32X32?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_8X8?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_STRING_5X7?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP_XO?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART2_READ_NBYTE?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HANDLE_EVEN_CHECK?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SAVE_SYS_PARAMETER?UART
+Program Size: data=24.5 xdata=4181 code=29652
+creating hex file from "..\OBJ\ZH-YK"...
+"..\OBJ\ZH-YK" - 0 Error(s), 12 Warning(s).
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+compiling io.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_1US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READ_PARAM_EEPROM?IRD_REMOTE
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FULL_DISPLAY?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_32X32?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_8X8?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_STRING_5X7?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP_XO?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART2_READ_NBYTE?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HANDLE_EVEN_CHECK?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SAVE_SYS_PARAMETER?UART
+Program Size: data=24.5 xdata=4181 code=29652
+creating hex file from "..\OBJ\ZH-YK"...
+"..\OBJ\ZH-YK" - 0 Error(s), 12 Warning(s).
+Build target 'ZH-YK-001'
+compiling beep.c...
+compiling delay.c...
+compiling interrupt.c...
+compiling ird_remote.c...
+compiling key.c...
+compiling lcd12864.c...
+..\src\lcd12864.c(1643): warning C329: single-line comment contains line-continuation
+compiling led.c...
+compiling main.c...
+compiling Modbus.c...
+compiling pwm.c...
+compiling timer.c...
+compiling uart.c...
+compiling io.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DELAY_1US?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?READ_PARAM_EEPROM?IRD_REMOTE
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_FULL_DISPLAY?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_32X32?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_GRAPHIC_8X8?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISPLAY_STRING_5X7?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DISP_GRAP_XO?LCD12864
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART2_READ_NBYTE?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_HANDLE_EVEN_CHECK?UART
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SAVE_SYS_PARAMETER?UART
+Program Size: data=24.5 xdata=4181 code=29652
+creating hex file from "..\OBJ\ZH-YK"...
+"..\OBJ\ZH-YK" - 0 Error(s), 12 Warning(s).

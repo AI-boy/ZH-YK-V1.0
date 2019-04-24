@@ -1,0 +1,59 @@
+C51 COMPILER V9.01   TIMER                                                                 03/20/2019 11:22:08 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE TIMER
+OBJECT MODULE PLACED IN ..\OBJ\timer.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\src\timer.c LARGE BROWSE FLOATFUZZY(4) INCDIR(..\include;C:\Keil\C51\INC
+                    -\STC) DEBUG OBJECTEXTEND PRINT(.\timer.lst) OBJECT(..\OBJ\timer.obj)
+
+line level    source
+
+   1          
+   2          //**--------------头文件-------------------------------------------------------
+   3          #include "STC8.h"
+   4          #include "intrins.h"
+   5          
+   6          #include <stdio.h>
+   7          #include <string.h>
+   8          
+   9          #include "userdefine.h" 
+  10          
+  11          //**--------------全局变量-----------------------------------------------------
+  12          
+  13          //**--------------函数申明-----------------------------------------------------
+  14          
+  15          //**--------------函数定义-----------------------------------------------------
+  16          
+  17          
+  18          /**********************************************************************
+  19          *函数名称：init_time0
+  20          *描述：初始化系统时基定时器 1ms
+  21          *返回类型：void
+  22          *输入形参：void
+  23          ***********************************************************************/
+  24          void init_timer0(void)
+  25          {
+  26   1         AUXR &= 0x7F;                //定时器时钟12T模式
+  27   1         TMOD &= 0xF0;                //设置定时器模式
+  28   1         TH0 = 0xF8;                                                             //定时器时钟频率：FOSC/12=24M/12=2MHz
+  29   1         TL0 = 0x30;                                 //(65536-63536)=2000 * 1/2000000=1ms
+  30   1         ET0 = 0;                                    //禁止定时器0中断
+  31   1         EA = 0;                                                                         //全局中断
+  32   1         TF0=0;
+  33   1         TR0 = 0;                                    //开启定时器
+  34   1        
+  35   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     21    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

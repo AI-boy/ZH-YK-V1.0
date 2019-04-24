@@ -1,0 +1,110 @@
+C51 COMPILER V9.01   DELAY                                                                 03/20/2019 11:22:05 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE DELAY
+OBJECT MODULE PLACED IN ..\OBJ\delay.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\src\delay.c LARGE BROWSE FLOATFUZZY(4) INCDIR(..\include;C:\Keil\C51\INC
+                    -\STC) DEBUG OBJECTEXTEND PRINT(.\delay.lst) OBJECT(..\OBJ\delay.obj)
+
+line level    source
+
+   1          
+   2          
+   3          //**--------------头文件-------------------------------------------------------
+   4          #include "STC8.h"
+   5          #include "intrins.h"
+   6          
+   7          #include <stdio.h>
+   8          #include <string.h>
+   9          
+  10          #include "userdefine.h" 
+  11          
+  12          //**--------------全局变量-----------------------------------------------------
+  13          
+  14          //**--------------函数申明-----------------------------------------------------
+  15          
+  16          //**--------------函数定义-----------------------------------------------------
+  17          
+  18          
+  19          
+  20          /******************************************************************************
+  21          ** 函数名称 : delay_1us
+  22          ** 输入参数 : 无
+  23          ** 输出参数 : 无
+  24          ** 功能描述 : 延时1us
+  25          ** 全局变量 : 无
+  26          ** 作    者 : 蔡维凯
+  27          ** 日    期 : 
+  28          ** 修    改 : 无
+  29          ** 版    本 : V0.1
+  30          *******************************************************************************/
+  31          void delay_1us(void) // 延时1us，因为系统时钟24MHz
+  32          {
+  33   1              unsigned char i;
+  34   1      
+  35   1              i = 6;
+  36   1              while (--i);
+  37   1      }
+  38          
+  39          /******************************************************************************
+  40          ** 函数名称 : delay_ms
+  41          ** 输入参数 : count
+  42          ** 输出参数 : 无
+  43          ** 功能描述 : 毫秒延时
+  44          ** 全局变量 : 无
+  45          ** 作    者 : 蔡维凯
+  46          ** 日    期 : 
+  47          ** 修    改 : 无
+  48          ** 版    本 : V0.1
+  49          *******************************************************************************/
+  50          void delay_ms(unsigned int count)
+  51          {
+  52   1              WORD i, j;
+  53   1      
+  54   1              unsigned char k;
+C51 COMPILER V9.01   DELAY                                                                 03/20/2019 11:22:05 PAGE 2   
+
+  55   1      
+  56   1              CLRWDT();
+  57   1              
+  58   1              for (i = 0; i < count; i++)
+  59   1              {
+  60   2              for (j = 0; j < 1000; j++)
+  61   2              {
+  62   3                      k = 6;
+  63   3                              while(--k);
+  64   3              }
+  65   2              }
+  66   1      }
+  67          
+  68          
+  69          void delay_us(unsigned int count)
+  70          {
+  71   1              WORD i, j;
+  72   1      
+  73   1              unsigned char k;
+  74   1      
+  75   1              
+  76   1              for (i = 0; i < count; i++)
+  77   1              {
+  78   2              for (j = 0; j < 1; j++)
+  79   2              {
+  80   3                      k = 6;
+  81   3                              while(--k);
+  82   3              }
+  83   2              }
+  84   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     92    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

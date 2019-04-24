@@ -1,0 +1,710 @@
+C51 COMPILER V9.01   UART                                                                  03/20/2019 11:22:08 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE UART
+OBJECT MODULE PLACED IN ..\OBJ\uart.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\src\uart.c LARGE BROWSE FLOATFUZZY(4) INCDIR(..\include;C:\Keil\C51\INC\
+                    -STC) DEBUG OBJECTEXTEND PRINT(.\uart.lst) OBJECT(..\OBJ\uart.obj)
+
+line level    source
+
+   1          //**--------------头文件-------------------------------------------------------
+   2          #include "STC8.h"
+   3          #include "intrins.h"
+   4          
+   5          #include <stdio.h>
+   6          #include <string.h>
+   7          
+   8          #include "userdefine.h" 
+   9          
+  10          //**--------------全局变量-----------------------------------------------------
+  11          
+  12          //**--------------函数申明-----------------------------------------------------
+  13          
+  14          //**--------------函数定义-----------------------------------------------------
+  15          
+  16          
+  17          unsigned char tx1_mt=0x00;   //UART1发送寄存器发送完成标志
+  18          
+  19          unsigned char tx2_mt=0x00;       //UART2发送寄存器发送完成标志
+  20          
+  21          unsigned char tx3_mt=0x00;       //UART3发送寄存器发送完成标志
+  22          
+  23          unsigned char tx4_mt=0x00;       //UART4发送寄存器发送完成标志
+  24          
+  25          unsigned char rx1_mt=0x00;   //UART1接受寄存器接受完成标志
+  26          
+  27          unsigned char rx2_mt=0x00;       //UART2接受寄存器接受完成标志
+  28          
+  29          unsigned char rx3_mt=0x00;       //UART3接受寄存器接受完成标志
+  30          
+  31          unsigned char rx4_mt=0x00;       //UART4接受寄存器接受完成标志
+  32          
+  33          
+  34          unsigned char uart2_rx_buf[80];
+  35          
+  36          unsigned char uart2_tx_buf[80];
+  37          
+  38          unsigned char rx_frame_kind=0x00;  //接受帧 类别  01--运行数据帧                02--参数数据帧          03--参数保存返回确认帧
+  39          unsigned char tx_frame_kind=0x00; //发送帧                                                                        
+  40          
+  41          
+  42          
+  43          
+  44          
+  45          unsigned char uart2_time_count=0x00;
+  46          
+  47          unsigned char uart2_receive_byte_count=0;
+  48          
+  49          unsigned char uart2_receive_flag=0;
+  50          
+  51          
+  52          
+  53          
+  54          
+C51 COMPILER V9.01   UART                                                                  03/20/2019 11:22:08 PAGE 2   
+
+  55          
+  56          
+  57          //**--------------宏定义-------------------------------------------------------
+  58          
+  59          //**--------------函数申明-----------------------------------------------------
+  60          
+  61          //**--------------函数定义-----------------------------------------------------
+  62          
+  63          
+  64          
+  65          
+  66          
+  67          
+  68          /**********************************************************************
+  69          *函数名称：init_uart2
+  70          *描述：uart2初始化 波特率2400 8 1 N
+  71          *返回类型：void
+  72          *输入形参：void
+  73          ***********************************************************************/
+  74          void init_uart2(void)
+  75          {
+  76   1      
+  77   1              set_io_mode(PORT1,1,PP_OUT);    //P1.1  TX2   推挽输出模式
+  78   1              set_io_mode(PORT1,0,STAND);         //P1.0  RX2   标准双向端口（默认）
+  79   1      
+  80   1              S2CON = 0x50;           //8位数据,可变波特率
+  81   1              AUXR |= 0x04;           //定时器2时钟为Fosc,即1T
+  82   1              T2L = 0x3C;                 //设定定时初值
+  83   1              T2H = 0xF6;                 //设定定时初值
+  84   1              IE2&=~ET2;                  //禁止定时器2中断
+  85   1              IE2&=~ES2;                      //禁止UART2中断
+  86   1      
+  87   1              AUXR |= 0x10;           //启动定时器2
+  88   1      
+  89   1      
+  90   1      }
+  91          
+  92          /**********************************************************************
+  93          *函数名称：uart2_send_byte
+  94          *描述：
+  95          *返回类型：void
+  96          *输入形参：BYTE  data
+  97          ***********************************************************************/
+  98          void uart2_send_byte(unsigned char dat)
+  99          {  
+ 100   1      
+ 101   1        tx2_mt = 0;            //!!!
+ 102   1      
+ 103   1        #if defined(IRD_BY_UART)      
+ 104   1                      Enable_pwm();   
+ 105   1        #endif
+ 106   1      
+ 107   1        S2BUF = dat;
+ 108   1      
+ 109   1        while (!tx2_mt);
+ 110   1      
+ 111   1        #if defined(IRD_BY_UART)
+ 112   1                      Disable_pwm();
+ 113   1        #endif
+ 114   1      
+ 115   1        tx2_mt = 0;                    //!!!
+ 116   1      }
+C51 COMPILER V9.01   UART                                                                  03/20/2019 11:22:08 PAGE 3   
+
+ 117          
+ 118          
+ 119          /**********************************************************************
+ 120          *函数名称：uart2_send_nbyte
+ 121          *描述：
+ 122          *返回类型：void
+ 123          *输入形参：BYTE *data,WORD size
+ 124          ***********************************************************************/
+ 125          void uart2_send_nbyte(unsigned char *dat,unsigned int size)
+ 126          {
+ 127   1              while (size)
+ 128   1          {
+ 129   2              uart2_send_byte(*dat);
+ 130   2              dat++;
+ 131   2              size--;
+ 132   2          }
+ 133   1      }
+ 134          
+ 135          /**********************************************************************
+ 136          *函数名称：uart2_read_byte
+ 137          *描述：
+ 138          *返回类型：BYTE 
+ 139          *输入形参：void
+ 140          ***********************************************************************/
+ 141          unsigned char uart2_read_byte(void)
+ 142          {
+ 143   1              unsigned char dat;
+ 144   1      
+ 145   1              rx2_mt = 0;
+ 146   1      
+ 147   1              while (!rx2_mt); // 等待接收缓冲区满
+ 148   1      
+ 149   1              rx2_mt = 0;
+ 150   1      
+ 151   1              dat = S2BUF;
+ 152   1      
+ 153   1              return dat;
+ 154   1      }
+ 155          
+ 156          /**********************************************************************
+ 157          *函数名称：uart1_read_nbyte
+ 158          *描述：
+ 159          *返回类型：void 
+ 160          *输入形参：BYTE *buffer,BYTE length
+ 161          ***********************************************************************/
+ 162          void uart2_read_nbyte(unsigned char *buffer,unsigned char length)
+ 163          {
+ 164   1              unsigned char i;
+ 165   1              unsigned char dat;
+ 166   1      
+ 167   1              for (i = 0; i < length; i++)
+ 168   1              {
+ 169   2              dat = uart2_read_byte(); // Get a character from the USART and save in the string
+ 170   2              *buffer = dat;
+ 171   2              buffer++; // Increment the string pointer
+ 172   2              }
+ 173   1      }
+ 174          
+ 175          
+ 176          /**********************************************************************
+ 177          *函数名称：uart1_read_nbyte
+ 178          *描述：
+C51 COMPILER V9.01   UART                                                                  03/20/2019 11:22:08 PAGE 4   
+
+ 179          *返回类型：void 
+ 180          *输入形参：BYTE *buffer,BYTE length
+ 181          *----奇偶校验--------
+ 182          *----偶校验(%2)--
+ 183          *----奇校验(/2)-----
+ 184          ***********************************************************************/
+ 185          
+ 186          bit handle_even_check(unsigned char databyte)
+ 187          {
+ 188   1              unsigned char i=0;
+ 189   1              
+ 190   1              unsigned char num=0;
+ 191   1              
+ 192   1              num=0x00;//----!!!!!!!!!!!!!!局部变量必须清零
+ 193   1              
+ 194   1              for(i=0;i<8;i++)
+ 195   1              {
+ 196   2                      if(databyte&(1<<i))
+ 197   2                      {
+ 198   3                              num++;
+ 199   3                      }
+ 200   2              }
+ 201   1              
+ 202   1              return ((bit)(num%2));
+ 203   1      
+ 204   1      
+ 205   1      }
+ 206          
+ 207          
+ 208          /**********************************************************************
+ 209          *函数名称：handle_uart_rx_buf
+ 210          *描述：
+ 211          *返回类型：void 
+ 212          *输入形参：void
+ 213          ***********************************************************************/
+ 214          
+ 215          void handle_uart2_rx_buf(void)
+ 216          {
+ 217   1              unsigned char i=0;
+ 218   1              
+ 219   1              unsigned int crc_in;
+ 220   1              
+ 221   1              if(rx_frame_kind==tx_frame_kind)
+ 222   1              {
+ 223   2                      switch(rx_frame_kind)
+ 224   2                      {
+ 225   3                              case 0x01:  //运行数据
+ 226   3                                              if(uart2_rx_buf[1]==0xB1)
+ 227   3                                              {
+ 228   4                                                      crc_in=crc16(&uart2_rx_buf[1],50);
+ 229   4                                                      
+ 230   4                                                      if(crc_in==( (uart2_rx_buf[51]<<8) | uart2_rx_buf[52]) )
+ 231   4                                                      {
+ 232   5                                                              p_v             = (uart2_rx_buf[2]<<8) | uart2_rx_buf[3];
+ 233   5                                                              
+ 234   5                                                              b_v             = (uart2_rx_buf[4]<<8) | uart2_rx_buf[5];
+ 235   5                                                              
+ 236   5                                                              load_v          = (uart2_rx_buf[6]<<8) | uart2_rx_buf[7];
+ 237   5                                                              
+ 238   5                                                              charge_I        = (uart2_rx_buf[8]<<8) | uart2_rx_buf[9];
+ 239   5                                                              
+ 240   5                                                              load_I          = (uart2_rx_buf[10]<<8) | uart2_rx_buf[11];
+C51 COMPILER V9.01   UART                                                                  03/20/2019 11:22:08 PAGE 5   
+
+ 241   5                                                              
+ 242   5                                                              sys_mode        = uart2_rx_buf[12];
+ 243   5                                                              
+ 244   5                                                              charge_current_value            = (uart2_rx_buf[13]<<8) | uart2_rx_buf[14];
+ 245   5                                                              
+ 246   5                                                              discharge_current_value         = (uart2_rx_buf[15]<<8) | uart2_rx_buf[16];
+ 247   5                                                              
+ 248   5                                                              temperature_value               = (uart2_rx_buf[17]<<8) | uart2_rx_buf[18];                                                                     
+ 249   5                                                              
+ 250   5                                                              //----------------------------------------------------------------      
+ 251   5                                                              bt_00_hv = (uart2_rx_buf[19]<<8) | uart2_rx_buf[20];
+ 252   5                                                              bt_00_lv = (uart2_rx_buf[21]<<8) | uart2_rx_buf[22];    
+ 253   5                                                              
+ 254   5                                                              bt_01_hv = (uart2_rx_buf[23]<<8) | uart2_rx_buf[24];
+ 255   5                                                              bt_01_lv = (uart2_rx_buf[25]<<8) | uart2_rx_buf[26];
+ 256   5                                                              
+ 257   5                                                              bt_02_hv = (uart2_rx_buf[27]<<8) | uart2_rx_buf[28];
+ 258   5                                                              bt_02_lv = (uart2_rx_buf[29]<<8) | uart2_rx_buf[30];
+ 259   5                                                              
+ 260   5                                                              bt_03_hv = (uart2_rx_buf[31]<<8) | uart2_rx_buf[32];
+ 261   5                                                              bt_03_lv = (uart2_rx_buf[33]<<8) | uart2_rx_buf[34];
+ 262   5                                                              
+ 263   5                                                              bt_04_hv = (uart2_rx_buf[35]<<8) | uart2_rx_buf[36];
+ 264   5                                                              bt_04_lv = (uart2_rx_buf[37]<<8) | uart2_rx_buf[38];
+ 265   5                                                              
+ 266   5                                                              bt_05_hv = (uart2_rx_buf[39]<<8) | uart2_rx_buf[40];
+ 267   5                                                              bt_05_lv = (uart2_rx_buf[41]<<8) | uart2_rx_buf[42];    
+ 268   5                                                              
+ 269   5                                                              bt_06_hv = (uart2_rx_buf[43]<<8) | uart2_rx_buf[44];
+ 270   5                                                              bt_06_lv = (uart2_rx_buf[45]<<8) | uart2_rx_buf[46];    
+ 271   5                                                              
+ 272   5                                                              bt_07_hv = (uart2_rx_buf[47]<<8) | uart2_rx_buf[48];
+ 273   5                                                              bt_07_lv = (uart2_rx_buf[49]<<8) | uart2_rx_buf[50];
+ 274   5                                                              
+ 275   5                                                              bt_dy[0] = bt_00_hv;
+ 276   5                                                              bt_dy[1] = bt_00_lv;
+ 277   5                                                              
+ 278   5                                                              bt_dy[2] = bt_01_hv;
+ 279   5                                                              bt_dy[3] = bt_01_lv;
+ 280   5                                                              
+ 281   5                                                              bt_dy[4] = bt_02_hv;
+ 282   5                                                              bt_dy[5] = bt_02_lv;
+ 283   5                                                              
+ 284   5                                                              bt_dy[6] = bt_03_hv;
+ 285   5                                                              bt_dy[7] = bt_03_lv;
+ 286   5                                                              
+ 287   5                                                              bt_dy[8] = bt_04_hv;
+ 288   5                                                              bt_dy[9] = bt_04_lv;
+ 289   5                                                              
+ 290   5                                                              bt_dy[10] = bt_05_hv;
+ 291   5                                                              bt_dy[11] = bt_05_lv;
+ 292   5                                                              
+ 293   5                                                              bt_dy[12] = bt_06_hv;
+ 294   5                                                              bt_dy[13] = bt_06_lv;
+ 295   5                                                              
+ 296   5                                                              bt_dy[14] = bt_07_hv;
+ 297   5                                                              bt_dy[15] = bt_07_lv;   
+ 298   5                                                              
+ 299   5                                                              BEEP_SPEAK();
+ 300   5                                                      }
+ 301   4                                              }
+ 302   3                                              break;
+C51 COMPILER V9.01   UART                                                                  03/20/2019 11:22:08 PAGE 6   
+
+ 303   3                              
+ 304   3                              case 0x02:
+ 305   3                                              if(uart2_rx_buf[1]==0xB2)
+ 306   3                                              {
+ 307   4                                                      crc_in=crc16(&uart2_rx_buf[1],17);
+ 308   4                                                      
+ 309   4                                                      if(crc_in==( (uart2_rx_buf[18]<<8) | uart2_rx_buf[19]) )
+ 310   4                                                      {
+ 311   5                                                              light_pv                = (uart2_rx_buf[2]<<8) | uart2_rx_buf[3];
+ 312   5                                                              
+ 313   5                                                              load_cc_I               = (uart2_rx_buf[4]<<8) | uart2_rx_buf[5];
+ 314   5                                                              
+ 315   5                                                              step_01_load_percent    = uart2_rx_buf[6];
+ 316   5                                                              
+ 317   5                                                              step_02_load_percent    = uart2_rx_buf[7];
+ 318   5                                                              
+ 319   5                                                              step_03_load_percent    = uart2_rx_buf[8];
+ 320   5                                                              
+ 321   5                                                              step_04_load_percent    = uart2_rx_buf[9];
+ 322   5                                                              
+ 323   5                                                              step_05_load_percent    = uart2_rx_buf[10];
+ 324   5                                                              
+ 325   5                                                              bt_id                                   = uart2_rx_buf[11];
+ 326   5                                                              
+ 327   5                                                              light_time                              = uart2_rx_buf[12];
+ 328   5                                                              
+ 329   5                                                              step_01_time_limit      = uart2_rx_buf[13];
+ 330   5                                                              
+ 331   5                                                              step_02_time_limit      = uart2_rx_buf[14];
+ 332   5                                                              
+ 333   5                                                              step_03_time_limit      = uart2_rx_buf[15];
+ 334   5                                                              
+ 335   5                                                              step_04_time_limit      = uart2_rx_buf[16];
+ 336   5                                                              
+ 337   5                                                              step_05_time_limit      = uart2_rx_buf[17];
+ 338   5                                                              
+ 339   5                                                              BEEP_SPEAK();
+ 340   5                                                      }
+ 341   4                                              }
+ 342   3                                              break;
+ 343   3                              
+ 344   3                              case 0x03:
+ 345   3                                              if(uart2_rx_buf[1]==0xB3)
+ 346   3                                              {
+ 347   4                                                      crc_in=crc16(&uart2_rx_buf[1],2);
+ 348   4                                                      
+ 349   4                                                      if(crc_in==( (uart2_rx_buf[3]<<8) | uart2_rx_buf[4]) )
+ 350   4                                                      {
+ 351   5                                                              set_status              = uart2_rx_buf[2];      
+ 352   5                                                              
+ 353   5                                                              if(set_status==0x01)
+ 354   5                                                              {                                               
+ 355   6                                                                      display_string_8x16(5,0,"....Save OK!....");
+ 356   6                                                                      
+ 357   6                                                                      delay_ms(1000);
+ 358   6                                                                      
+ 359   6                                                                      clear_screen();
+ 360   6                                                                      display_canshu();
+ 361   6                                                              }
+ 362   5                                                              else
+ 363   5                                                              {
+ 364   6                                                                      display_string_8x16(5,0,"...Set error!...");
+C51 COMPILER V9.01   UART                                                                  03/20/2019 11:22:08 PAGE 7   
+
+ 365   6                                                                      
+ 366   6                                                                      delay_ms(1000);
+ 367   6                                                                      
+ 368   6                                                                      clear_screen();
+ 369   6                                                                      display_canshu();
+ 370   6                                                              }                                                                                                                                                       
+ 371   5                                                      }
+ 372   4                                                      else
+ 373   4                                                      {
+ 374   5                                                                      display_string_8x16(5,0,"...CRC error!...");
+ 375   5                                                                      
+ 376   5                                                                      delay_ms(1000);
+ 377   5                                                                      
+ 378   5                                                                      clear_screen();
+ 379   5                                                                      display_canshu();
+ 380   5                                                      }
+ 381   4                                              }
+ 382   3                                              break;
+ 383   3                              case 0x04:
+ 384   3                                              if(uart2_rx_buf[1]==0xB4)
+ 385   3                                              {
+ 386   4                                                      crc_in=crc16(&uart2_rx_buf[1],2);
+ 387   4                                                      
+ 388   4                                                      if(crc_in==( (uart2_rx_buf[3]<<8) | uart2_rx_buf[4]) )
+ 389   4                                                      {
+ 390   5                                                              set_status              = uart2_rx_buf[2];      
+ 391   5                                                              
+ 392   5                                                              if(set_status==0x01)
+ 393   5                                                              {       
+ 394   6                                                                      clear_screen();
+ 395   6                                                                                                                                                                              
+ 396   6                                                                      display_string_8x16(1,0,"<<Handle mode!>>");
+ 397   6                                                                      
+ 398   6                                                                      display_string_8x16(5,0,"....charging!...");
+ 399   6                                                                      
+ 400   6                                                                      delay_ms(1000);
+ 401   6                                                                      
+ 402   6                                                                      clear_screen();
+ 403   6                                                                      display_run_data();
+ 404   6                                                              }
+ 405   5                                                              else
+ 406   5                                                              {
+ 407   6                                                                      clear_screen();
+ 408   6                                                                      
+ 409   6                                                                      display_string_8x16(5,0,"...Set error!...");
+ 410   6                                                                      
+ 411   6                                                                      delay_ms(1000);
+ 412   6                                                                      
+ 413   6                                                                      clear_screen();
+ 414   6                                                                      display_run_data();
+ 415   6                                                              }                                                                                                                                                       
+ 416   5                                                      }
+ 417   4                                                      else
+ 418   4                                                      {
+ 419   5                                                                      clear_screen();
+ 420   5                                                                      
+ 421   5                                                                      display_string_8x16(5,0,"...CRC error!...");
+ 422   5                                                                      
+ 423   5                                                                      delay_ms(1000);
+ 424   5                                                                      
+ 425   5                                                                      clear_screen();
+ 426   5                                                                      display_run_data();
+C51 COMPILER V9.01   UART                                                                  03/20/2019 11:22:08 PAGE 8   
+
+ 427   5                                                      }
+ 428   4                                              }
+ 429   3                                              break;
+ 430   3                              case 0x05:
+ 431   3                                              if(uart2_rx_buf[1]==0xB5)
+ 432   3                                              {
+ 433   4                                                      crc_in=crc16(&uart2_rx_buf[1],2);
+ 434   4                                                      
+ 435   4                                                      if(crc_in==( (uart2_rx_buf[3]<<8) | uart2_rx_buf[4]) )
+ 436   4                                                      {
+ 437   5                                                              set_status              = uart2_rx_buf[2];      
+ 438   5                                                              
+ 439   5                                                              if(set_status==0x01)
+ 440   5                                                              {       
+ 441   6                                                                      clear_screen();
+ 442   6                                                                                                                                                                              
+ 443   6                                                                      display_string_8x16(1,0,"<<Handle mode!>>");
+ 444   6                                                                      
+ 445   6                                                                      display_string_8x16(5,0,"..discharging!..");
+ 446   6                                                                      
+ 447   6                                                                      delay_ms(1000);
+ 448   6                                                                      
+ 449   6                                                                      clear_screen();
+ 450   6                                                                      display_run_data();
+ 451   6                                                              }
+ 452   5                                                              else
+ 453   5                                                              {
+ 454   6                                                                      clear_screen();
+ 455   6                                                                      
+ 456   6                                                                      display_string_8x16(5,0,"...Set error!...");
+ 457   6                                                                      
+ 458   6                                                                      delay_ms(1000);
+ 459   6                                                                      
+ 460   6                                                                      clear_screen();
+ 461   6                                                                      display_run_data();
+ 462   6                                                              }                                                                                                                                                       
+ 463   5                                                      }
+ 464   4                                                      else
+ 465   4                                                      {
+ 466   5                                                                      clear_screen();
+ 467   5                                                                      
+ 468   5                                                                      display_string_8x16(5,0,"...CRC error!...");
+ 469   5                                                                      
+ 470   5                                                                      delay_ms(1000);
+ 471   5                                                                      
+ 472   5                                                                      clear_screen();
+ 473   5                                                                      display_run_data();
+ 474   5                                                      }
+ 475   4                                              }
+ 476   3                                              break;
+ 477   3                              case 0x06:
+ 478   3                                              if(uart2_rx_buf[1]==0xB6)
+ 479   3                                              {
+ 480   4                                                      crc_in=crc16(&uart2_rx_buf[1],2);
+ 481   4                                                      
+ 482   4                                                      if(crc_in==( (uart2_rx_buf[3]<<8) | uart2_rx_buf[4]) )
+ 483   4                                                      {
+ 484   5                                                              set_status              = uart2_rx_buf[2];      
+ 485   5                                                              
+ 486   5                                                              if(set_status==0x01)
+ 487   5                                                              {       
+ 488   6                                                                      clear_screen();
+C51 COMPILER V9.01   UART                                                                  03/20/2019 11:22:08 PAGE 9   
+
+ 489   6                                                                                                                                                                              
+ 490   6                                                                      display_string_8x16(1,0," <<Auto mode!>> ");
+ 491   6                                                                      
+ 492   6                                                                      display_string_8x16(5,0,"....working!....");
+ 493   6                                                                      
+ 494   6                                                                      delay_ms(1000);
+ 495   6                                                                      
+ 496   6                                                                      clear_screen();
+ 497   6                                                                      display_run_data();
+ 498   6                                                              }
+ 499   5                                                              else
+ 500   5                                                              {
+ 501   6                                                                      clear_screen();
+ 502   6                                                                      
+ 503   6                                                                      display_string_8x16(5,0,"...Set error!...");
+ 504   6                                                                      
+ 505   6                                                                      delay_ms(1000);
+ 506   6                                                                      
+ 507   6                                                                      clear_screen();
+ 508   6                                                                      display_run_data();
+ 509   6                                                              }                                                                                                                                                       
+ 510   5                                                      }
+ 511   4                                                      else
+ 512   4                                                      {
+ 513   5                                                                      clear_screen();
+ 514   5                                                                      
+ 515   5                                                                      display_string_8x16(5,0,"...CRC error!...");
+ 516   5                                                                      
+ 517   5                                                                      delay_ms(1000);
+ 518   5                                                                      
+ 519   5                                                                      clear_screen();
+ 520   5                                                                      display_run_data();
+ 521   5                                                      }
+ 522   4                                              }
+ 523   3                                              break;
+ 524   3                              default:break;
+ 525   3                      }
+ 526   2              }
+ 527   1              
+ 528   1              memset (uart2_rx_buf,0,sizeof(uart2_rx_buf));
+ 529   1      }
+ 530          
+ 531          //---------------------------------读取控制器“运行数据”
+ 532          void read_run_data(void)
+ 533          {
+ 534   1              tx_frame_kind=0x01;
+ 535   1                                                                                                                                                                               
+ 536   1              uart2_tx_buf[0]=0x55;
+ 537   1                                                               
+ 538   1              uart2_tx_buf[1]=0xA1;
+ 539   1                                                               
+ 540   1              crc_data=crc16(&uart2_tx_buf[1],1);
+ 541   1                                                               
+ 542   1              uart2_tx_buf[2]=crc_data/256;
+ 543   1                                                               
+ 544   1              uart2_tx_buf[3]=crc_data%256;
+ 545   1                                                               
+ 546   1              uart2_tx_buf[4]=0xAA;
+ 547   1                                                               
+ 548   1              uart2_send_nbyte(uart2_tx_buf,5);
+ 549   1              
+ 550   1      }
+C51 COMPILER V9.01   UART                                                                  03/20/2019 11:22:08 PAGE 10  
+
+ 551          
+ 552          //读取控制器“系统参数”
+ 553          void read_sys_parameter(void)
+ 554          {
+ 555   1              tx_frame_kind=0x02;
+ 556   1                                               
+ 557   1              uart2_tx_buf[0]=0x55;
+ 558   1                                                                       
+ 559   1              uart2_tx_buf[1]=0xA2;
+ 560   1                                                                       
+ 561   1              crc_data=crc16(&uart2_tx_buf[1],1);
+ 562   1                                                                       
+ 563   1              uart2_tx_buf[2]=crc_data/256;
+ 564   1                                                                       
+ 565   1              uart2_tx_buf[3]=crc_data%256;
+ 566   1                                                                       
+ 567   1              uart2_tx_buf[4]=0xAA;
+ 568   1                                                                       
+ 569   1              uart2_send_nbyte(uart2_tx_buf,5);
+ 570   1              
+ 571   1      }
+ 572          //保存“系统参数”
+ 573          void save_sys_parameter(void)
+ 574          {
+ 575   1      
+ 576   1              IapErase(0x0400);          //擦除0x0400起始扇区 512个字节
+ 577   1              //-----------------------------------------------------------保存EEPROM操作标志
+ 578   1              IapProgram(0x0412, 0x55);  //---EEPROM 初始化标志位
+ 579   1              //-----------------------------------------------------------保存光控电压参数
+ 580   1              IapProgram(0x0400,(unsigned char)(light_pv/256));
+ 581   1                              
+ 582   1              IapProgram(0x0401,(unsigned char)light_pv);
+ 583   1                                                                      
+ 584   1              //-----------------------------------------------------------保存负载工作电流参数
+ 585   1              IapProgram(0x0402,(unsigned char)(load_cc_I/256));
+ 586   1                              
+ 587   1              IapProgram(0x0403,(unsigned char)load_cc_I);
+ 588   1                                                                      
+ 589   1              //-----------------------------------------------------------保存节能输出百分比参数
+ 590   1              IapProgram(0x0404,(unsigned char)(step_01_load_percent));
+ 591   1                                                                      
+ 592   1              IapProgram(0x0405,(unsigned char)(step_02_load_percent));
+ 593   1                                                                      
+ 594   1              IapProgram(0x0406,(unsigned char)(step_03_load_percent));
+ 595   1                                                                      
+ 596   1              IapProgram(0x0407,(unsigned char)(step_04_load_percent));
+ 597   1                                                                      
+ 598   1              IapProgram(0x0408,(unsigned char)(step_05_load_percent));
+ 599   1                                                                      
+ 600   1              IapProgram(0x040a,(unsigned char)(bt_id));
+ 601   1                                                                      
+ 602   1              IapProgram(0x040b,(unsigned char)(light_time));
+ 603   1                                                                      
+ 604   1              IapProgram(0x040c,(unsigned char)(step_01_time_limit));
+ 605   1                                                                      
+ 606   1              IapProgram(0x040d,(unsigned char)(step_02_time_limit));
+ 607   1                                                                      
+ 608   1              IapProgram(0x040e,(unsigned char)(step_03_time_limit));
+ 609   1                                                                      
+ 610   1              IapProgram(0x040f,(unsigned char)(step_04_time_limit));
+ 611   1                                                                      
+ 612   1              IapProgram(0x0410,(unsigned char)(step_05_time_limit));
+C51 COMPILER V9.01   UART                                                                  03/20/2019 11:22:08 PAGE 11  
+
+ 613   1              
+ 614   1              //---------------------------------------------------------发送参数到控制器                                                     
+ 615   1              tx_frame_kind=0x03;
+ 616   1                                               
+ 617   1              uart2_tx_buf[0]=0x55;
+ 618   1                                                                       
+ 619   1              uart2_tx_buf[1]=0xA3;
+ 620   1                                                                       
+ 621   1              uart2_tx_buf[2]=(unsigned char )(light_pv/256);
+ 622   1                                                                       
+ 623   1              uart2_tx_buf[3]=(unsigned char )light_pv;
+ 624   1                                                                       
+ 625   1              uart2_tx_buf[4]=(unsigned char )(load_cc_I/256);        
+ 626   1                                                                       
+ 627   1              uart2_tx_buf[5]=(unsigned char )load_cc_I;
+ 628   1                                                                       
+ 629   1              uart2_tx_buf[6]=(unsigned char )(step_01_load_percent); 
+ 630   1              
+ 631   1              uart2_tx_buf[7]=(unsigned char )(step_02_load_percent); 
+ 632   1              
+ 633   1              uart2_tx_buf[8]=(unsigned char )(step_03_load_percent); 
+ 634   1              
+ 635   1              uart2_tx_buf[9]=(unsigned char )(step_04_load_percent);
+ 636   1              
+ 637   1              uart2_tx_buf[10]=(unsigned char )(step_05_load_percent);
+ 638   1              
+ 639   1              uart2_tx_buf[11]=(unsigned char )(bt_id);       
+ 640   1              
+ 641   1              uart2_tx_buf[12]=(unsigned char )(light_time);
+ 642   1              
+ 643   1              uart2_tx_buf[13]=(unsigned char )(step_01_time_limit);  
+ 644   1              
+ 645   1              uart2_tx_buf[14]=(unsigned char )(step_02_time_limit);  
+ 646   1              
+ 647   1              uart2_tx_buf[15]=(unsigned char )(step_03_time_limit);  
+ 648   1              
+ 649   1              uart2_tx_buf[16]=(unsigned char )(step_04_time_limit);
+ 650   1              
+ 651   1              uart2_tx_buf[17]=(unsigned char )(step_05_time_limit);
+ 652   1                                                 
+ 653   1                                                                       
+ 654   1              crc_data=crc16(&uart2_tx_buf[1],17);
+ 655   1                                                                       
+ 656   1              uart2_tx_buf[18]=crc_data/256;
+ 657   1                                                                       
+ 658   1              uart2_tx_buf[19]=crc_data%256;
+ 659   1                                                                       
+ 660   1              uart2_tx_buf[20]=0xAA;
+ 661   1                                                                       
+ 662   1              uart2_send_nbyte(uart2_tx_buf,21);
+ 663   1              
+ 664   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   2552    ----
+   CONSTANT SIZE    =    136    ----
+   XDATA SIZE       =    173       9
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+C51 COMPILER V9.01   UART                                                                  03/20/2019 11:22:08 PAGE 12  
+
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

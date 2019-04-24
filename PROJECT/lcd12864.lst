@@ -1,0 +1,2079 @@
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE LCD12864
+OBJECT MODULE PLACED IN ..\OBJ\lcd12864.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\src\lcd12864.c LARGE BROWSE FLOATFUZZY(4) INCDIR(..\include;C:\Keil\C51\
+                    -INC\STC) DEBUG OBJECTEXTEND PRINT(.\lcd12864.lst) OBJECT(..\OBJ\lcd12864.obj)
+
+line level    source
+
+   1           
+   2          //**--------------头文件-------------------------------------------------------
+   3          #include "STC8.h"
+   4          #include "intrins.h"
+   5          
+   6          #include <stdio.h>
+   7          #include <string.h>
+   8          
+   9          #include "userdefine.h" 
+  10          
+  11          //**--------------全局变量-----------------------------------------------------
+  12          
+  13          //**--------------函数申明-----------------------------------------------------
+  14          
+  15          //**--------------函数定义-----------------------------------------------------
+  16          
+  17          unsigned char a[]="Solar Remote!";
+  18          unsigned char b[]="Welcoming....";
+  19          unsigned char c[]="[-V1.0]";
+  20          unsigned char d[]="--ZH and POWER--";
+  21          unsigned char e[]="[Chinese]"  ;
+  22          unsigned char f[]="[English]"  ;
+  23          
+  24          
+  25          const unsigned char  ascii_table_8x16[95][16];
+  26          const unsigned char  ascii_table_5x7[95][5];
+  27          
+  28          unsigned char buf[50];
+  29          
+  30          
+  31          
+  32          
+  33          
+  34          
+  35          
+  36          const unsigned char yunxing_jiemian[]={
+  37          0xFF,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x81,
+  38          0x41,0x21,0x11,0x09,0xFD,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x81,
+  39          0x85,0x99,0x01,0x41,0x45,0x45,0xC5,0x45,0x45,0x45,0x41,0x41,0x01,0x01,0x11,0x89,
+  40          0xC5,0x33,0x01,0x41,0x45,0x45,0x45,0xC5,0x45,0x45,0x41,0x01,0x01,0x09,0x31,0x01,
+  41          0xFF,0x01,0x21,0x21,0x21,0xFF,0x21,0x25,0x29,0x21,0x01,0x01,0x09,0x09,0x89,0x89,
+  42          0x49,0xA9,0x1F,0x29,0x49,0x89,0x89,0x09,0x09,0x01,0x01,0x01,0x01,0x01,0x01,0x01,
+  43          0x01,0x01,0x01,0xFD,0x09,0x11,0x21,0x41,0x81,0x01,0x01,0x01,0x01,0x01,0x01,0x01,
+  44          0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0xFF,
+  45          0xFF,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x81,0x82,
+  46          0x84,0x88,0x90,0xA0,0xFF,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0xC0,
+  47          0xA0,0x9F,0xA0,0xC8,0xCC,0xCA,0xC9,0xC8,0xCA,0xCC,0xD8,0xC0,0x80,0x80,0x81,0x80,
+  48          0xFF,0x80,0x80,0x80,0x80,0xC0,0xC0,0xFF,0x80,0x80,0x80,0x80,0x80,0x84,0x82,0x81,
+  49          0xFF,0xC0,0xA0,0x98,0x87,0x80,0x87,0x98,0xA0,0xC0,0x80,0x80,0xC1,0xB1,0x80,0xB8,
+  50          0xC0,0xC0,0xC5,0xD8,0xC0,0xE0,0x80,0x89,0xB1,0x80,0x80,0x80,0x80,0x80,0x80,0x80,
+  51          0x80,0x80,0x80,0xFF,0xA0,0x90,0x88,0x84,0x82,0x81,0x80,0x80,0x80,0x80,0x80,0x80,
+  52          0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0xFF,/*"D:\Work\产品研发\遥控器
+             -\图片\运行状态标题.bmp",0*/
+  53          };
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 2   
+
+  54          const unsigned char yunxing_jiemian_en[]={
+  55          
+  56          
+  57          0xFF,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x81,
+  58          0x41,0x21,0x11,0x09,0xFD,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x09,0xF9,
+  59          0x89,0x89,0x89,0x71,0x01,0x01,0x09,0xF9,0x09,0x01,0x09,0xF9,0x09,0x01,0x09,0xF9,
+  60          0x39,0xC1,0x09,0xF9,0x09,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x09,0xF9,
+  61          0x09,0x09,0x09,0x11,0xE1,0x01,0x01,0x01,0xE1,0x19,0xE1,0x01,0x01,0x01,0x19,0x09,
+  62          0x09,0xF9,0x09,0x09,0x19,0x01,0x01,0x01,0xE1,0x19,0xE1,0x01,0x01,0x01,0x01,0x01,
+  63          0x01,0x01,0x01,0xFD,0x09,0x11,0x21,0x41,0x81,0x01,0x01,0x01,0x01,0x01,0x01,0x01,
+  64          0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0xFF,
+  65          0xFF,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x81,0x82,
+  66          0x84,0x88,0x90,0xA0,0xFF,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x90,0x9F,
+  67          0x90,0x81,0x86,0x98,0x90,0x80,0x80,0x8F,0x90,0x90,0x90,0x8F,0x80,0x80,0x90,0x9F,
+  68          0x90,0x81,0x8E,0x9F,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x90,0x9F,
+  69          0x90,0x90,0x90,0x88,0x87,0x80,0x90,0x9E,0x93,0x82,0x93,0x9E,0x90,0x80,0x80,0x80,
+  70          0x90,0x9F,0x90,0x80,0x80,0x80,0x90,0x9E,0x93,0x82,0x93,0x9E,0x90,0x80,0x80,0x80,
+  71          0x80,0x80,0x80,0xFF,0xA0,0x90,0x88,0x84,0x82,0x81,0x80,0x80,0x80,0x80,0x80,0x80,
+  72          0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0xFF,/*"D:\Work\产品研发\遥控器
+             -\图片\RUN DATA.bmp",0*/
+  73          
+  74          };
+  75          const unsigned char canshu_jiemian[]={
+  76          
+  77          0xFF,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x81,0x41,
+  78          0x21,0x11,0x09,0x05,0xFF,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,
+  79          0x21,0x21,0xA9,0x6D,0x2B,0x39,0x29,0xA9,0x29,0x6D,0xB9,0x21,0x21,0x01,0x01,0x95,
+  80          0x59,0x31,0xFF,0x31,0x59,0x95,0x81,0x61,0x9F,0x11,0xF1,0x11,0x01,0x01,0x41,0x43,
+  81          0xCD,0x01,0x81,0x41,0x3D,0x05,0x05,0x05,0x3D,0x41,0x41,0x01,0x01,0x01,0x5F,0x53,
+  82          0x53,0x5F,0x53,0xF3,0x53,0x5F,0x53,0x53,0x5F,0x01,0x01,0x01,0x01,0x01,0x01,0x01,
+  83          0x01,0x01,0x01,0xFF,0x05,0x09,0x11,0x21,0x41,0x81,0x01,0x01,0x01,0x01,0x01,0x01,
+  84          0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0xFF,
+  85          0xFF,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x81,
+  86          0x82,0x84,0x88,0x90,0xBF,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,
+  87          0xC1,0xD1,0xD2,0xD2,0xCA,0xA9,0xA9,0xA4,0x92,0x90,0x88,0x81,0x81,0x80,0x80,0xC2,
+  88          0xCA,0xAF,0xB2,0x92,0xAE,0xC0,0x80,0xC0,0xA7,0x98,0xA7,0xC0,0x80,0x80,0x80,0x80,
+  89          0xBF,0x90,0xC8,0xC1,0xA7,0xA9,0x91,0xA9,0xA5,0xC3,0xC0,0x80,0x80,0xC0,0xC0,0xFF,
+  90          0xC1,0xC1,0xC1,0xF9,0xC1,0xC1,0xC1,0xFF,0xC0,0xC0,0x80,0x80,0x80,0x80,0x80,0x80,
+  91          0x80,0x80,0x80,0xBF,0x90,0x88,0x84,0x82,0x81,0x80,0x80,0x80,0x80,0x80,0x80,0x80,
+  92          0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0xFF,/*"D:\Work\产品研发\遥控器
+             -\图片\参数设置标题.bmp",0*/
+  93          };
+  94          
+  95          const unsigned char canshu_jiemian_en[]={
+  96          
+  97          0xFF,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x81,0x41,
+  98          0x21,0x11,0x09,0x05,0xFF,0x01,0x01,0x01,0x01,0x01,0x01,0x71,0x89,0x89,0x09,0x09,
+  99          0x39,0x01,0x09,0xF9,0x89,0x89,0xE9,0x09,0x11,0x01,0x19,0x09,0x09,0xF9,0x09,0x09,
+ 100          0x19,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x09,0xF9,0x89,0x89,0x89,0x89,0x71,0x01,
+ 101          0x01,0x01,0xE1,0x19,0xE1,0x01,0x01,0x01,0x09,0xF9,0x89,0x89,0x89,0x71,0x01,0x01,
+ 102          0x01,0x01,0xE1,0x19,0xE1,0x01,0x01,0x01,0x09,0xF9,0xF9,0x01,0xF9,0xF9,0x09,0x01,
+ 103          0x01,0x01,0x01,0x01,0x01,0xFF,0x05,0x09,0x11,0x21,0x41,0x81,0x01,0x01,0x01,0x01,
+ 104          0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0xFF,
+ 105          0xFF,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x81,
+ 106          0x82,0x84,0x88,0x90,0xBF,0x80,0x80,0x80,0x80,0x80,0x80,0x9C,0x90,0x90,0x91,0x91,
+ 107          0x8E,0x80,0x90,0x9F,0x90,0x90,0x93,0x90,0x88,0x80,0x80,0x80,0x90,0x9F,0x90,0x80,
+ 108          0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x90,0x9F,0x90,0x80,0x80,0x80,0x80,0x80,
+ 109          0x90,0x9E,0x93,0x82,0x93,0x9E,0x90,0x80,0x90,0x9F,0x90,0x81,0x86,0x98,0x90,0x80,
+ 110          0x90,0x9E,0x93,0x82,0x93,0x9E,0x90,0x80,0x90,0x9F,0x80,0x9F,0x80,0x9F,0x90,0x80,
+ 111          0x80,0x80,0x80,0x80,0x80,0xBF,0x90,0x88,0x84,0x82,0x81,0x80,0x80,0x80,0x80,0x80,
+ 112          0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0xFF,/*"D:\Work\产品研发\遥控器
+             -\图片\SET PARAM.bmp",0*/
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 3   
+
+ 113          };
+ 114          
+ 115          const unsigned char shuzi_1[]={0x00,0x00,0x10,0x10,0xF8,0x00,0x00,0x00,0x00,0x00,0x20,0x20,0x3F,0x20,0x20,
+             -0x00,};                 /*"1"*/
+ 116          const unsigned char shuzi_2[]={0x00,0x70,0x08,0x08,0x08,0x08,0xF0,0x00,0x00,0x30,0x28,0x24,0x22,0x21,0x30,
+             -0x00,};                 /*"2"*/
+ 117          const unsigned char shuzi_3[]={0x00,0x30,0x08,0x08,0x08,0x88,0x70,0x00,0x00,0x18,0x20,0x21,0x21,0x22,0x1C,
+             -0x00,};                 /*"3"*/
+ 118          const unsigned char shuzi_4[]={0x00,0x00,0x80,0x40,0x30,0xF8,0x00,0x00,0x00,0x06,0x05,0x24,0x24,0x3F,0x24,
+             -0x24,};                 /*"4"*/
+ 119          const unsigned char shuzi_5[]={0x00,0xF8,0x88,0x88,0x88,0x08,0x08,0x00,0x00,0x19,0x20,0x20,0x20,0x11,0x0E,
+             -0x00,};                 /*"5"*/
+ 120          const unsigned char shuzi_6[]={0x00,0xE0,0x10,0x88,0x88,0x90,0x00,0x00,0x00,0x0F,0x11,0x20,0x20,0x20,0x1F,
+             -0x00,};                 /*"6"*/
+ 121          const unsigned char shuzi_7[]={0x00,0x18,0x08,0x08,0x88,0x68,0x18,0x00,0x00,0x00,0x00,0x3E,0x01,0x00,0x00,
+             -0x00,};           /*"7"*/
+ 122          const unsigned char shuzi_8[]={0x00,0x70,0x88,0x08,0x08,0x88,0x70,0x00,0x00,0x1C,0x22,0x21,0x21,0x22,0x1C,
+             -0x00,};           /*"8"*/
+ 123          const unsigned char shuzi_9[]={0x00,0xF0,0x08,0x08,0x08,0x10,0xE0,0x00,0x00,0x01,0x12,0x22,0x22,0x11,0x0F,
+             -0x00,};           /*"9"*/
+ 124          const unsigned char fuhao_d[]={0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x30,0x30,0x00,0x00,0x00,0x00,
+             -0x00,};                /*"."*/
+ 125          const unsigned char fuhao_m[]={
+ 126          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+ 127          0x00,0x00,0x36,0x36,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,/*"：",0*/
+ 128          };              /*":"*/
+ 129          
+ 130          
+ 131          const unsigned char hanzi_guang[]={
+ 132          0x40,0x40,0x42,0x44,0x58,0xC0,0x40,0x7F,0x40,0xC0,0x50,0x48,0x46,0x40,0x40,0x00,
+ 133          0x80,0x80,0x40,0x20,0x18,0x07,0x00,0x00,0x00,0x3F,0x40,0x40,0x40,0x40,0x78,0x00,/*"光",0*/
+ 134          };
+ 135          const unsigned char hanzi_kong[]={
+ 136          0x10,0x10,0x10,0xFF,0x90,0x20,0x98,0x48,0x28,0x09,0x0E,0x28,0x48,0xA8,0x18,0x00,
+ 137          0x02,0x42,0x81,0x7F,0x00,0x40,0x40,0x42,0x42,0x42,0x7E,0x42,0x42,0x42,0x40,0x00,/*"控",0*/
+ 138          };
+ 139          const unsigned char hanzi_dian[]={
+ 140          0x00,0x00,0xF8,0x88,0x88,0x88,0x88,0xFF,0x88,0x88,0x88,0x88,0xF8,0x00,0x00,0x00,
+ 141          0x00,0x00,0x1F,0x08,0x08,0x08,0x08,0x7F,0x88,0x88,0x88,0x88,0x9F,0x80,0xF0,0x00,/*"电",0*/
+ 142          };
+ 143          const unsigned char hanzi_ya[]={
+ 144          0x00,0x00,0xFE,0x02,0x82,0x82,0x82,0x82,0xFA,0x82,0x82,0x82,0x82,0x82,0x02,0x00,
+ 145          0x80,0x60,0x1F,0x40,0x40,0x40,0x40,0x40,0x7F,0x40,0x40,0x44,0x58,0x40,0x40,0x00,/*"压",0*/
+ 146          };
+ 147          const unsigned char hanzi_fu[]={
+ 148          0x00,0x20,0x10,0xE8,0x24,0x27,0x24,0xA4,0x24,0x34,0x2C,0xE0,0x00,0x00,0x00,0x00,
+ 149          0x00,0x80,0x80,0x4F,0x40,0x20,0x18,0x07,0x10,0x10,0x20,0x4F,0x80,0x00,0x00,0x00,/*"负",0*/
+ 150          };
+ 151          const unsigned char hanzi_zai[]={
+ 152          0x90,0x94,0x94,0xF4,0x9F,0x94,0x94,0x94,0x10,0x10,0xFF,0x10,0x12,0xD4,0x10,0x00,
+ 153          0x20,0x26,0x25,0x24,0xFE,0x14,0x14,0x14,0x80,0x40,0x27,0x18,0x26,0x41,0xF0,0x00,/*"载",0*/
+ 154          };
+ 155          const unsigned char hanzi_liu[]={
+ 156          0x10,0x60,0x02,0x8C,0x00,0x44,0x64,0x54,0x4D,0x46,0x44,0x54,0x64,0xC4,0x04,0x00,
+ 157          0x04,0x04,0x7E,0x01,0x80,0x40,0x3E,0x00,0x00,0xFE,0x00,0x00,0x7E,0x80,0xE0,0x00,/*"流",0*/
+ 158          };
+ 159          const unsigned char hanzi_di[]={
+ 160          0x08,0x04,0x93,0x92,0x96,0x9A,0x92,0xFA,0x94,0x93,0x92,0x96,0xFA,0x02,0x02,0x00,
+ 161          0x40,0x40,0x47,0x24,0x24,0x14,0x0C,0xFF,0x04,0x04,0x24,0x44,0x24,0x1C,0x00,0x00,/*"第",0*/
+ 162          };
+ 163          const unsigned char hanzi_yi[]={
+ 164          0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x00,
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 4   
+
+ 165          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,/*"一",0*/
+ 166          };
+ 167          const unsigned char hanzi_er[]={
+ 168          0x00,0x00,0x08,0x08,0x08,0x08,0x08,0x08,0x08,0x08,0x08,0x08,0x08,0x00,0x00,0x00,
+ 169          0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x00,/*"二",0*/
+ 170          };
+ 171          const unsigned char hanzi_san[]={
+ 172          0x00,0x04,0x84,0x84,0x84,0x84,0x84,0x84,0x84,0x84,0x84,0x84,0x84,0x04,0x00,0x00,
+ 173          0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x00,/*"三",0*/
+ 174          };
+ 175          const unsigned char hanzi_si[]={
+ 176          0x00,0xFC,0x04,0x04,0x04,0xFC,0x04,0x04,0x04,0xFC,0x04,0x04,0x04,0xFC,0x00,0x00,
+ 177          0x00,0x7F,0x28,0x24,0x23,0x20,0x20,0x20,0x20,0x21,0x22,0x22,0x22,0x7F,0x00,0x00,/*"四",0*/
+ 178          };
+ 179          const unsigned char hanzi_wu[]={
+ 180          0x00,0x02,0x42,0x42,0x42,0xC2,0x7E,0x42,0x42,0x42,0x42,0xC2,0x02,0x02,0x00,0x00,
+ 181          0x40,0x40,0x40,0x40,0x78,0x47,0x40,0x40,0x40,0x40,0x40,0x7F,0x40,0x40,0x40,0x00,/*"五",0*/
+ 182          };
+ 183          const unsigned char hanzi_jie[]={
+ 184          0x00,0xFE,0x02,0x22,0xDA,0x06,0x40,0x20,0x90,0x0C,0x03,0x0C,0x90,0x20,0x40,0x00,
+ 185          0x00,0xFF,0x08,0x10,0x08,0x07,0x80,0x60,0x1F,0x00,0x00,0x00,0xFF,0x00,0x00,0x00,/*"阶",0*/
+ 186          };
+ 187          const unsigned char hanzi_duan[]={
+ 188          0x00,0x00,0xFE,0x22,0x22,0x21,0x01,0x40,0x3E,0x02,0x02,0x02,0x1E,0x20,0x20,0x00,
+ 189          0x10,0x10,0xFF,0x11,0x09,0x09,0x80,0x81,0x47,0x29,0x11,0x29,0x45,0x83,0x80,0x00,/*"段",0*/
+ 190          };
+ 191          const unsigned char hanzi_chi[]={
+ 192          0x10,0x60,0x02,0xCC,0x80,0x80,0xFC,0x40,0x20,0xFF,0x10,0x08,0xF8,0x00,0x00,0x00,
+ 193          0x04,0x04,0x7E,0x01,0x00,0x00,0x3F,0x40,0x40,0x4F,0x40,0x44,0x47,0x40,0x78,0x00,/*"池",0*/
+ 194          };
+ 195          const unsigned char hanzi_lei[]={
+ 196          0x00,0x10,0x10,0x92,0x54,0x30,0x10,0xFF,0x10,0x30,0x54,0x92,0x10,0x10,0x00,0x00,
+ 197          0x84,0x85,0x45,0x44,0x24,0x14,0x0C,0x06,0x0C,0x14,0x24,0x44,0x45,0x84,0x84,0x00,/*"类",0*/
+ 198          };
+ 199          const unsigned char hanzi_xing[]={
+ 200          0x20,0x22,0xA2,0x7E,0x22,0x22,0xFE,0x22,0x22,0x00,0x7C,0x00,0x00,0xFF,0x00,0x00,
+ 201          0x44,0x42,0x49,0x48,0x48,0x48,0x49,0x7E,0x48,0x48,0x48,0x49,0x4A,0x41,0x40,0x00,/*"型",0*/
+ 202          };
+ 203          const unsigned char hanzi_shi[]={
+ 204          0x00,0xFC,0x84,0x84,0x84,0xFC,0x00,0x10,0x10,0x10,0x10,0x10,0xFF,0x10,0x10,0x00,
+ 205          0x00,0x3F,0x10,0x10,0x10,0x3F,0x00,0x00,0x01,0x06,0x40,0x80,0x7F,0x00,0x00,0x00,/*"时",0*/
+ 206          };
+ 207          const unsigned char hanzi_jian[]={
+ 208          0x00,0xF8,0x01,0x06,0x00,0xF0,0x12,0x12,0x12,0xF2,0x02,0x02,0x02,0xFE,0x00,0x00,
+ 209          0x00,0xFF,0x00,0x00,0x00,0x1F,0x11,0x11,0x11,0x1F,0x00,0x40,0x80,0x7F,0x00,0x00,/*"间",0*/
+ 210          };
+ 211          const unsigned char hanzi_fu1[]={
+ 212          0x00,0x80,0x60,0xF8,0x07,0x20,0x20,0x20,0x20,0xFF,0x20,0x22,0x2C,0x20,0x20,0x00,
+ 213          0x01,0x00,0x00,0xFF,0x80,0x40,0x20,0x18,0x07,0x00,0x07,0x18,0x20,0x40,0x80,0x00,/*"伏",0*/
+ 214          };
+ 215          const unsigned char hanzi_shu[]={
+ 216          0x88,0x68,0x1F,0xC8,0x08,0x10,0xC8,0x54,0x52,0xD1,0x12,0x94,0x08,0xD0,0x10,0x00,
+ 217          0x09,0x19,0x09,0xFF,0x05,0x00,0xFF,0x12,0x92,0xFF,0x00,0x5F,0x80,0x7F,0x00,0x00,/*"输",0*/
+ 218          };
+ 219          const unsigned char hanzi_chu[]={
+ 220          0x00,0x00,0x7C,0x40,0x40,0x40,0x40,0xFF,0x40,0x40,0x40,0x40,0xFC,0x00,0x00,0x00,
+ 221          0x00,0x7C,0x40,0x40,0x40,0x40,0x40,0x7F,0x40,0x40,0x40,0x40,0x40,0xFC,0x00,0x00,/*"出",0*/
+ 222          };
+ 223          const unsigned char hanzi_chong[]={
+ 224          0x04,0x04,0x84,0xC4,0xA4,0x9C,0x85,0x86,0x84,0x84,0xA4,0xC4,0x84,0x04,0x04,0x00,
+ 225          0x00,0x80,0x80,0x40,0x30,0x0F,0x00,0x00,0x00,0x7F,0x80,0x80,0x81,0xF0,0x00,0x00,/*"充",0*/
+ 226          };
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 5   
+
+ 227          const unsigned char hanzi_gong[]={
+ 228          0x00,0x04,0x04,0x04,0x04,0x04,0x04,0xFC,0x04,0x04,0x04,0x04,0x04,0x04,0x00,0x00,
+ 229          0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x3F,0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x00,/*"工",0*/
+ 230          };
+ 231          const unsigned char hanzi_zuo[]={
+ 232          0x00,0x80,0x60,0xF8,0x07,0x40,0x30,0x0F,0xF8,0x88,0x88,0x88,0x88,0x08,0x08,0x00,
+ 233          0x01,0x00,0x00,0xFF,0x00,0x00,0x00,0x00,0xFF,0x08,0x08,0x08,0x08,0x08,0x00,0x00,/*"作",0*/
+ 234          };
+ 235          const unsigned char hanzi_mo[]={
+ 236          0x10,0x10,0xD0,0xFF,0x90,0x14,0xE4,0xAF,0xA4,0xA4,0xA4,0xAF,0xE4,0x04,0x00,0x00,
+ 237          0x04,0x03,0x00,0xFF,0x00,0x89,0x4B,0x2A,0x1A,0x0E,0x1A,0x2A,0x4B,0x88,0x80,0x00,/*"模",0*/
+ 238          };
+ 239          const unsigned char hanzi_shi1[]={
+ 240          0x10,0x10,0x90,0x90,0x90,0x90,0x90,0x10,0x10,0xFF,0x10,0x10,0x11,0x16,0x10,0x00,
+ 241          0x00,0x20,0x60,0x20,0x3F,0x10,0x10,0x10,0x00,0x03,0x0C,0x10,0x20,0x40,0xF8,0x00,/*"式",0*/
+ 242          };
+ 243          /**********************************************************************
+ 244          *函数名称：init_lcd
+ 245          *描述：指示灯初始化
+ 246          *返回类型：void
+ 247          *输入形参：void
+ 248          ***********************************************************************/
+ 249          void init_lcd(void)
+ 250          {
+ 251   1              //LCD 端口设置
+ 252   1              set_io_mode(PORT2,6,STAND);  //LCD 背光LED端口设为输出  P2.6
+ 253   1              
+ 254   1              LCD_LED_OFF;
+ 255   1              
+ 256   1              set_io_mode(PORT1,6,STAND);// CS  设置输出
+ 257   1              
+ 258   1              set_io_mode(PORT1,7,STAND);// RST  设置输出
+ 259   1              
+ 260   1              set_io_mode(PORT4,4,STAND);// RS  设置输出
+ 261   1              
+ 262   1              set_io_mode(PORT1,5,STAND);// SCK  设置输出
+ 263   1              
+ 264   1              set_io_mode(PORT1,3,STAND);// SDO  设置输出
+ 265   1              
+ 266   1              //LCD参数设置
+ 267   1              LCD_CS=1;
+ 268   1              LCD_RST=0; /*低电平复位*/
+ 269   1              delay_us(100);
+ 270   1              LCD_RST=1; /*复位完毕*/
+ 271   1              delay_us(100);
+ 272   1              
+ 273   1              transfer_command(0xe2); /*软复位*/
+ 274   1              delay_us(5);
+ 275   1              transfer_command(0x2c); /*升压步聚1*/
+ 276   1              delay_us(5);
+ 277   1              transfer_command(0x2e); /*升压步聚2*/
+ 278   1              delay_us(5);
+ 279   1              transfer_command(0x2f); /*升压步聚3*/
+ 280   1              delay_us(5);
+ 281   1              transfer_command(0x24); /*粗调对比度，可设置范围0x20～0x27*/
+ 282   1              transfer_command(0x81); /*微调对比度*/
+ 283   1              transfer_command(0x12); /*0x1a,微调对比度的值，可设置范围0x00～0x3f*/
+ 284   1              transfer_command(0xa2); /*1/9偏压比（bias）*/
+ 285   1              transfer_command(0xc8); /*行扫描顺序：从上到下*/
+ 286   1              transfer_command(0xa0); /*列扫描顺序：从左到右*/
+ 287   1              transfer_command(0x40); /*起始行：第一行开始*/
+ 288   1              transfer_command(0xaf); /*开显示*/
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 6   
+
+ 289   1                      
+ 290   1              //LCD_LED_ON;  //点亮背光
+ 291   1              
+ 292   1              clear_screen(); //clear all dots
+ 293   1      }
+ 294          
+ 295          
+ 296          
+ 297          
+ 298          //LCD写指令
+ 299          void transfer_command(unsigned char dat)
+ 300          {
+ 301   1              unsigned char i;
+ 302   1              
+ 303   1              LCD_CS=0;
+ 304   1              
+ 305   1              LCD_RS=0;
+ 306   1              
+ 307   1              for(i=0;i<8;i++)
+ 308   1              {
+ 309   2                      LCD_SCK=0;
+ 310   2                      
+ 311   2                      delay_us(2);
+ 312   2                      
+ 313   2                      if(dat&0x80) 
+ 314   2                      {
+ 315   3                              LCD_SDO=1;
+ 316   3                      }
+ 317   2                      else 
+ 318   2                      {
+ 319   3                              LCD_SDO=0;
+ 320   3                      }
+ 321   2                      
+ 322   2                      LCD_SCK=1;
+ 323   2                      
+ 324   2                      delay_us(2);
+ 325   2                      
+ 326   2                      dat=dat<<=1;
+ 327   2              }
+ 328   1              
+ 329   1              LCD_CS=1;
+ 330   1              
+ 331   1      }
+ 332          
+ 333          
+ 334          /*写数据到LCD模块*/
+ 335          void transfer_data(unsigned char dat)
+ 336          {
+ 337   1              unsigned char i;
+ 338   1              
+ 339   1              LCD_CS=0;
+ 340   1              
+ 341   1              LCD_RS=1;
+ 342   1              
+ 343   1              for(i=0;i<8;i++)
+ 344   1              {
+ 345   2                      LCD_SCK=0;
+ 346   2                      
+ 347   2                      delay_us(2);
+ 348   2                      
+ 349   2                      if(dat&0x80) 
+ 350   2                      {
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 7   
+
+ 351   3                              LCD_SDO=1;
+ 352   3                      }
+ 353   2                      else 
+ 354   2                      {
+ 355   3                              LCD_SDO=0;
+ 356   3                      }
+ 357   2                      
+ 358   2                      LCD_SCK=1;
+ 359   2                      
+ 360   2                      delay_us(2);
+ 361   2                      
+ 362   2                      dat=dat<<=1;
+ 363   2              }
+ 364   1              
+ 365   1              LCD_CS=1;
+ 366   1              
+ 367   1      }
+ 368          
+ 369          //设置LCD显示起始地址（页，列）  12864：共8页 每页128列  128*8*8=128*64
+ 370          void lcd_address(unsigned char page,unsigned char column)
+ 371          {
+ 372   1              column=column-1;                                //我们平常所说的第1列，在LCD驱动IC里是第0列。所以在这里减去1
+ 373   1      
+ 374   1              page=page-1;
+ 375   1              
+ 376   1              transfer_command(0xb0+page);    //设置页地址。每页是8行。一个画面的64行被分成8个页。我们平常所说的第1页，在
+             -LCD驱动IC里是第0页，所以在这里减去1
+ 377   1              
+ 378   1              transfer_command(((column>>4)&0x0f)+0x10);      //设置列地址的高4位
+ 379   1              transfer_command(column&0x0f);                          //设置列地址的低4位
+ 380   1      }
+ 381          
+ 382          
+ 383          //清整个屏幕
+ 384          void clear_screen(void)
+ 385          {
+ 386   1              unsigned char i,j;
+ 387   1              
+ 388   1              for(i=0;i<9;i++)
+ 389   1              {
+ 390   2                      lcd_address(1+i,1);
+ 391   2                      
+ 392   2                      for(j=0;j<132;j++)
+ 393   2                      {
+ 394   3                              transfer_data(0x00);
+ 395   3                      }
+ 396   2              }
+ 397   1      }
+ 398          
+ 399          
+ 400          //==================display a piture of 128*64 dots================
+ 401          void full_display(unsigned char data_left,unsigned char data_right)
+ 402          {
+ 403   1              unsigned char i,j;
+ 404   1              
+ 405   1              for(i=0;i<8;i++)
+ 406   1              {
+ 407   2                      LCD_CS=0;
+ 408   2                      lcd_address(i+1,1);
+ 409   2                      for(j=0;j<64;j++)
+ 410   2                      {
+ 411   3                              transfer_data(data_left);
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 8   
+
+ 412   3                              transfer_data(data_right);
+ 413   3                      }
+ 414   2              }
+ 415   1      }
+ 416          /*显示128x16点阵图像、其他图标*/
+ 417          void display_graphic_128x16(unsigned char page,unsigned char column,unsigned char *dp)
+ 418          {
+ 419   1              unsigned char i,j;
+ 420   1              for(j=0;j<2;j++)
+ 421   1              {
+ 422   2                      lcd_address(page+j,column);
+ 423   2                      for (i=0;i<128;i++)
+ 424   2                      {
+ 425   3                              transfer_data(*dp); /*写数据到LCD,每写完一个8位的数据后列地址自动加1*/
+ 426   3                              dp++;
+ 427   3                      }
+ 428   2              }
+ 429   1      }
+ 430          
+ 431          /*显示32x32点阵图像、汉字、生僻字或32x32点阵的其他图标*/
+ 432          void display_graphic_32x32(unsigned char page,unsigned char column,unsigned char *dp)
+ 433          {
+ 434   1              unsigned char i,j;
+ 435   1              for(j=0;j<4;j++)
+ 436   1              {
+ 437   2                      lcd_address(page+j,column);
+ 438   2                      for (i=0;i<31;i++)
+ 439   2                      {
+ 440   3                              transfer_data(*dp); /*写数据到LCD,每写完一个8位的数据后列地址自动加1*/
+ 441   3                              dp++;
+ 442   3                      }
+ 443   2              }
+ 444   1      }
+ 445          
+ 446          /*显示16x16点阵图像、汉字、生僻字或16x16点阵的其他图标*/
+ 447          void display_graphic_16x16(unsigned char page,unsigned char column,unsigned char reverse,unsigned char *dp
+             -)
+ 448          {
+ 449   1              unsigned char i,j;
+ 450   1              for(j=0;j<2;j++)
+ 451   1              {
+ 452   2                      lcd_address(page+j,column);
+ 453   2                      for (i=0;i<16;i++)
+ 454   2                      {
+ 455   3                              if(reverse==1)
+ 456   3                              {
+ 457   4                                      transfer_data(*dp); /*写数据到LCD,每写完一个8位的数据后列地址自动加1*/
+ 458   4                              }
+ 459   3                              else
+ 460   3                              {
+ 461   4                                      transfer_data(~*dp);
+ 462   4                              }
+ 463   3                              
+ 464   3                              dp++;
+ 465   3                      }
+ 466   2              }
+ 467   1      }
+ 468          
+ 469          
+ 470          /*显示8x16点阵图像、ASCII, 或8x16点阵的自造字符、其他图标*/
+ 471          void display_graphic_8x16(unsigned char page,unsigned char column,unsigned char *dp)
+ 472          {
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 9   
+
+ 473   1              unsigned char i,j;
+ 474   1              for(j=0;j<2;j++)
+ 475   1              {
+ 476   2                      lcd_address(page+j,column);
+ 477   2                      for (i=0;i<8;i++)
+ 478   2                      {
+ 479   3                              transfer_data(*dp); /*写数据到LCD,每写完一个8位的数据后列地址自动加1*/
+ 480   3                              dp++;
+ 481   3                      }
+ 482   2              }
+ 483   1      }
+ 484          
+ 485          //显示8x8点阵图像、图标
+ 486          void display_graphic_8x8(unsigned char page,unsigned char column,unsigned char *dp)
+ 487          {
+ 488   1              unsigned char i,j;
+ 489   1              for(j=0;j<1;j++)
+ 490   1              {
+ 491   2                      lcd_address(page+j,column);
+ 492   2                      for (i=0;i<8;i++)
+ 493   2                      {
+ 494   3                              transfer_data(*dp); /*写数据到LCD,每写完一个8位的数据后列地址自动加1*/
+ 495   3                              dp++;
+ 496   3                      }
+ 497   2              }
+ 498   1      }
+ 499          
+ 500          //显示8*16字符
+ 501          void display_string_8x16(unsigned char page,unsigned char column,unsigned char *text)
+ 502          {
+ 503   1              unsigned char i=0,j,k,n;
+ 504   1              
+ 505   1              unsigned char dat;
+ 506   1              
+ 507   1              while(text[i]>0x00)
+ 508   1              {
+ 509   2                      if((text[i]>=0x20)&&(text[i]<=0x7e))
+ 510   2                      {
+ 511   3                              j=text[i]-0x20;
+ 512   3                              for(n=0;n<2;n++)
+ 513   3                              {
+ 514   4                                      lcd_address(page+n,column);
+ 515   4                                      
+ 516   4                                      for(k=0;k<8;k++)
+ 517   4                                      {
+ 518   5                                              
+ 519   5                                              dat=ascii_table_8x16[j][k+8*n];
+ 520   5      
+ 521   5                                              if(menu_index_q==0x03)
+ 522   5                                              {
+ 523   6                                                      if(canshu_cnt==1)
+ 524   6                                                      {
+ 525   7                                                              if(((i==0)&&(canshu_1_weizhi==3))||((i==1)&&(canshu_1_weizhi==2))||((i==3)&&(canshu_1_weizhi==1))||
+             -((i==4)&&(canshu_1_weizhi==0)))
+ 526   7                                                              {
+ 527   8                                                                      if(dat_flag)
+ 528   8                                                                      {
+ 529   9                                                                              dat =~dat;
+ 530   9                                                                      }
+ 531   8                                                              }
+ 532   7                                                      }
+ 533   6                                                      else if(canshu_cnt==2)
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 10  
+
+ 534   6                                                      {
+ 535   7                                                              if( ((i==1)&&(canshu_5_weizhi==1)) || ((i==2)&&(canshu_5_weizhi==0)) )
+ 536   7                                                              {
+ 537   8                                                                      if(dat_flag)
+ 538   8                                                                      {
+ 539   9                                                                              dat =~dat;
+ 540   9                                                                      }
+ 541   8                                                              }
+ 542   7                                                      }
+ 543   6                                                      else
+ 544   6                                                      {
+ 545   7                                                              if( ((i==1)&&(canshu_11_weizhi==1)) || ((i==2)&&(canshu_11_weizhi==0)) )
+ 546   7                                                              {
+ 547   8                                                                      if(dat_flag)
+ 548   8                                                                      {
+ 549   9                                                                              dat =~dat;
+ 550   9                                                                      }
+ 551   8                                                              }
+ 552   7                                                      }
+ 553   6                                                      
+ 554   6                                              }
+ 555   5                                              else if(menu_index_q==0x05)
+ 556   5                                              {
+ 557   6                                                      if(canshu_cnt==1)
+ 558   6                                                      {
+ 559   7                                                              if(((i==0)&&(canshu_2_weizhi==3))||((i==1)&&(canshu_2_weizhi==2))||((i==3)&&(canshu_2_weizhi==1))||
+             -((i==4)&&(canshu_2_weizhi==0)))
+ 560   7                                                              {
+ 561   8                                                                      if(dat_flag)
+ 562   8                                                                      {
+ 563   9                                                                              dat =~dat;
+ 564   9                                                                      }
+ 565   8                                                              }
+ 566   7                                                      }
+ 567   6                                                      else if(canshu_cnt==2)
+ 568   6                                                      {
+ 569   7                                                              if( ((i==0)&&(canshu_6_weizhi==1)) || ((i==1)&&(canshu_6_weizhi==0)) )
+ 570   7                                                              {
+ 571   8                                                                      if(dat_flag)
+ 572   8                                                                      {
+ 573   9                                                                              dat =~dat;
+ 574   9                                                                      }
+ 575   8                                                              }
+ 576   7                                                      }
+ 577   6                                                      else
+ 578   6                                                      {
+ 579   7                                                              if( ((i==0)&&(canshu_12_weizhi==1)) || ((i==1)&&(canshu_12_weizhi==0)) )
+ 580   7                                                              {
+ 581   8                                                                      if(dat_flag)
+ 582   8                                                                      {
+ 583   9                                                                              dat =~dat;
+ 584   9                                                                      }
+ 585   8                                                              }
+ 586   7                                                      }
+ 587   6                                                      
+ 588   6                                              }
+ 589   5                                              else if(menu_index_q==0x07)
+ 590   5                                              {
+ 591   6                                                      if(canshu_cnt==1)
+ 592   6                                                      {
+ 593   7                                                              if( ((i==1)&&(canshu_3_weizhi==1)) || ((i==2)&&(canshu_3_weizhi==0)) )
+ 594   7                                                              {
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 11  
+
+ 595   8                                                                      if(dat_flag)
+ 596   8                                                                      {
+ 597   9                                                                              dat =~dat;
+ 598   9                                                                      }
+ 599   8                                                              }
+ 600   7                                                      }
+ 601   6                                                      else if(canshu_cnt==2)
+ 602   6                                                      {
+ 603   7                                                              if( ((i==1)&&(canshu_7_weizhi==1)) || ((i==2)&&(canshu_7_weizhi==0)) )
+ 604   7                                                              {
+ 605   8                                                                      if(dat_flag)
+ 606   8                                                                      {
+ 607   9                                                                              dat =~dat;
+ 608   9                                                                      }
+ 609   8                                                              }
+ 610   7                                                      }
+ 611   6                                                      else
+ 612   6                                                      {
+ 613   7                                                              if( ((i==0)&&(canshu_13_weizhi==1)) || ((i==1)&&(canshu_13_weizhi==0)) )
+ 614   7                                                              {
+ 615   8                                                                      if(dat_flag)
+ 616   8                                                                      {
+ 617   9                                                                              dat =~dat;
+ 618   9                                                                      }
+ 619   8                                                              }
+ 620   7                                                      }
+ 621   6                                                      
+ 622   6                                                      
+ 623   6                                              }
+ 624   5                                              else if(menu_index_q==0x09)
+ 625   5                                              {
+ 626   6                                                      if(canshu_cnt==1)
+ 627   6                                                      {
+ 628   7                                                              if( ((i==0)&&(canshu_4_weizhi==1)) || ((i==1)&&(canshu_4_weizhi==0)) )
+ 629   7                                                              {
+ 630   8                                                                      if(dat_flag)
+ 631   8                                                                      {
+ 632   9                                                                              dat =~dat;
+ 633   9                                                                      }
+ 634   8                                                              }
+ 635   7                                                      }
+ 636   6                                                      else if(canshu_cnt==2)
+ 637   6                                                      {
+ 638   7                                                              if( ((i==0)&&(canshu_8_weizhi==1)) || ((i==1)&&(canshu_8_weizhi==0)) )
+ 639   7                                                              {
+ 640   8                                                                      if(dat_flag)
+ 641   8                                                                      {
+ 642   9                                                                              dat =~dat;
+ 643   9                                                                      }
+ 644   8                                                              }
+ 645   7                                                      }
+ 646   6                                                      else
+ 647   6                                                      {
+ 648   7                                                              if( ((i==0)&&(canshu_14_weizhi==1)) || ((i==1)&&(canshu_14_weizhi==0)) )
+ 649   7                                                              {
+ 650   8                                                                      if(dat_flag)
+ 651   8                                                                      {
+ 652   9                                                                              dat =~dat;
+ 653   9                                                                      }
+ 654   8                                                              }
+ 655   7                                                      }
+ 656   6                                                      
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 12  
+
+ 657   6                                                      
+ 658   6                                              }
+ 659   5                                              else if(menu_index_q==11)
+ 660   5                                              {
+ 661   6                                                      if(canshu_cnt==1)
+ 662   6                                                      {
+ 663   7                                                              if(((i==0)&&(canshu_1_weizhi==3))||((i==1)&&(canshu_1_weizhi==2))||((i==3)&&(canshu_1_weizhi==1))||
+             -((i==4)&&(canshu_1_weizhi==0)))
+ 664   7                                                              {
+ 665   8                                                                      if(dat_flag)
+ 666   8                                                                      {
+ 667   9                                                                              dat =~dat;
+ 668   9                                                                      }
+ 669   8                                                              }
+ 670   7                                                      }
+ 671   6                                                      else if(canshu_cnt==2)
+ 672   6                                                      {
+ 673   7                                                              if( ((i==1)&&(canshu_9_weizhi==1)) || ((i==2)&&(canshu_9_weizhi==0)) )
+ 674   7                                                              {
+ 675   8                                                                      if(dat_flag)
+ 676   8                                                                      {
+ 677   9                                                                              dat =~dat;
+ 678   9                                                                      }
+ 679   8                                                              }
+ 680   7                                                      }
+ 681   6                                                      else
+ 682   6                                                      {
+ 683   7                                                              if( ((i==1)&&(canshu_11_weizhi==1)) || ((i==2)&&(canshu_11_weizhi==0)) )
+ 684   7                                                              {
+ 685   8                                                                      if(dat_flag)
+ 686   8                                                                      {
+ 687   9                                                                              dat =~dat;
+ 688   9                                                                      }
+ 689   8                                                              }
+ 690   7                                                      }
+ 691   6                                                      
+ 692   6                                                      
+ 693   6                                              }
+ 694   5                                              else if(menu_index_q==13)
+ 695   5                                              {
+ 696   6                                                      if(canshu_cnt==1)
+ 697   6                                                      {
+ 698   7                                                              if(((i==0)&&(canshu_2_weizhi==3))||((i==1)&&(canshu_2_weizhi==2))||((i==3)&&(canshu_2_weizhi==1))||
+             -((i==4)&&(canshu_2_weizhi==0)))
+ 699   7                                                              {
+ 700   8                                                                      if(dat_flag)
+ 701   8                                                                      {
+ 702   9                                                                              dat =~dat;
+ 703   9                                                                      }
+ 704   8                                                              }
+ 705   7                                                      }
+ 706   6                                                      else if(canshu_cnt==2)
+ 707   6                                                      {
+ 708   7                                                              if( ((i==0)&&(canshu_10_weizhi==1)) || ((i==1)&&(canshu_10_weizhi==0)) )
+ 709   7                                                              {
+ 710   8                                                                      if(dat_flag)
+ 711   8                                                                      {
+ 712   9                                                                              dat =~dat;
+ 713   9                                                                      }
+ 714   8                                                              }
+ 715   7                                                      }
+ 716   6                                                      else
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 13  
+
+ 717   6                                                      {
+ 718   7                                                              if( ((i==0)&&(canshu_12_weizhi==1)) || ((i==1)&&(canshu_12_weizhi==0)) )
+ 719   7                                                              {
+ 720   8                                                                      if(dat_flag)
+ 721   8                                                                      {
+ 722   9                                                                              dat =~dat;
+ 723   9                                                                      }
+ 724   8                                                              }
+ 725   7                                                      }
+ 726   6                                                      
+ 727   6                                                      
+ 728   6                                              }
+ 729   5                                              
+ 730   5                                                      transfer_data(dat);//显示5x7的ASCII字到LCD上，y为页地址，x为列地址，最后为数据
+ 731   5                                                                              
+ 732   5                                      }
+ 733   4                              }
+ 734   3                              i++;
+ 735   3                              column+=8;
+ 736   3                      }
+ 737   2                      else
+ 738   2                      {
+ 739   3                              i++;
+ 740   3                      } 
+ 741   2                      
+ 742   2              }
+ 743   1      }
+ 744          
+ 745          void display_string_5x7(unsigned char page,unsigned char column,unsigned char *text)
+ 746          {
+ 747   1              unsigned char i=0,j,k;
+ 748   1              while(text[i]>0x00)
+ 749   1              {
+ 750   2                      if((text[i]>=0x20)&&(text[i]<0x7e))
+ 751   2                      {
+ 752   3                              j=text[i]-0x20;
+ 753   3                              lcd_address(page,column);
+ 754   3                              for(k=0;k<5;k++)
+ 755   3                              {
+ 756   4                                      //transfer_data(ascii_table_5x7[j][k]);//显示 5x7 的 ASCII 字到 LCD 上，y 为页地址，x 为列地址，最后为
+             -数据         //此版本屏蔽-caiwk-2018-5-15             
+ 757   4                              }
+ 758   3                              i++;
+ 759   3                              column+=6;
+ 760   3                      }
+ 761   2                      else
+ 762   2                      {
+ 763   3                              i++;
+ 764   3                      }
+ 765   2                      
+ 766   2              }
+ 767   1      }
+ 768          
+ 769          
+ 770          //==================display a piture of 128*64 dots================
+ 771          void disp_grap(unsigned char page,unsigned char column,unsigned char *dp)
+ 772          {
+ 773   1              unsigned char i,j;
+ 774   1              for(i=0;i<8;i++)
+ 775   1              {
+ 776   2                      lcd_address(page+i,column);
+ 777   2                      for(j=0;j<128;j++)
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 14  
+
+ 778   2                      {                       
+ 779   3                              transfer_data(*dp);
+ 780   3                              dp++;
+ 781   3                              
+ 782   3                      }
+ 783   2              }
+ 784   1      }
+ 785          //两幅图片合并
+ 786          void disp_grap_xo(unsigned char page,unsigned char column,unsigned char *dp,unsigned char *dq)
+ 787          {
+ 788   1              unsigned char i,j;
+ 789   1              for(i=0;i<8;i++)
+ 790   1              {
+ 791   2                      lcd_address(page+i,column);
+ 792   2                      for(j=0;j<128;j++)
+ 793   2                      {                       
+ 794   3                              transfer_data((*dp)|(*dq));
+ 795   3                              dp++;
+ 796   3                              dq++;
+ 797   3                              
+ 798   3                      }
+ 799   2              }
+ 800   1      }
+ 801          
+ 802          void display_run_data(void)
+ 803          {
+ 804   1              if(yuyan_cnt==0x01)       //------中文显示
+ 805   1              {
+ 806   2                      if(zhuangtai_cnt==1)
+ 807   2                       {
+ 808   3                              //运行状态
+ 809   3                              display_graphic_128x16(1,1,yunxing_jiemian);
+ 810   3                              //1.光伏电压：
+ 811   3                              display_graphic_8x16(3,1,shuzi_1);
+ 812   3                              display_graphic_8x16(3,9,fuhao_d);
+ 813   3                              display_graphic_16x16(3,12,1,hanzi_guang);
+ 814   3                              display_graphic_16x16(3,28,1,hanzi_fu1);
+ 815   3                              display_graphic_16x16(3,44,1,hanzi_dian);
+ 816   3                              display_graphic_16x16(3,60,1,hanzi_ya);
+ 817   3                              display_graphic_16x16(3,76,1,fuhao_m);
+ 818   3                              //2.电池电压：
+ 819   3                              display_graphic_8x16(5,1,shuzi_2);
+ 820   3                              display_graphic_8x16(5,9,fuhao_d);
+ 821   3                              display_graphic_16x16(5,12,1,hanzi_dian);
+ 822   3                              display_graphic_16x16(5,28,1,hanzi_chi);
+ 823   3                              display_graphic_16x16(5,44,1,hanzi_dian);
+ 824   3                              display_graphic_16x16(5,60,1,hanzi_ya);
+ 825   3                              display_graphic_16x16(5,76,1,fuhao_m);
+ 826   3                                                                                              
+ 827   3                              //3.输出电压：
+ 828   3                              display_graphic_8x16(7,1,shuzi_3);
+ 829   3                              display_graphic_8x16(7,9,fuhao_d);
+ 830   3                              display_graphic_16x16(7,12,1,hanzi_shu);
+ 831   3                              display_graphic_16x16(7,28,1,hanzi_chu);
+ 832   3                              display_graphic_16x16(7,44,1,hanzi_dian);
+ 833   3                              display_graphic_16x16(7,60,1,hanzi_ya);
+ 834   3                              display_graphic_16x16(7,76,1,fuhao_m);
+ 835   3                              
+ 836   3                       }
+ 837   2                       else if(zhuangtai_cnt==2)
+ 838   2                       {
+ 839   3                              //运行状态
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 15  
+
+ 840   3                              display_graphic_128x16(1,1,yunxing_jiemian);
+ 841   3                              //4.充电电流：
+ 842   3                              display_graphic_8x16(3,1,shuzi_4);
+ 843   3                              display_graphic_8x16(3,9,fuhao_d);
+ 844   3                              display_graphic_16x16(3,12,1,hanzi_chong);
+ 845   3                              display_graphic_16x16(3,28,1,hanzi_dian);
+ 846   3                              display_graphic_16x16(3,44,1,hanzi_dian);
+ 847   3                              display_graphic_16x16(3,60,1,hanzi_liu);
+ 848   3                              display_graphic_16x16(3,76,1,fuhao_m);
+ 849   3                              //5.输出电流：
+ 850   3                              display_graphic_8x16(5,1,shuzi_5);
+ 851   3                              display_graphic_8x16(5,9,fuhao_d);
+ 852   3                              display_graphic_16x16(5,12,1,hanzi_shu);
+ 853   3                              display_graphic_16x16(5,28,1,hanzi_chu);
+ 854   3                              display_graphic_16x16(5,44,1,hanzi_dian);
+ 855   3                              display_graphic_16x16(5,60,1,hanzi_liu);
+ 856   3                              display_graphic_16x16(5,76,1,fuhao_m);
+ 857   3                                                                                              
+ 858   3                              //6.工作模式：
+ 859   3                              display_graphic_8x16(7,1,shuzi_6);
+ 860   3                              display_graphic_8x16(7,9,fuhao_d);
+ 861   3                              display_graphic_16x16(7,12,1,hanzi_gong);
+ 862   3                              display_graphic_16x16(7,28,1,hanzi_zuo);
+ 863   3                              display_graphic_16x16(7,44,1,hanzi_mo);
+ 864   3                              display_graphic_16x16(7,60,1,hanzi_shi1);
+ 865   3                              display_graphic_16x16(7,76,1,fuhao_m);                                                                                                                   
+ 866   3                       }
+ 867   2                       else if(zhuangtai_cnt==3)
+ 868   2                       {
+ 869   3                              //运行状态
+ 870   3                              display_graphic_128x16(1,1,yunxing_jiemian);
+ 871   3                       
+ 872   3                       }      
+ 873   2                       else
+ 874   2                       {
+ 875   3                              display_graphic_128x16(1,1,yunxing_jiemian);
+ 876   3                       }      
+ 877   2              }
+ 878   1              else            //------英文显示
+ 879   1              {
+ 880   2                       if(zhuangtai_cnt==1)
+ 881   2                       {
+ 882   3                              //运行状态
+ 883   3                              display_graphic_128x16(1,1,yunxing_jiemian_en);
+ 884   3                              //1.光伏电压：
+ 885   3      //                      display_graphic_8x16(3,1,shuzi_1);
+ 886   3      //                      display_graphic_8x16(3,9,fuhao_d);
+ 887   3      //                      display_graphic_16x16(3,12,1,hanzi_guang);
+ 888   3      //                      display_graphic_16x16(3,28,1,hanzi_fu1);
+ 889   3      //                      display_graphic_16x16(3,44,1,hanzi_dian);
+ 890   3      //                      display_graphic_16x16(3,60,1,hanzi_ya);
+ 891   3      //                      display_graphic_16x16(3,76,1,fuhao_m);
+ 892   3                              sprintf(buf, "%s","1.PV_VOLT:");
+ 893   3                              display_string_8x16(3,1,buf);
+ 894   3                              //2.电池电压：
+ 895   3      //                      display_graphic_8x16(5,1,shuzi_2);
+ 896   3      //                      display_graphic_8x16(5,9,fuhao_d);
+ 897   3      //                      display_graphic_16x16(5,12,1,hanzi_dian);
+ 898   3      //                      display_graphic_16x16(5,28,1,hanzi_chi);
+ 899   3      //                      display_graphic_16x16(5,44,1,hanzi_dian);
+ 900   3      //                      display_graphic_16x16(5,60,1,hanzi_ya);
+ 901   3      //                      display_graphic_16x16(5,76,1,fuhao_m);
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 16  
+
+ 902   3                              sprintf(buf, "%s","2.BV_VOLT:");
+ 903   3                              display_string_8x16(5,1,buf);
+ 904   3                                                                                              
+ 905   3                              //3.输出电压：
+ 906   3      //                      display_graphic_8x16(7,1,shuzi_3);
+ 907   3      //                      display_graphic_8x16(7,9,fuhao_d);
+ 908   3      //                      display_graphic_16x16(7,12,1,hanzi_shu);
+ 909   3      //                      display_graphic_16x16(7,28,1,hanzi_chu);
+ 910   3      //                      display_graphic_16x16(7,44,1,hanzi_dian);
+ 911   3      //                      display_graphic_16x16(7,60,1,hanzi_ya);
+ 912   3      //                      display_graphic_16x16(7,76,1,fuhao_m);
+ 913   3                              sprintf(buf, "%s","3.LV_VOLT:");
+ 914   3                              display_string_8x16(7,1,buf);
+ 915   3                              
+ 916   3                       }
+ 917   2                       else if(zhuangtai_cnt==2)
+ 918   2                       {
+ 919   3                              //运行状态
+ 920   3                              display_graphic_128x16(1,1,yunxing_jiemian_en);
+ 921   3                              //4.充电电流：
+ 922   3      //                      display_graphic_8x16(3,1,shuzi_4);
+ 923   3      //                      display_graphic_8x16(3,9,fuhao_d);
+ 924   3      //                      display_graphic_16x16(3,12,1,hanzi_chong);
+ 925   3      //                      display_graphic_16x16(3,28,1,hanzi_dian);
+ 926   3      //                      display_graphic_16x16(3,44,1,hanzi_dian);
+ 927   3      //                      display_graphic_16x16(3,60,1,hanzi_liu);
+ 928   3      //                      display_graphic_16x16(3,76,1,fuhao_m);
+ 929   3                              sprintf(buf, "%s","4.IN_CURR:");
+ 930   3                              display_string_8x16(3,1,buf);
+ 931   3                              //5.输出电流：
+ 932   3      //                      display_graphic_8x16(5,1,shuzi_5);
+ 933   3      //                      display_graphic_8x16(5,9,fuhao_d);
+ 934   3      //                      display_graphic_16x16(5,12,1,hanzi_shu);
+ 935   3      //                      display_graphic_16x16(5,28,1,hanzi_chu);
+ 936   3      //                      display_graphic_16x16(5,44,1,hanzi_dian);
+ 937   3      //                      display_graphic_16x16(5,60,1,hanzi_liu);
+ 938   3      //                      display_graphic_16x16(5,76,1,fuhao_m);
+ 939   3                              sprintf(buf, "%s","5.OU_CURR:");
+ 940   3                              display_string_8x16(5,1,buf);
+ 941   3                                                                                              
+ 942   3                              //6.工作模式：
+ 943   3      //                      display_graphic_8x16(7,1,shuzi_6);
+ 944   3      //                      display_graphic_8x16(7,9,fuhao_d);
+ 945   3      //                      display_graphic_16x16(7,12,1,hanzi_gong);
+ 946   3      //                      display_graphic_16x16(7,28,1,hanzi_zuo);
+ 947   3      //                      display_graphic_16x16(7,44,1,hanzi_mo);
+ 948   3      //                      display_graphic_16x16(7,60,1,hanzi_shi1);
+ 949   3      //                      display_graphic_16x16(7,76,1,fuhao_m);  
+ 950   3                              sprintf(buf, "%s","6.SY_MODE:");
+ 951   3                              display_string_8x16(7,1,buf);                                                                                                            
+ 952   3                       }
+ 953   2                       else if(zhuangtai_cnt==3)
+ 954   2                       {
+ 955   3                              //运行状态
+ 956   3                              display_graphic_128x16(1,1,yunxing_jiemian_en);
+ 957   3                       
+ 958   3                       }      
+ 959   2                       else
+ 960   2                       {
+ 961   3                              display_graphic_128x16(1,1,yunxing_jiemian_en);
+ 962   3                       }      
+ 963   2              }
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 17  
+
+ 964   1               
+ 965   1      }
+ 966          
+ 967          
+ 968          void display_canshu(void)
+ 969          {
+ 970   1      
+ 971   1              if(yuyan_cnt==0x01)       //------中文显示
+ 972   1              {
+ 973   2                      if(canshu_cnt==1)
+ 974   2                      {
+ 975   3                              //参数设置                                                                              
+ 976   3                              display_graphic_128x16(1,1,canshu_jiemian);
+ 977   3                              //1.光控电压：
+ 978   3                              display_graphic_8x16(3,1,shuzi_1);
+ 979   3                              display_graphic_8x16(3,9,fuhao_d);
+ 980   3                              display_graphic_16x16(3,12,1,hanzi_guang);
+ 981   3                              display_graphic_16x16(3,28,1,hanzi_kong);
+ 982   3                              display_graphic_16x16(3,44,1,hanzi_dian);
+ 983   3                              display_graphic_16x16(3,60,1,hanzi_ya);
+ 984   3                              display_graphic_16x16(3,76,1,fuhao_m);
+ 985   3                                                                                              
+ 986   3                              //2.负载电流：
+ 987   3                              display_graphic_8x16(5,1,shuzi_2);
+ 988   3                              display_graphic_8x16(5,9,fuhao_d);
+ 989   3                              display_graphic_16x16(5,12,1,hanzi_fu);
+ 990   3                              display_graphic_16x16(5,28,1,hanzi_zai);
+ 991   3                              display_graphic_16x16(5,44,1,hanzi_dian);
+ 992   3                              display_graphic_16x16(5,60,1,hanzi_liu);
+ 993   3                              display_graphic_16x16(5,76,1,fuhao_m);
+ 994   3                                                                                              
+ 995   3                              //3.第一阶段：
+ 996   3                              display_graphic_8x16(7,1,shuzi_3);
+ 997   3                              display_graphic_8x16(7,9,fuhao_d);
+ 998   3                              display_graphic_16x16(7,12,1,hanzi_di);
+ 999   3                              display_graphic_16x16(7,28,1,hanzi_yi);
+1000   3                              display_graphic_16x16(7,44,1,hanzi_jie);
+1001   3                              display_graphic_16x16(7,60,1,hanzi_duan);
+1002   3                              display_graphic_16x16(7,76,1,fuhao_m);
+1003   3                                                                                              
+1004   3                      }
+1005   2                      else if(canshu_cnt==2)
+1006   2                      {
+1007   3                              //参数设置                                                                              
+1008   3                              display_graphic_128x16(1,1,canshu_jiemian);
+1009   3                              //4.第二阶段：
+1010   3                              display_graphic_8x16(3,1,shuzi_4);
+1011   3                              display_graphic_8x16(3,9,fuhao_d);
+1012   3                              display_graphic_16x16(3,12,1,hanzi_di);
+1013   3                              display_graphic_16x16(3,28,1,hanzi_er);
+1014   3                              display_graphic_16x16(3,44,1,hanzi_jie);
+1015   3                              display_graphic_16x16(3,60,1,hanzi_duan);
+1016   3                              display_graphic_16x16(3,76,1,fuhao_m);
+1017   3                                                                                              
+1018   3                              //5.第三阶段：
+1019   3                              display_graphic_8x16(5,1,shuzi_5);
+1020   3                              display_graphic_8x16(5,9,fuhao_d);
+1021   3                              display_graphic_16x16(5,12,1,hanzi_di);
+1022   3                              display_graphic_16x16(5,28,1,hanzi_san);
+1023   3                              display_graphic_16x16(5,44,1,hanzi_jie);
+1024   3                              display_graphic_16x16(5,60,1,hanzi_duan);
+1025   3                              display_graphic_16x16(5,76,1,fuhao_m);
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 18  
+
+1026   3                                                                                              
+1027   3                              //6.第四阶段：
+1028   3                              display_graphic_8x16(7,1,shuzi_6);
+1029   3                              display_graphic_8x16(7,9,fuhao_d);
+1030   3                              display_graphic_16x16(7,12,1,hanzi_di);
+1031   3                              display_graphic_16x16(7,28,1,hanzi_si);
+1032   3                              display_graphic_16x16(7,44,1,hanzi_jie);
+1033   3                              display_graphic_16x16(7,60,1,hanzi_duan);
+1034   3                              display_graphic_16x16(7,76,1,fuhao_m);
+1035   3                      }
+1036   2                      else
+1037   2                      {
+1038   3                              //参数设置                                                                              
+1039   3                              display_graphic_128x16(1,1,canshu_jiemian);
+1040   3                              //7.第五阶段：
+1041   3                              display_graphic_8x16(3,1,shuzi_7);
+1042   3                              display_graphic_8x16(3,9,fuhao_d);
+1043   3                              display_graphic_16x16(3,12,1,hanzi_di);
+1044   3                              display_graphic_16x16(3,28,1,hanzi_wu);
+1045   3                              display_graphic_16x16(3,44,1,hanzi_jie);
+1046   3                              display_graphic_16x16(3,60,1,hanzi_duan);
+1047   3                              display_graphic_16x16(3,76,1,fuhao_m);
+1048   3                                                                                              
+1049   3                              //8.电池类型：
+1050   3                              display_graphic_8x16(5,1,shuzi_8);
+1051   3                              display_graphic_8x16(5,9,fuhao_d);
+1052   3                              display_graphic_16x16(5,12,1,hanzi_dian);
+1053   3                              display_graphic_16x16(5,28,1,hanzi_chi);
+1054   3                              display_graphic_16x16(5,44,1,hanzi_lei);
+1055   3                              display_graphic_16x16(5,60,1,hanzi_xing);
+1056   3                              display_graphic_16x16(5,76,1,fuhao_m);
+1057   3                                                                                              
+1058   3                              //9.光控时间：
+1059   3                              display_graphic_8x16(7,1,shuzi_9);
+1060   3                              display_graphic_8x16(7,9,fuhao_d);
+1061   3                              display_graphic_16x16(7,12,1,hanzi_guang);
+1062   3                              display_graphic_16x16(7,28,1,hanzi_kong);
+1063   3                              display_graphic_16x16(7,44,1,hanzi_shi);
+1064   3                              display_graphic_16x16(7,60,1,hanzi_jian);
+1065   3                              display_graphic_16x16(7,76,1,fuhao_m);
+1066   3                      }               
+1067   2              }
+1068   1              else       //--------英文显示
+1069   1              {
+1070   2                       if(canshu_cnt==1)
+1071   2                      {
+1072   3                              //参数设置                                                                              
+1073   3                              //display_graphic_128x16(1,1,canshu_jiemian);
+1074   3                              display_graphic_128x16(1,1,canshu_jiemian_en);
+1075   3                              //1.光控电压：
+1076   3      //                      display_graphic_8x16(3,1,shuzi_1);
+1077   3      //                      display_graphic_8x16(3,9,fuhao_d);
+1078   3      //                      display_graphic_16x16(3,12,1,hanzi_guang);
+1079   3      //                      display_graphic_16x16(3,28,1,hanzi_kong);
+1080   3      //                      display_graphic_16x16(3,44,1,hanzi_dian);
+1081   3      //                      display_graphic_16x16(3,60,1,hanzi_ya);
+1082   3      //                      display_graphic_16x16(3,76,1,fuhao_m);
+1083   3                              sprintf(buf, "%s","1.PC_VOLT:");
+1084   3                              display_string_8x16(3,1,buf);
+1085   3                                                                                              
+1086   3                              //2.负载电流：
+1087   3      //                      display_graphic_8x16(5,1,shuzi_2);
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 19  
+
+1088   3      //                      display_graphic_8x16(5,9,fuhao_d);
+1089   3      //                      display_graphic_16x16(5,12,1,hanzi_fu);
+1090   3      //                      display_graphic_16x16(5,28,1,hanzi_zai);
+1091   3      //                      display_graphic_16x16(5,44,1,hanzi_dian);
+1092   3      //                      display_graphic_16x16(5,60,1,hanzi_liu);
+1093   3      //                      display_graphic_16x16(5,76,1,fuhao_m);
+1094   3                              sprintf(buf, "%s","2.LO_CURR:");
+1095   3                              display_string_8x16(5,1,buf);
+1096   3                                                                                              
+1097   3                              //3.第一阶段：
+1098   3      //                      display_graphic_8x16(7,1,shuzi_3);
+1099   3      //                      display_graphic_8x16(7,9,fuhao_d);
+1100   3      //                      display_graphic_16x16(7,12,1,hanzi_di);
+1101   3      //                      display_graphic_16x16(7,28,1,hanzi_yi);
+1102   3      //                      display_graphic_16x16(7,44,1,hanzi_jie);
+1103   3      //                      display_graphic_16x16(7,60,1,hanzi_duan);
+1104   3      //                      display_graphic_16x16(7,76,1,fuhao_m);
+1105   3                              sprintf(buf, "%s","3.STEP_01:");
+1106   3                              display_string_8x16(7,1,buf);
+1107   3                                                                                              
+1108   3                      }
+1109   2                      else if(canshu_cnt==2)
+1110   2                      {
+1111   3                              //参数设置                                                                              
+1112   3                              display_graphic_128x16(1,1,canshu_jiemian_en);
+1113   3                              //4.第二阶段：
+1114   3      //                      display_graphic_8x16(3,1,shuzi_4);
+1115   3      //                      display_graphic_8x16(3,9,fuhao_d);
+1116   3      //                      display_graphic_16x16(3,12,1,hanzi_di);
+1117   3      //                      display_graphic_16x16(3,28,1,hanzi_er);
+1118   3      //                      display_graphic_16x16(3,44,1,hanzi_jie);
+1119   3      //                      display_graphic_16x16(3,60,1,hanzi_duan);
+1120   3      //                      display_graphic_16x16(3,76,1,fuhao_m);
+1121   3                              sprintf(buf, "%s","4.STEP_02:");
+1122   3                              display_string_8x16(3,1,buf);
+1123   3                                                                                              
+1124   3                              //5.第三阶段：
+1125   3      //                      display_graphic_8x16(5,1,shuzi_5);
+1126   3      //                      display_graphic_8x16(5,9,fuhao_d);
+1127   3      //                      display_graphic_16x16(5,12,1,hanzi_di);
+1128   3      //                      display_graphic_16x16(5,28,1,hanzi_san);
+1129   3      //                      display_graphic_16x16(5,44,1,hanzi_jie);
+1130   3      //                      display_graphic_16x16(5,60,1,hanzi_duan);
+1131   3      //                      display_graphic_16x16(5,76,1,fuhao_m);
+1132   3                              sprintf(buf, "%s","5.STEP_03:");
+1133   3                              display_string_8x16(5,1,buf);
+1134   3                                                                                              
+1135   3                              //6.第四阶段：
+1136   3      //                      display_graphic_8x16(7,1,shuzi_6);
+1137   3      //                      display_graphic_8x16(7,9,fuhao_d);
+1138   3      //                      display_graphic_16x16(7,12,1,hanzi_di);
+1139   3      //                      display_graphic_16x16(7,28,1,hanzi_si);
+1140   3      //                      display_graphic_16x16(7,44,1,hanzi_jie);
+1141   3      //                      display_graphic_16x16(7,60,1,hanzi_duan);
+1142   3      //                      display_graphic_16x16(7,76,1,fuhao_m);
+1143   3                              sprintf(buf, "%s","6.STEP_04:");
+1144   3                              display_string_8x16(7,1,buf);
+1145   3                      }
+1146   2                      else
+1147   2                      {
+1148   3                              //参数设置                                                                              
+1149   3                              display_graphic_128x16(1,1,canshu_jiemian_en);
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 20  
+
+1150   3                              //7.第五阶段：
+1151   3      //                      display_graphic_8x16(3,1,shuzi_7);
+1152   3      //                      display_graphic_8x16(3,9,fuhao_d);
+1153   3      //                      display_graphic_16x16(3,12,1,hanzi_di);
+1154   3      //                      display_graphic_16x16(3,28,1,hanzi_wu);
+1155   3      //                      display_graphic_16x16(3,44,1,hanzi_jie);
+1156   3      //                      display_graphic_16x16(3,60,1,hanzi_duan);
+1157   3      //                      display_graphic_16x16(3,76,1,fuhao_m);
+1158   3                              sprintf(buf, "%s","7.STEP_05:");
+1159   3                              display_string_8x16(3,1,buf);
+1160   3                                                                                              
+1161   3                              //8.电池类型：
+1162   3      //                      display_graphic_8x16(5,1,shuzi_8);
+1163   3      //                      display_graphic_8x16(5,9,fuhao_d);
+1164   3      //                      display_graphic_16x16(5,12,1,hanzi_dian);
+1165   3      //                      display_graphic_16x16(5,28,1,hanzi_chi);
+1166   3      //                      display_graphic_16x16(5,44,1,hanzi_lei);
+1167   3      //                      display_graphic_16x16(5,60,1,hanzi_xing);
+1168   3      //                      display_graphic_16x16(5,76,1,fuhao_m);
+1169   3                              sprintf(buf, "%s","8.BT_KIND:");
+1170   3                              display_string_8x16(5,1,buf);
+1171   3                                                                                              
+1172   3                              //9.光控时间：
+1173   3      //                      display_graphic_8x16(7,1,shuzi_9);
+1174   3      //                      display_graphic_8x16(7,9,fuhao_d);
+1175   3      //                      display_graphic_16x16(7,12,1,hanzi_guang);
+1176   3      //                      display_graphic_16x16(7,28,1,hanzi_kong);
+1177   3      //                      display_graphic_16x16(7,44,1,hanzi_shi);
+1178   3      //                      display_graphic_16x16(7,60,1,hanzi_jian);
+1179   3      //                      display_graphic_16x16(7,76,1,fuhao_m);
+1180   3                              sprintf(buf, "%s","9.PC_TIME:");
+1181   3                              display_string_8x16(7,1,buf);
+1182   3                      }               
+1183   2              }
+1184   1              
+1185   1      }
+1186          
+1187          
+1188            //LCD显示
+1189          
+1190          
+1191          
+1192          
+1193          
+1194          
+1195          
+1196          
+1197          
+1198          
+1199          
+1200          
+1201          //ASCII 码表
+1202          const unsigned char ascii_table_8x16[95][16]={
+1203          
+1204          /*-- 文字: --*/
+1205          
+1206          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1207          
+1208          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+1209          
+1210          /*-- 文字: ! --*/
+1211          
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 21  
+
+1212          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1213          
+1214          0x00,0x00,0x00,0xF8,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x33,0x30,0x00,0x00,0x00,
+1215          
+1216          /*-- 文字: " --*/
+1217          
+1218          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1219          
+1220          0x00,0x10,0x0C,0x06,0x10,0x0C,0x06,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+1221          
+1222          /*-- 文字: # --*/
+1223          
+1224          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1225          
+1226          0x40,0xC0,0x78,0x40,0xC0,0x78,0x40,0x00,0x04,0x3F,0x04,0x04,0x3F,0x04,0x04,0x00,
+1227          
+1228          /*-- 文字: $ --*/
+1229          
+1230          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1231          
+1232          0x00,0x70,0x88,0xFC,0x08,0x30,0x00,0x00,0x00,0x18,0x20,0xFF,0x21,0x1E,0x00,0x00,
+1233          
+1234          /*-- 文字: % --*/
+1235          
+1236          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1237          
+1238          0xF0,0x08,0xF0,0x00,0xE0,0x18,0x00,0x00,0x00,0x21,0x1C,0x03,0x1E,0x21,0x1E,0x00,
+1239          
+1240          /*-- 文字: & --*/
+1241          
+1242          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1243          
+1244          0x00,0xF0,0x08,0x88,0x70,0x00,0x00,0x00,0x1E,0x21,0x23,0x24,0x19,0x27,0x21,0x10,
+1245          
+1246          /*-- 文字: ' --*/
+1247          
+1248          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1249          
+1250          0x10,0x16,0x0E,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+1251          
+1252          /*-- 文字: ( --*/
+1253          
+1254          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1255          
+1256          0x00,0x00,0x00,0xE0,0x18,0x04,0x02,0x00,0x00,0x00,0x00,0x07,0x18,0x20,0x40,0x00,
+1257          
+1258          /*-- 文字: ) --*/
+1259          
+1260          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1261          
+1262          0x00,0x02,0x04,0x18,0xE0,0x00,0x00,0x00,0x00,0x40,0x20,0x18,0x07,0x00,0x00,0x00,
+1263          
+1264          /*-- 文字: * --*/
+1265          
+1266          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1267          
+1268          0x40,0x40,0x80,0xF0,0x80,0x40,0x40,0x00,0x02,0x02,0x01,0x0F,0x01,0x02,0x02,0x00,
+1269          
+1270          /*-- 文字: + --*/
+1271          
+1272          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1273          
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 22  
+
+1274          0x00,0x00,0x00,0xF0,0x00,0x00,0x00,0x00,0x01,0x01,0x01,0x1F,0x01,0x01,0x01,0x00,
+1275          
+1276          /*-- 文字: , --*/
+1277          
+1278          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1279          
+1280          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xB0,0x70,0x00,0x00,0x00,0x00,0x00,
+1281          
+1282          /*-- 文字: - --*/
+1283          
+1284          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1285          
+1286          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x01,0x01,0x01,0x01,0x01,0x01,
+1287          
+1288          /*-- 文字: . --*/
+1289          
+1290          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1291          
+1292          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x30,0x30,0x00,0x00,0x00,0x00,0x00,
+1293          
+1294          /*-- 文字: / --*/
+1295          
+1296          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1297          
+1298          0x00,0x00,0x00,0x00,0x80,0x60,0x18,0x04,0x00,0x60,0x18,0x06,0x01,0x00,0x00,0x00,
+1299          
+1300          /*-- 文字: 0 --*/
+1301          
+1302          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1303          
+1304          0x00,0xE0,0x10,0x08,0x08,0x10,0xE0,0x00,0x00,0x0F,0x10,0x20,0x20,0x10,0x0F,0x00,
+1305          
+1306          /*-- 文字: 1 --*/
+1307          
+1308          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1309          
+1310          0x00,0x10,0x10,0xF8,0x00,0x00,0x00,0x00,0x00,0x20,0x20,0x3F,0x20,0x20,0x00,0x00,
+1311          
+1312          /*-- 文字: 2 --*/
+1313          
+1314          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1315          
+1316          0x00,0x70,0x08,0x08,0x08,0x88,0x70,0x00,0x00,0x30,0x28,0x24,0x22,0x21,0x30,0x00,
+1317          
+1318          /*-- 文字: 3 --*/
+1319          
+1320          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1321          
+1322          0x00,0x30,0x08,0x88,0x88,0x48,0x30,0x00,0x00,0x18,0x20,0x20,0x20,0x11,0x0E,0x00,
+1323          
+1324          /*-- 文字: 4 --*/
+1325          
+1326          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1327          
+1328          0x00,0x00,0xC0,0x20,0x10,0xF8,0x00,0x00,0x00,0x07,0x04,0x24,0x24,0x3F,0x24,0x00,
+1329          
+1330          /*-- 文字: 5 --*/
+1331          
+1332          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1333          
+1334          0x00,0xF8,0x08,0x88,0x88,0x08,0x08,0x00,0x00,0x19,0x21,0x20,0x20,0x11,0x0E,0x00,
+1335          
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 23  
+
+1336          /*-- 文字: 6 --*/
+1337          
+1338          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1339          
+1340          0x00,0xE0,0x10,0x88,0x88,0x18,0x00,0x00,0x00,0x0F,0x11,0x20,0x20,0x11,0x0E,0x00,
+1341          
+1342          /*-- 文字: 7 --*/
+1343          
+1344          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1345          
+1346          0x00,0x38,0x08,0x08,0xC8,0x38,0x08,0x00,0x00,0x00,0x00,0x3F,0x00,0x00,0x00,0x00,
+1347          
+1348          /*-- 文字: 8 --*/
+1349          
+1350          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1351          
+1352          0x00,0x70,0x88,0x08,0x08,0x88,0x70,0x00,0x00,0x1C,0x22,0x21,0x21,0x22,0x1C,0x00,
+1353          
+1354          /*-- 文字: 9 --*/
+1355          
+1356          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1357          
+1358          0x00,0xE0,0x10,0x08,0x08,0x10,0xE0,0x00,0x00,0x00,0x31,0x22,0x22,0x11,0x0F,0x00,
+1359          
+1360          /*-- 文字: : --*/
+1361          
+1362          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1363          
+1364          0x00,0x00,0x00,0xC0,0xC0,0x00,0x00,0x00,0x00,0x00,0x00,0x30,0x30,0x00,0x00,0x00,
+1365          
+1366          /*-- 文字: ; --*/
+1367          
+1368          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1369          
+1370          0x00,0x00,0x00,0x80,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0x60,0x00,0x00,0x00,0x00,
+1371          
+1372          /*-- 文字: < --*/
+1373          
+1374          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1375          
+1376          0x00,0x00,0x80,0x40,0x20,0x10,0x08,0x00,0x00,0x01,0x02,0x04,0x08,0x10,0x20,0x00,
+1377          
+1378          /*-- 文字: = --*/
+1379          
+1380          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1381          
+1382          0x40,0x40,0x40,0x40,0x40,0x40,0x40,0x00,0x04,0x04,0x04,0x04,0x04,0x04,0x04,0x00,
+1383          
+1384          /*-- 文字: > --*/
+1385          
+1386          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1387          
+1388          0x00,0x08,0x10,0x20,0x40,0x80,0x00,0x00,0x00,0x20,0x10,0x08,0x04,0x02,0x01,0x00,
+1389          
+1390          /*-- 文字: ? --*/
+1391          
+1392          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1393          
+1394          0x00,0x70,0x48,0x08,0x08,0x08,0xF0,0x00,0x00,0x00,0x00,0x30,0x36,0x01,0x00,0x00,
+1395          
+1396          /*-- 文字: @ --*/
+1397          
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 24  
+
+1398          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1399          
+1400          0xC0,0x30,0xC8,0x28,0xE8,0x10,0xE0,0x00,0x07,0x18,0x27,0x24,0x23,0x14,0x0B,0x00,
+1401          
+1402          /*-- 文字: A --*/
+1403          
+1404          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1405          
+1406          0x00,0x00,0xC0,0x38,0xE0,0x00,0x00,0x00,0x20,0x3C,0x23,0x02,0x02,0x27,0x38,0x20,
+1407          
+1408          /*-- 文字: B --*/
+1409          
+1410          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1411          
+1412          0x08,0xF8,0x88,0x88,0x88,0x70,0x00,0x00,0x20,0x3F,0x20,0x20,0x20,0x11,0x0E,0x00,
+1413          
+1414          /*-- 文字: C --*/
+1415          
+1416          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1417          
+1418          0xC0,0x30,0x08,0x08,0x08,0x08,0x38,0x00,0x07,0x18,0x20,0x20,0x20,0x10,0x08,0x00,
+1419          
+1420          /*-- 文字: D --*/
+1421          
+1422          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1423          
+1424          0x08,0xF8,0x08,0x08,0x08,0x10,0xE0,0x00,0x20,0x3F,0x20,0x20,0x20,0x10,0x0F,0x00,
+1425          
+1426          /*-- 文字: E --*/
+1427          
+1428          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1429          
+1430          0x08,0xF8,0x88,0x88,0xE8,0x08,0x10,0x00,0x20,0x3F,0x20,0x20,0x23,0x20,0x18,0x00,
+1431          
+1432          /*-- 文字: F --*/
+1433          
+1434          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1435          
+1436          0x08,0xF8,0x88,0x88,0xE8,0x08,0x10,0x00,0x20,0x3F,0x20,0x00,0x03,0x00,0x00,0x00,
+1437          
+1438          /*-- 文字: G --*/
+1439          
+1440          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1441          
+1442          0xC0,0x30,0x08,0x08,0x08,0x38,0x00,0x00,0x07,0x18,0x20,0x20,0x22,0x1E,0x02,0x00,
+1443          
+1444          /*-- 文字: H --*/
+1445          
+1446          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1447          
+1448          0x08,0xF8,0x08,0x00,0x00,0x08,0xF8,0x08,0x20,0x3F,0x21,0x01,0x01,0x21,0x3F,0x20,
+1449          
+1450          /*-- 文字: I --*/
+1451          
+1452          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1453          
+1454          0x00,0x08,0x08,0xF8,0x08,0x08,0x00,0x00,0x00,0x20,0x20,0x3F,0x20,0x20,0x00,0x00,
+1455          
+1456          /*-- 文字: J --*/
+1457          
+1458          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1459          
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 25  
+
+1460          0x00,0x00,0x08,0x08,0xF8,0x08,0x08,0x00,0xC0,0x80,0x80,0x80,0x7F,0x00,0x00,0x00,
+1461          
+1462          /*-- 文字: K --*/
+1463          
+1464          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1465          
+1466          0x08,0xF8,0x88,0xC0,0x28,0x18,0x08,0x00,0x20,0x3F,0x20,0x01,0x26,0x38,0x20,0x00,
+1467          
+1468          /*-- 文字: L --*/
+1469          
+1470          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1471          
+1472          0x08,0xF8,0x08,0x00,0x00,0x00,0x00,0x00,0x20,0x3F,0x20,0x20,0x20,0x20,0x30,0x00,
+1473          
+1474          /*-- 文字: M --*/
+1475          
+1476          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1477          
+1478          0x08,0xF8,0xF8,0x00,0xF8,0xF8,0x08,0x00,0x20,0x3F,0x00,0x3F,0x00,0x3F,0x20,0x00,
+1479          
+1480          /*-- 文字: N --*/
+1481          
+1482          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1483          
+1484          0x08,0xF8,0x30,0xC0,0x00,0x08,0xF8,0x08,0x20,0x3F,0x20,0x00,0x07,0x18,0x3F,0x00,
+1485          
+1486          /*-- 文字: O --*/
+1487          
+1488          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1489          
+1490          0xE0,0x10,0x08,0x08,0x08,0x10,0xE0,0x00,0x0F,0x10,0x20,0x20,0x20,0x10,0x0F,0x00,
+1491          
+1492          /*-- 文字: P --*/
+1493          
+1494          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1495          
+1496          0x08,0xF8,0x08,0x08,0x08,0x08,0xF0,0x00,0x20,0x3F,0x21,0x01,0x01,0x01,0x00,0x00,
+1497          
+1498          /*-- 文字: Q --*/
+1499          
+1500          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1501          
+1502          0xE0,0x10,0x08,0x08,0x08,0x10,0xE0,0x00,0x0F,0x18,0x24,0x24,0x38,0x50,0x4F,0x00,
+1503          
+1504          /*-- 文字: R --*/
+1505          
+1506          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1507          
+1508          0x08,0xF8,0x88,0x88,0x88,0x88,0x70,0x00,0x20,0x3F,0x20,0x00,0x03,0x0C,0x30,0x20,
+1509          
+1510          /*-- 文字: S --*/
+1511          
+1512          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1513          
+1514          0x00,0x70,0x88,0x08,0x08,0x08,0x38,0x00,0x00,0x38,0x20,0x21,0x21,0x22,0x1C,0x00,
+1515          
+1516          /*-- 文字: T --*/
+1517          
+1518          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1519          
+1520          0x18,0x08,0x08,0xF8,0x08,0x08,0x18,0x00,0x00,0x00,0x20,0x3F,0x20,0x00,0x00,0x00,
+1521          
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 26  
+
+1522          /*-- 文字: U --*/
+1523          
+1524          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1525          
+1526          0x08,0xF8,0x08,0x00,0x00,0x08,0xF8,0x08,0x00,0x1F,0x20,0x20,0x20,0x20,0x1F,0x00,
+1527          
+1528          /*-- 文字: V --*/
+1529          
+1530          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1531          
+1532          0x08,0x78,0x88,0x00,0x00,0xC8,0x38,0x08,0x00,0x00,0x07,0x38,0x0E,0x01,0x00,0x00,
+1533          
+1534          /*-- 文字: W --*/
+1535          
+1536          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1537          
+1538          0xF8,0x08,0x00,0xF8,0x00,0x08,0xF8,0x00,0x03,0x3C,0x07,0x00,0x07,0x3C,0x03,0x00,
+1539          
+1540          /*-- 文字: X --*/
+1541          
+1542          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1543          
+1544          0x08,0x18,0x68,0x80,0x80,0x68,0x18,0x08,0x20,0x30,0x2C,0x03,0x03,0x2C,0x30,0x20,
+1545          
+1546          /*-- 文字: Y --*/
+1547          
+1548          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1549          
+1550          0x08,0x38,0xC8,0x00,0xC8,0x38,0x08,0x00,0x00,0x00,0x20,0x3F,0x20,0x00,0x00,0x00,
+1551          
+1552          /*-- 文字: Z --*/
+1553          
+1554          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1555          
+1556          0x10,0x08,0x08,0x08,0xC8,0x38,0x08,0x00,0x20,0x38,0x26,0x21,0x20,0x20,0x18,0x00,
+1557          
+1558          /*-- 文字: [ --*/
+1559          
+1560          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1561          
+1562          0x00,0x00,0x00,0xFE,0x02,0x02,0x02,0x00,0x00,0x00,0x00,0x7F,0x40,0x40,0x40,0x00,
+1563          
+1564          /*-- 文字: \ --*/
+1565          
+1566          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1567          
+1568          0x00,0x0C,0x30,0xC0,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x06,0x38,0xC0,0x00,
+1569          
+1570          /*-- 文字: ] --*/
+1571          
+1572          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1573          
+1574          0x00,0x02,0x02,0x02,0xFE,0x00,0x00,0x00,0x00,0x40,0x40,0x40,0x7F,0x00,0x00,0x00,
+1575          
+1576          /*-- 文字: ^ --*/
+1577          
+1578          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1579          
+1580          0x00,0x00,0x04,0x02,0x02,0x02,0x04,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+1581          
+1582          /*-- 文字: _ --*/
+1583          
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 27  
+
+1584          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1585          
+1586          0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,
+1587          
+1588          /*-- 文字: ` --*/
+1589          
+1590          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1591          
+1592          0x00,0x02,0x02,0x04,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+1593          
+1594          /*-- 文字: a --*/
+1595          
+1596          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1597          
+1598          0x00,0x00,0x80,0x80,0x80,0x80,0x00,0x00,0x00,0x19,0x24,0x22,0x22,0x22,0x3F,0x20,
+1599          
+1600          /*-- 文字: b --*/
+1601          
+1602          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1603          
+1604          0x08,0xF8,0x00,0x80,0x80,0x00,0x00,0x00,0x00,0x3F,0x11,0x20,0x20,0x11,0x0E,0x00,
+1605          
+1606          /*-- 文字: c --*/
+1607          
+1608          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1609          
+1610          0x00,0x00,0x00,0x80,0x80,0x80,0x00,0x00,0x00,0x0E,0x11,0x20,0x20,0x20,0x11,0x00,
+1611          
+1612          /*-- 文字: d --*/
+1613          
+1614          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1615          
+1616          0x00,0x00,0x00,0x80,0x80,0x88,0xF8,0x00,0x00,0x0E,0x11,0x20,0x20,0x10,0x3F,0x20,
+1617          
+1618          /*-- 文字: e --*/
+1619          
+1620          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1621          
+1622          0x00,0x00,0x80,0x80,0x80,0x80,0x00,0x00,0x00,0x1F,0x22,0x22,0x22,0x22,0x13,0x00,
+1623          
+1624          /*-- 文字: f --*/
+1625          
+1626          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1627          
+1628          0x00,0x80,0x80,0xF0,0x88,0x88,0x88,0x18,0x00,0x20,0x20,0x3F,0x20,0x20,0x00,0x00,
+1629          
+1630          /*-- 文字: g --*/
+1631          
+1632          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1633          
+1634          0x00,0x00,0x80,0x80,0x80,0x80,0x80,0x00,0x00,0x6B,0x94,0x94,0x94,0x93,0x60,0x00,
+1635          
+1636          /*-- 文字: h --*/
+1637          
+1638          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1639          
+1640          0x08,0xF8,0x00,0x80,0x80,0x80,0x00,0x00,0x20,0x3F,0x21,0x00,0x00,0x20,0x3F,0x20,
+1641          
+1642          /*-- 文字: i --*/
+1643          
+1644          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1645          
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 28  
+
+1646          0x00,0x80,0x98,0x98,0x00,0x00,0x00,0x00,0x00,0x20,0x20,0x3F,0x20,0x20,0x00,0x00,
+1647          
+1648          /*-- 文字: j --*/
+1649          
+1650          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1651          
+1652          0x00,0x00,0x00,0x80,0x98,0x98,0x00,0x00,0x00,0xC0,0x80,0x80,0x80,0x7F,0x00,0x00,
+1653          
+1654          /*-- 文字: k --*/
+1655          
+1656          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1657          
+1658          0x08,0xF8,0x00,0x00,0x80,0x80,0x80,0x00,0x20,0x3F,0x24,0x02,0x2D,0x30,0x20,0x00,
+1659          
+1660          /*-- 文字: l --*/
+1661          
+1662          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1663          
+1664          0x00,0x08,0x08,0xF8,0x00,0x00,0x00,0x00,0x00,0x20,0x20,0x3F,0x20,0x20,0x00,0x00,
+1665          
+1666          /*-- 文字: m --*/
+1667          
+1668          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1669          
+1670          0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x00,0x20,0x3F,0x20,0x00,0x3F,0x20,0x00,0x3F,
+1671          
+1672          /*-- 文字: n --*/
+1673          
+1674          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1675          
+1676          0x80,0x80,0x00,0x80,0x80,0x80,0x00,0x00,0x20,0x3F,0x21,0x00,0x00,0x20,0x3F,0x20,
+1677          
+1678          /*-- 文字: o --*/
+1679          
+1680          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1681          
+1682          0x00,0x00,0x80,0x80,0x80,0x80,0x00,0x00,0x00,0x1F,0x20,0x20,0x20,0x20,0x1F,0x00,
+1683          
+1684          /*-- 文字: p --*/
+1685          
+1686          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1687          
+1688          0x80,0x80,0x00,0x80,0x80,0x00,0x00,0x00,0x80,0xFF,0xA1,0x20,0x20,0x11,0x0E,0x00,
+1689          
+1690          /*-- 文字: q --*/
+1691          
+1692          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1693          
+1694          0x00,0x00,0x00,0x80,0x80,0x80,0x80,0x00,0x00,0x0E,0x11,0x20,0x20,0xA0,0xFF,0x80,
+1695          
+1696          /*-- 文字: r --*/
+1697          
+1698          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1699          
+1700          0x80,0x80,0x80,0x00,0x80,0x80,0x80,0x00,0x20,0x20,0x3F,0x21,0x20,0x00,0x01,0x00,
+1701          
+1702          /*-- 文字: s --*/
+1703          
+1704          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1705          
+1706          0x00,0x00,0x80,0x80,0x80,0x80,0x80,0x00,0x00,0x33,0x24,0x24,0x24,0x24,0x19,0x00,
+1707          
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 29  
+
+1708          /*-- 文字: t --*/
+1709          
+1710          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1711          
+1712          0x00,0x80,0x80,0xE0,0x80,0x80,0x00,0x00,0x00,0x00,0x00,0x1F,0x20,0x20,0x00,0x00,
+1713          
+1714          /*-- 文字: u --*/
+1715          
+1716          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1717          
+1718          0x80,0x80,0x00,0x00,0x00,0x80,0x80,0x00,0x00,0x1F,0x20,0x20,0x20,0x10,0x3F,0x20,
+1719          
+1720          /*-- 文字: v --*/
+1721          
+1722          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1723          
+1724          0x80,0x80,0x80,0x00,0x00,0x80,0x80,0x80,0x00,0x01,0x0E,0x30,0x08,0x06,0x01,0x00,
+1725          
+1726          /*-- 文字: w --*/
+1727          
+1728          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1729          
+1730          0x80,0x80,0x00,0x80,0x00,0x80,0x80,0x80,0x0F,0x30,0x0C,0x03,0x0C,0x30,0x0F,0x00,
+1731          
+1732          /*-- 文字: x --*/
+1733          
+1734          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1735          
+1736          0x00,0x80,0x80,0x00,0x80,0x80,0x80,0x00,0x00,0x20,0x31,0x2E,0x0E,0x31,0x20,0x00,
+1737          
+1738          /*-- 文字: y --*/
+1739          
+1740          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1741          
+1742          0x80,0x80,0x80,0x00,0x00,0x80,0x80,0x80,0x80,0x81,0x8E,0x70,0x18,0x06,0x01,0x00,
+1743          
+1744          /*-- 文字: z --*/
+1745          
+1746          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1747          
+1748          0x00,0x80,0x80,0x80,0x80,0x80,0x80,0x00,0x00,0x21,0x30,0x2C,0x22,0x21,0x30,0x00,
+1749          
+1750          /*-- 文字: { --*/
+1751          
+1752          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1753          
+1754          0x00,0x00,0x00,0x00,0x80,0x7C,0x02,0x02,0x00,0x00,0x00,0x00,0x00,0x3F,0x40,0x40,
+1755          
+1756          /*-- 文字: | --*/
+1757          
+1758          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1759          
+1760          0x00,0x00,0x00,0x00,0xFF,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xFF,0x00,0x00,0x00,
+1761          
+1762          /*-- 文字: } --*/
+1763          
+1764          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1765          
+1766          0x00,0x02,0x02,0x7C,0x80,0x00,0x00,0x00,0x00,0x40,0x40,0x3F,0x00,0x00,0x00,0x00,
+1767          
+1768          /*-- 文字: ~ --*/
+1769          
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 30  
+
+1770          /*-- Comic Sans MS12; 此字体下对应的点阵为：宽 x 高=8x16 --*/
+1771          
+1772          0x00,0x06,0x01,0x01,0x02,0x02,0x04,0x04,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+1773          
+1774          };
+1775          
+1776          const unsigned char ascii_table_5x7[95][5]={
+1777          
+1778          /*全体 ASCII 列表:5x7 点阵*/
+1779          
+1780          0x00,0x00,0x00,0x00,0x00,//space
+1781          
+1782          0x00,0x00,0x4f,0x00,0x00,//!
+1783          
+1784          0x00,0x07,0x00,0x07,0x00,//"
+1785          
+1786          0x14,0x7f,0x14,0x7f,0x14,//#
+1787          
+1788          0x24,0x2a,0x7f,0x2a,0x12,//$
+1789          
+1790          0x23,0x13,0x08,0x64,0x62,//%
+1791          
+1792          0x36,0x49,0x55,0x22,0x50,//&
+1793          
+1794          0x00,0x05,0x07,0x00,0x00,//]
+1795          
+1796          0x00,0x1c,0x22,0x41,0x00,//(
+1797          
+1798          0x00,0x41,0x22,0x1c,0x00,//)
+1799          
+1800          0x14,0x08,0x3e,0x08,0x14,//*
+1801          
+1802          0x08,0x08,0x3e,0x08,0x08,//+
+1803          
+1804          0x00,0x50,0x30,0x00,0x00,//,
+1805          
+1806          0x08,0x08,0x08,0x08,0x08,//-
+1807          
+1808          0x00,0x60,0x60,0x00,0x00,//.
+1809          
+1810          0x20,0x10,0x08,0x04,0x02,///
+1811          
+1812          0x3e,0x51,0x49,0x45,0x3e,//0
+1813          
+1814          0x00,0x42,0x7f,0x40,0x00,//1
+1815          
+1816          0x42,0x61,0x51,0x49,0x46,//2
+1817          
+1818          0x21,0x41,0x45,0x4b,0x31,//3
+1819          
+1820          0x18,0x14,0x12,0x7f,0x10,//4
+1821          
+1822          0x27,0x45,0x45,0x45,0x39,//5
+1823          
+1824          0x3c,0x4a,0x49,0x49,0x30,//6
+1825          
+1826          0x01,0x71,0x09,0x05,0x03,//7
+1827          
+1828          0x36,0x49,0x49,0x49,0x36,//8
+1829          
+1830          0x06,0x49,0x49,0x29,0x1e,//9
+1831          
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 31  
+
+1832          0x00,0x36,0x36,0x00,0x00,//:
+1833          
+1834          0x00,0x56,0x36,0x00,0x00,//;
+1835          
+1836          0x08,0x14,0x22,0x41,0x00,//<
+1837          
+1838          0x14,0x14,0x14,0x14,0x14,//=
+1839          
+1840          0x00,0x41,0x22,0x14,0x08,//>
+1841          
+1842          0x02,0x01,0x51,0x09,0x06,//?
+1843          
+1844          0x32,0x49,0x79,0x41,0x3e,//@
+1845          
+1846          0x7e,0x11,0x11,0x11,0x7e,//A
+1847          
+1848          0x7f,0x49,0x49,0x49,0x36,//B
+1849          
+1850          0x3e,0x41,0x41,0x41,0x22,//C
+1851          
+1852          0x7f,0x41,0x41,0x22,0x1c,//D
+1853          
+1854          0x7f,0x49,0x49,0x49,0x41,//E
+1855          
+1856          0x7f,0x09,0x09,0x09,0x01,//F
+1857          
+1858          0x3e,0x41,0x49,0x49,0x7a,//G
+1859          
+1860          0x7f,0x08,0x08,0x08,0x7f,//H
+1861          
+1862          0x00,0x41,0x7f,0x41,0x00,//I
+1863          
+1864          0x20,0x40,0x41,0x3f,0x01,//J
+1865          
+1866          0x7f,0x08,0x14,0x22,0x41,//K
+1867          
+1868          0x7f,0x40,0x40,0x40,0x40,//L
+1869          
+1870          0x7f,0x02,0x0c,0x02,0x7f,//M
+1871          
+1872          0x7f,0x04,0x08,0x10,0x7f,//N
+1873          
+1874          0x3e,0x41,0x41,0x41,0x3e,//O
+1875          
+1876          0x7f,0x09,0x09,0x09,0x06,//P
+1877          
+1878          0x3e,0x41,0x51,0x21,0x5e,//Q
+1879          
+1880          0x7f,0x09,0x19,0x29,0x46,//R
+1881          
+1882          0x46,0x49,0x49,0x49,0x31,//S
+1883          
+1884          0x01,0x01,0x7f,0x01,0x01,//T
+1885          
+1886          0x3f,0x40,0x40,0x40,0x3f,//U
+1887          
+1888          0x1f,0x20,0x40,0x20,0x1f,//V
+1889          
+1890          0x3f,0x40,0x38,0x40,0x3f,//W
+1891          
+1892          0x63,0x14,0x08,0x14,0x63,//X
+1893          
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 32  
+
+1894          0x07,0x08,0x70,0x08,0x07,//Y
+1895          
+1896          0x61,0x51,0x49,0x45,0x43,//Z
+1897          
+1898          0x00,0x7f,0x41,0x41,0x00,//[
+1899          
+1900          0x02,0x04,0x08,0x10,0x20,//\
+1901          
+1902          0x00,0x41,0x41,0x7f,0x00,//]
+1903          
+1904          0x04,0x02,0x01,0x02,0x04,//^
+1905          
+1906          0x40,0x40,0x40,0x40,0x40,//_
+1907          
+1908          0x01,0x02,0x04,0x00,0x00,//`
+1909          
+1910          0x20,0x54,0x54,0x54,0x78,//a
+1911          
+1912          0x7f,0x48,0x48,0x48,0x30,//b
+1913          
+1914          0x38,0x44,0x44,0x44,0x44,//c
+1915          
+1916          0x30,0x48,0x48,0x48,0x7f,//d
+1917          
+1918          0x38,0x54,0x54,0x54,0x58,//e
+1919          
+1920          0x00,0x08,0x7e,0x09,0x02,//f
+1921          
+1922          0x48,0x54,0x54,0x54,0x3c,//g
+1923          
+1924          0x7f,0x08,0x08,0x08,0x70,//h
+1925          
+1926          0x00,0x00,0x7a,0x00,0x00,//i
+1927          
+1928          0x20,0x40,0x40,0x3d,0x00,//j
+1929          
+1930          0x7f,0x20,0x28,0x44,0x00,//k
+1931          
+1932          0x00,0x41,0x7f,0x40,0x00,//l
+1933          
+1934          0x7c,0x04,0x38,0x04,0x7c,//m
+1935          
+1936          0x7c,0x08,0x04,0x04,0x78,//n
+1937          
+1938          0x38,0x44,0x44,0x44,0x38,//o
+1939          
+1940          0x7c,0x14,0x14,0x14,0x08,//p
+1941          
+1942          0x08,0x14,0x14,0x14,0x7c,//q
+1943          
+1944          0x7c,0x08,0x04,0x04,0x08,//r
+1945          
+1946          0x48,0x54,0x54,0x54,0x24,//s
+1947          
+1948          0x04,0x04,0x3f,0x44,0x24,//t
+1949          
+1950          0x3c,0x40,0x40,0x40,0x3c,//u
+1951          
+1952          0x1c,0x20,0x40,0x20,0x1c,//v
+1953          
+1954          0x3c,0x40,0x30,0x40,0x3c,//w
+1955          
+C51 COMPILER V9.01   LCD12864                                                              03/20/2019 11:22:06 PAGE 33  
+
+1956          0x44,0x28,0x10,0x28,0x44,//x
+1957          
+1958          0x04,0x48,0x30,0x08,0x04,//y
+1959          
+1960          0x44,0x64,0x54,0x4c,0x44,//z
+1961          
+1962          0x08,0x36,0x41,0x41,0x00,//{
+1963          
+1964          0x00,0x00,0x77,0x00,0x00,//|
+1965          
+1966          0x00,0x41,0x41,0x36,0x08,//}
+1967          
+1968          0x04,0x02,0x02,0x02,0x01,//~
+1969          
+1970          }; 
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   5230    ----
+   CONSTANT SIZE    =    168    ----
+   XDATA SIZE       =   4230      81
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

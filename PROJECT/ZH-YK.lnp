@@ -1,0 +1,15 @@
+".\beep.obj",
+".\delay.obj",
+".\interrupt.obj",
+".\ird_remote.obj",
+".\key.obj",
+".\lcd12864.obj",
+".\led.obj",
+".\main.obj",
+".\Modbus.obj",
+".\pwm.obj",
+".\timer.obj",
+".\uart.obj",
+".\io.obj" 
+TO "ZH-YK" 
+RAMSIZE(256) 
